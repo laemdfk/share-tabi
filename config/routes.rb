@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'posts/index'
+    get 'posts/show'
+    get 'posts/destroy'
+  end
+  namespace :admin do
+    get 'endusers/index'
+    get 'endusers/show'
+    get 'endusers/edit'
+    get 'endusers/update'
+    get 'endusers/destroy'
+  end
   devise_for :end_users,skip: [:passwords], controllers: {
   registrations: "public/registrations",
   sessions: 'public/sessions'
