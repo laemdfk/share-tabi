@@ -1,2 +1,33 @@
 <h1>Admin::Endusers#index</h1>
-<p>Find me in app/views/admin/endusers/index.html.erb</p>
+
+<!--<div class = "contener">-->
+<!-- <div class = "row">-->
+  <h2>会員一覧</h2>
+   <div class = "table">
+    <thead>
+       <tr>
+         <th colspan="4"></th>
+         <th>会員ID</th>
+         <th>氏名</th>
+         <th>メールアドレス</th>
+         <th>ステータス</th>
+       </tr>
+     </thead>
+      <tbody>
+        <% @endusers.each do |enduser| %>
+         <tr>
+          <td><%= enduser.id %></td>
+          <td><%= link_to enduser.nickname, admin_admin_enduser_path(enduser.id) %></td>
+          <td><%= enduser.email %></td>
+           <!--一enum導入まではfalse表示か-->
+          <td>
+           <% if enduser.is_deleted == false %>
+            <td><%= '有効' %></td>
+           <% else %>
+            <td><%= '退会' %></td>
+           <% end %>
+          </td>
+         </tr>
+        <% end %>
+      </tbody>
+    </div>

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root to: 'endusers#index'
+
     resources :endusers, only:[:index, :show, :edit, :update, :destroy]
     resources :posts, only:[:index, :show, :destroy]
   end
