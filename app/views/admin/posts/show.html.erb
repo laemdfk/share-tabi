@@ -1,0 +1,23 @@
+<h1>Admin::Posts#show</h1>
+<div class = "container">
+  <div class="row">
+     <h3 class="px-4 bg-light" ><%= @enduser.nickname %>さんの投稿詳細</h3>
+      <table class="table">
+    　  <thead class ="defalut">
+  		<tr>
+            <td>
+               <% if @enduser.profile_image.attached? %>
+                <%= image_tag @enduser.profile_image, size: "100x100" %><br />
+               <% else %>
+                <%= image_tag 'no_image.jpeg', size: "100x100" %><br />
+               <% end %>
+            </td>
+              <td><%= link_to @post.title, post_path %></td>
+              <td><%= @post.body %></td>
+
+               <% if @post.enduser_id == current_user.id %>
+                <td><%= link_to 'Destroy',post_path(@post), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger" %></td>
+               <% end %>
+           </tr>
+     </div>
+  </div>

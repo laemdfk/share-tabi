@@ -1,0 +1,27 @@
+<h1>Admin::Posts#index</h1>
+<div class = "container">
+  <div class ="row">
+    <h3 class ="px-5 bg-light">投稿一覧</h3>
+  </div>
+  <div class ="row col-lg-10">
+    <table class ="table">
+      <thead class ="bg-light">
+          <tr>
+
+              <th style="width: 20%">投稿日時</th>
+              <th>投稿者</th>
+              <th>投稿タイトル</th>
+              <th>投稿内容</th>
+          </tr>
+      </thead>
+      <tbody>
+       <% @posts.each do |post| %>
+               <tr>
+                <td><%= order.created_at.strftime('%Y/%m/%d %H:%M') %></td>
+                <td><%= posts.enduser.nickname %></td>
+                <td><%= link_to post.title, post_path(post.id) %></td>
+                <td><%= post.body %></td>
+                </tr>
+             <% end %>
+      </tbody>
+    </table>
