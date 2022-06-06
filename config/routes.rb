@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
 
   namespace :public do
-    get 'endusers/index'
-    get 'endusers/show'
-    get 'endusers/edit'
+    get 'end_users/index'
+    get 'end_users/show'
+    get 'end_users/edit'
   end
   namespace :public do
     get 'posts/index'
