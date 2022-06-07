@@ -1,20 +1,5 @@
 Rails.application.routes.draw do
 
-  namespace :admin do
-    get 'end_users/index'
-    get 'end_users/show'
-    get 'end_users/edit'
-  end
-  namespace :public do
-    get 'end_users/index'
-    get 'end_users/show'
-    get 'end_users/edit'
-  end
-  namespace :public do
-    get 'posts/index'
-    get 'posts/show'
-    get 'posts/edit'
-  end
   devise_for :end_users,skip: [:passwords], controllers: {
   registrations: "public/registrations",
   sessions: 'public/sessions'
@@ -24,11 +9,26 @@ Rails.application.routes.draw do
   sessions: "admin/sessions"
 }
 
+
   namespace :admin do
     root to: 'endusers#index'
 
     resources :endusers, only:[:show, :edit, :update, :destroy]
     resources :posts, only:[:index, :show, :destroy]
   end
+  
+   root to: 'public/homes#top'
+  
+  namespace :public do
+   
+    get 'endusers/index'
+    get 'endusers/show'
+    get 'endusers/edit'
+
+    get 'posts/index'
+    get 'posts/show'
+    get 'posts/edit'
+  end
+  
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
