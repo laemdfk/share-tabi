@@ -34,6 +34,7 @@ class Public::PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    
     if @post.user == current_user
          render "edit"
     else
@@ -41,4 +42,43 @@ class Public::PostsController < ApplicationController
     end
   end
   
+  
+ def update
+   @post = Post.find(params[:id])
+    if @post.update(post_params)
+      
+      flash[:notice]="You have updated successfully."
+      redirect_to post_path(@post.id)
+
+    else
+        render "edit"
+    end
 end
+
+
+    def destroy
+      post = post.find(params[:id])
+      post.destroy
+      flash[:notice]="Book was successfully destroyed."
+      redirect_to posts_path
+    end
+
+
+	private
+
+    def post_params
+        params.require(:book).permit(:title, :body)
+    end
+
+     def authenticate_current_user
+        @post = Post.find(params[:id])
+        if @post.user_id != current_user
+         redirect_to posts_path
+      end
+    end
+
+     def user_params
+         params.require(:end_user).permit(:name, :introduction, :enduser_id, :profile_image_id)
+     end
+
+ end
