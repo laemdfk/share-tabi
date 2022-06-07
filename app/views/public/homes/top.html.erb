@@ -7,13 +7,13 @@
 
    <div class="btn-wrapper col-10 mx-auto">
         <div class="row">
-          <a class="btn btn-info btn-sm btn-block mb-3 sign_in" href="/end_users/sign_in">ゲストログイン</a>
+         <%= link_to "ゲストログイン",new_end_user_session_path %>
         </div>
         <div class="row">
-          <a class="btn btn-info btn-sm btn-block mb-3 sign_in" href="/end_users/sign_in">ログイン</a>
+         <%= link_to "ログイン",new_end_user_session_path %>
         </div>
         <div class="row">
-          <a class="btn btn-success btn-sm btn-block sign_up" href="/end_users/sign_up">サインアップ</a>
+          <%= link_to "サインアップ",new_end_user_registration_path %>
         </div>
    </div>
  </div>
