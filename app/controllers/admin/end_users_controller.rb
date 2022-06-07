@@ -1,5 +1,5 @@
-class Admin::EndusersController < ApplicationController
-  def index
+class Admin::EndUsersController < ApplicationController
+ def index
     @endusers = EndUser.all
   end
 
@@ -22,10 +22,10 @@ class Admin::EndusersController < ApplicationController
 
   def destroy
   end
-  
+
   def enduser_params
      params.require(:enduser).permit(:nickname, :email, :is_deleted)
   end
-  
-  
+
+
 end
