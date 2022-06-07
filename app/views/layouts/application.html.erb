@@ -10,7 +10,17 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= yield %>
+ <body class="d-flex flex-column">
+   
+    <% if admin_signed_in? %>
+      <%= render "layouts/admin_header" %>
+    <% else %>
+      <%= render "layouts/enduser_header" %>
+    <% end %>
+     <main>
+　　    <%= yield %>
+    </main>
   </body>
 </html>
+
+
