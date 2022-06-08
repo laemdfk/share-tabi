@@ -1,7 +1,9 @@
 <header>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-      <span class="navbar-brand p-3">シェアたび</span>
+      <span class="navbar-brand p-3">
+        　<%= link_to "シェアたび",root_path %>
+        </span>
       <div>
         <ul class="navbar-nav pt-3">
           <% if end_user_signed_in? %>
@@ -9,7 +11,7 @@
             <%= link_to "マイページ", public_endusers_show_path, class: "nav-link", style: "color:white;" %>
           </li>
           <li>
-            <%= link_to "アカウント編集", ublic_endusers_edit_path, class: "nav-link", style: "color:white;" %>
+            <%= link_to "アカウント編集", public_endusers_edit_path, class: "nav-link", style: "color:white;" %>
           </li>
           <li>
             <%=link_to "みんなの投稿", public_posts_index_path, class: "nav-link", style: "color:white;" %>
@@ -19,8 +21,8 @@
           </li>
           <% else %>
           <li><%= link_to"Home",root_path,  class:"link"  %></li>
-          <li><%= link_to"Sign up", "/endusers/sign_up",class:"link" %></li>
-          <li><%= link_to"Log in", "/endusers/sign_in",  class:"link" %></li>
+          <li><%= link_to"Sign up", "/end_users/sign_up",class:"link" %></li>
+          <li><%= link_to"Log in", "/end_users/sign_in",  class:"link" %></li>
           
           <% end %>
       
