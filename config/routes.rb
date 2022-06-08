@@ -17,17 +17,15 @@ Rails.application.routes.draw do
     resources :posts, only:[:index, :show, :destroy]
   end
   
-   root to: 'public/homes#top'
+    root to: 'public/homes#top'
   
   namespace :public do
+    
+    root to: 'endusers#show'
    
-    get 'endusers/index'
-    get 'endusers/show'
-    get 'endusers/edit'
-
-    get 'posts/index'
-    get 'posts/show'
-    get 'posts/edit'
+    resources :endusers, only: [:index, :show, :edit, :update, :destroy]
+   
+    resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy]
   end
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
