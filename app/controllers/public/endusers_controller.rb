@@ -1,8 +1,8 @@
 class Public::EndusersController < ApplicationController
-  
+
   def show
-    # @enduser = EndUser.find(params[:id])
-    # @posts = @enduser.posts
+    @enduser = current_end_user
+    @posts = @enduser.posts
      #↑自分が投稿したものだけを表示させるための制御文。
      #アソシエーションで定義させている
   end
@@ -14,7 +14,7 @@ class Public::EndusersController < ApplicationController
     # @new_post = Book.new
   end
 
-  def edit 
+  def edit
     @enduser = EndUser.find(params[:id])
     if @enduser == current_end_user
           render "edit"
@@ -35,7 +35,7 @@ class Public::EndusersController < ApplicationController
 
 
   private
-  
+
   def user_params
     params.require(:enduser).permit(:name, :introduction, :profile_image)
   end

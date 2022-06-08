@@ -11,7 +11,7 @@
           </tr>
          </thead>
           <tbody>
-           <%# @posts.each do |post| %>
+           <% @posts.each do |post| %>
             <tr>
              <td>
                <%#= link_to user_path(@enduser) do %>
@@ -21,11 +21,11 @@
                    <%#= image_tag 'no_image.jpeg', size: "80x80" %>
                 <%# end %>
               </td>
-              <td><%#= link_to post.title, public_post_path(post.id) %></td>
-              <td><%#= post.body %></td>
+              <td><%= link_to post.title, public_post_path(post.id) %></td>
+              <td><%= post.body %></td>
              </tr>
             <%# end %>
-         <%# end %>
+         <% end %>
       </tbody>
      </table>
      <%= link_to "新しい旅の思い出を作る",new_public_post_path %>

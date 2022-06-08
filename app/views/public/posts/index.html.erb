@@ -1,2 +1,38 @@
 <h1>Public::Posts#index</h1>
-<p>Find me in app/views/public/posts/index.html.erb</p>
+<body>
+ <main>
+    <div class="col-md-8 offset-md-1">
+      <h2>投稿一覧</h2>
+        <table class="table table-hover table-inverse">
+          <thead>
+            <tr>
+             <th></th>
+             <th>タイトル</th>
+             <th>本文</th>
+             <th colspan="3"></th>
+             </tr>
+           </thead>
+            <tbody>
+              <% @posts.each do |post| %>
+               <tr>
+                 <td>
+                   <%#= link_to end_user_path(book.end_user) do %> 
+                    <%# if @enduser.profile_image.attached? %>
+                     <%#= image_tag @enduser.profile_image, size: "100x100" %>
+                    <%# else %>
+                      <%#= image_tag 'no_image.jpeg', size: "100x100" %>
+                    <%# end %>
+                  </td>
+                  <%# end %>
+                </td>
+                <td><%= link_to post.title, public_post_path(post.id) %></td>
+                <td><%= post.body %></td>
+                </tr>
+             <% end %>
+           </tbody>
+        </table>
+      </div>
+     </div>
+   </div>
+  </main>
+</body>

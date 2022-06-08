@@ -1,22 +1,23 @@
 class Public::PostsController < ApplicationController
 
-  before_action :current_user, {only: [:edit, :update, :destroy]}
+  before_action :current_end_user, {only: [:edit, :update, :destroy]}
 
   def new
-    @new_post = Post.new
+    @post_new = Post.new
+    # ここにparamsをつけてしまうと、createの値と重複してデータが渡る様子?
   end
 
 
   def create
-    @enduser = current_end_user
-		@new_post = Post.new(post_params)
+    # @enduser = current_end_user
+	@post_new = Post.new(post_params)
 
-    @new_post.enduser_id = current_end_user.id
+    @post_new.end_user_id = current_end_user.id
     #↑ ユーザーと投稿を紐づけるためのコード
 
-	   if @new_post.save
+	   if @post_new.save
         flash[:notice] = "You have creatad book successfully."
-		    redirect_to  public_post(@new_post.id)
+		    redirect_to public_posts_path(@new_post)
      else
         render "new"
      end
@@ -29,13 +30,13 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @enduser = @post.user
+    @enduser = @post.end_user
   end
 
   def edit
     @post = Post.find(params[:id])
 
-    if @post.user == current_end_user
+    if @post.end_user == current_end_user
          render "edit"
     else
         redirect_to posts_path
@@ -48,7 +49,7 @@ class Public::PostsController < ApplicationController
     if @post.update(post_params)
 
       flash[:notice]="You have updated successfully."
-      redirect_to post_path(@post.id)
+      redirect_to public_post_path(@post.id)
 
     else
         render "edit"
@@ -57,27 +58,31 @@ end
 
 
     def destroy
-      post = post.find(params[:id])
-      post.destroy
+      @post = Post.find(params[:id])
+      @post.destroy
       flash[:notice]="Book was successfully destroyed."
-      redirect_to posts_path
+      redirect_to public_posts_path
     end
 
 
 	private
 
+   # params.require(:モデル名).permit(カラム名)の形で記入しないとエラーになる
+   # require = そのモデルに基づいた値を返すため
+
     def post_params
         params.require(:post).permit(:title, :body)
     end
 
+
      def authenticate_current_end_user
         @post = Post.find(params[:id])
         if @post.user_id != current_end_user
-         redirect_to posts_path
+         redirect_to public_posts_path
       end
     end
 
-    # def user_params
+    # def enduser_params
     #   params.require(:enduser).permit(:name, :introduction, :profile_image)
     # end
 

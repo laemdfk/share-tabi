@@ -1,2 +1,35 @@
 <h1>Public::Posts#show</h1>
-<p>Find me in app/views/public/posts/show.html.erb</p>
+ <main>
+    <div class="col-md-8 offset-md-1">
+      <h2>詳細</h2>
+      <table class="table">
+        <thead>
+          <tr></tr>
+        </thead>
+         <tbody>
+          <table class='table'>
+  		      <tr>
+            <td>
+            <%= link_to public_enduser_path (@post.end_user) do %>
+               <%# if @user.profile_image.attached? %>
+                <%#= image_tag @user.profile_image, size: "100x100" %><br />
+               <%# else %>
+                <%#= image_tag 'no_image.jpeg', size: "100x100" %><br />
+               <%# end %>
+              <%= link_to @post.end_user.nickname, public_enduser_path(@post.end_user) %>
+             <% end %>
+            </td>
+              <td><%= link_to @post.title, public_enduser_path %></td>
+              <td><%= @post.body %></td>
+
+               <% if @post.end_user_id == current_end_user.id %>
+                <td><%= link_to 'Edit', edit_public_post_path(@post), class: "btn btn-sm btn-success" %><td>
+                <td><%= link_to 'Destroy',public_post_path(@post), method: :delete, data: { confirm: "この操作は取り消せませんが、本当に削除しますか?" }, class: "btn btn-sm btn-danger" %></td>
+               <% end %>
+           </tr>
+      </tbody>
+    </table>
+   </div>
+  </div>
+ </div>
+</main>
