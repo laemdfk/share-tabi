@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   
   namespace :public do
     
-    root to: 'endusers#show'
+    root to: 'public/endusers#show'
    
     resources :endusers, only: [:index, :show, :edit, :update, :destroy]
     resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy]

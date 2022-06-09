@@ -12,12 +12,14 @@
                 <%= image_tag 'no_image.jpeg', size: "100x100" %><br />
                <% end %>
             </td>
-              <td><%= link_to @post.title, post_path %></td>
+              <td><%= link_to @post.title, admin_post_path %></td>
               <td><%= @post.body %></td>
 
-               <% if @post.enduser_id == current_user.id %>
-                <td><%= link_to 'Destroy',post_path(@post), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger" %></td>
-               <% end %>
+
+<!--管理者であれば。削除ボタンを表示させるに書き換える-->
+               <%# if @post.end_user_id == end_user_id %>
+                <td><%#= link_to 'Destroy',post_path(@post), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger" %></td>
+               <%# end %>
            </tr>
      </div>
   </div>

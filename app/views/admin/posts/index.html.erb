@@ -17,9 +17,9 @@
       <tbody>
        <% @posts.each do |post| %>
                <tr>
-                <td><%= order.created_at.strftime('%Y/%m/%d %H:%M') %></td>
-                <td><%= posts.enduser.nickname %></td>
-                <td><%= link_to post.title, post_path(post.id) %></td>
+                <td><%= post.created_at.strftime('%Y/%m/%d %H:%M') %></td>
+                <td><%= post.end_user.nickname %></td>
+                <td><%= link_to post.title, admin_post_path(post.id) %></td>
                 <td><%= post.body %></td>
                 </tr>
              <% end %>

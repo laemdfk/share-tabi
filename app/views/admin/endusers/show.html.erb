@@ -3,27 +3,27 @@
   <thead class ="defalut">
    <tr>
     <td>会員ID</td>
-    <td><%#= @enduser.id %></td>
+    <td><%= @enduser.id %></td>
    </tr>
 
     <tr>
      <td>ニックネーム</td>
-     <td><%#= @enduserr.nickname %></td>
+     <td><%= @enduser.nickname %></td>
     </tr>
     
     <tr>
      <td>メールアドレス</td>
-     <td><%#= @enduser.email %></td>
+     <td><%= @enduser.email %></td>
     </tr>
 
     <tr>
      <td>会員ステータス</td>
       <td>
-       <%# if @enduser.is_deleted == false %>
+       <% if @enduser.is_deleted == false %>
          <p class="text-success"><%= '有効' %></p>
-       <%# else %>
+       <% else %>
          <p class="text-secondary"><%= '退会' %></p>
-       <%# end %>
+       <% end %>
       </td>
      </tr>
     </thead>
@@ -32,7 +32,7 @@
 
 <div class="row">
  <div class="mx-auto">
-  <%#= link_to "編集する",edit_admin_customer_path(@enduser.id),class: "btn btn-success" %>
-  <%#= link_to "会員一覧へ",admin_endusers_path, class: "btn btn-primary" %>
+  <%= link_to "編集する",edit_admin_enduser_path(@enduser.id),class: "btn btn-info" %>
+  <%= link_to "会員一覧へ",admin_root_path, class: "btn btn-primary" %>
  </div>
 </div>

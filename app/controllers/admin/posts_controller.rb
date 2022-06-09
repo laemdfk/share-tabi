@@ -6,7 +6,7 @@ class Admin::PostsController < ApplicationController
 
   def show
      @post = Post.find(params[:id])
-     @enduser = @post.enduser
+     @enduser = @post.end_user
   end
 
   def destroy

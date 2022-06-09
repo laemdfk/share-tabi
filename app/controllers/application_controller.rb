@@ -19,6 +19,8 @@ def configure_permitted_parameters
   devise_parameter_sanitizer.permit(:sign_up,keys:[:nickname])
 end
 
+
+# 元々の制御部分。pry-railsでcheckしたところ、コードが発火していなかった。
 #   def after_end_user_sign_in_path_for(resource)
 #     public_root_path(resource)
 # end

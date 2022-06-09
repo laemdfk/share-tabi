@@ -14,11 +14,11 @@
            <% @posts.each do |post| %>
             <tr>
               <td>
-                <% if @enduser.post_image.attached? %>
-                 <%= image_tag @enduser.post_image, size: "200x200" %>
-                <% else %>
-                 <%= image_tag 'no_photo_image.jpg', size: "200x200" %>
-               <% end %>
+                <%# if @enduser.post_image.attached? %>
+                 <%#= image_tag @enduser.post_image, size: "200x200" %>
+                <%# else %>
+                 <%#= image_tag 'no_photo_image.jpg', size: "200x200" %>
+               <%# end %>
               </td>
               <td><%= link_to post.title, public_post_path(post.id) %></td>
               <td><%= post.body %></td>
