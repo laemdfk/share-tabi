@@ -3,6 +3,14 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "public/shared/error_messages", resource: resource %>
 
+
+<!--ここから追加-->
+<div class="field">
+    <%= f.label :nickname %><br />
+    <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname" %>
+  </div>
+<!--ここまで追加-->
+
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
@@ -28,3 +36,5 @@
 
 <%= render "public/shared/links" %>
 <!--ファイル名変更したら、view側も必ず変更すること-->
+
+<%= link_to "戻る",root_path %>

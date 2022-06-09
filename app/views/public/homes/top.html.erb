@@ -1,0 +1,25 @@
+<div class="row">
+ <div class="mx-auto col-11 col-sm-10 col-lg-8 col-xl-6">
+
+  <h1>ようこそ<strong>シェアたび</strong>へ!</h1>
+
+  <p>「シェアたび」は、旅の思い出を、スクラップブックにするサイトです</p>
+
+   <div class="btn-wrapper col-10 mx-auto">
+        <div class="row">
+         <%= link_to "ゲストログイン",new_end_user_session_path %>
+        </div>
+        <div class="row">
+         <%= link_to "ログイン",new_end_user_session_path %>
+        </div>
+        <div class="row">
+          <%= link_to "サインアップ",new_end_user_registration_path %>
+        </div>
+   </div>
+ </div>
+</div>
+
+  <div class="btn-wrapper col-10 mx-auto">
+   <div class="row">
+     <%= link_to "管理者ログイン",new_admin_session_path %>
+

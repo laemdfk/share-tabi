@@ -1,0 +1,37 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <span class="navbar-brand p-3">
+        　<%= link_to "シェアたび",root_path %>
+        </span>
+      <div>
+        <ul class="navbar-nav pt-3">
+           <% if admin_signed_in? %>
+            <li>
+             <%= link_to "会員一覧", admin_root_path, class: "nav-link"%>
+             </li>
+             <li>
+              <%= link_to "投稿一覧", admin_posts_path, class: "nav-link" %>
+             </li>
+             <li>
+              <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link" %>
+             </li>
+          <% else %>
+             <li>
+               <%= link_to"トップページへ",root_path,  class:"link"  %>
+            </li>
+             <li>
+               <%= link_to"サインアップ", "/end_users/sign_up",class:"link" %>
+             </li>
+             <li>
+               <%= link_to"ログイン", "/end_users/sign_in",  class:"link" %>
+            </li>
+          
+          <% end %>
+      
+        </ul>
+      </div>
+     </span>
+    </div>
+  </nav>
+</header>
