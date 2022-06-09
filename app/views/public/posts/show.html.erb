@@ -10,15 +10,20 @@
           <table class='table'>
   		      <tr>
             <td>
-            <%= link_to public_enduser_path (@post.end_user) do %>
-               <%# if @user.profile_image.attached? %>
-                <%#= image_tag @user.profile_image, size: "100x100" %><br />
-               <%# else %>
-                <%#= image_tag 'no_image.jpeg', size: "100x100" %><br />
-               <%# end %>
+               <% if @enduser.profile_image.attached? %>
+                <%= image_tag @enduser.profile_image, size: "60x60" %><br />
+               <% else %>
+                <%= image_tag 'no_image.jpg', size: "60x60" %><br />
+               <% end %>
               <%= link_to @post.end_user.nickname, public_enduser_path(@post.end_user) %>
-             <% end %>
             </td>
+              <td>
+                <%# if @enduser.post_image.attached? %>
+                 <%#= image_tag @enduser.post_image, size: "200x200" %>
+                <%# else %>
+                 <%#= image_tag 'no_photo_image.jpg', size: "200x200" %>
+               <%# end %>
+              </td>
               <td><%= link_to @post.title, public_enduser_path %></td>
               <td><%= @post.body %></td>
 

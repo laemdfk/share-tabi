@@ -61,7 +61,7 @@ end
       @post = Post.find(params[:id])
       @post.destroy
       flash[:notice]="Book was successfully destroyed."
-      redirect_to public_posts_path
+      redirect_to public_enduser_path(current_end_user)
     end
 
 
@@ -71,7 +71,7 @@ end
    # require = そのモデルに基づいた値を返すため
 
     def post_params
-        params.require(:post).permit(:title, :body)
+        params.require(:post).permit(:title, :body, :post_image)
     end
 
 

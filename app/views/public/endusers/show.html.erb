@@ -13,18 +13,16 @@
           <tbody>
            <% @posts.each do |post| %>
             <tr>
-             <td>
-               <%#= link_to user_path(@enduser) do %>
-                <%# if @enduser.profile_image.attached? %>
-                   <%#= image_tag @enduser.profile_image, size: "80x80" %>
-                <%# else %>
-                   <%#= image_tag 'no_image.jpeg', size: "80x80" %>
-                <%# end %>
+              <td>
+                <% if @enduser.post_image.attached? %>
+                 <%= image_tag @enduser.post_image, size: "200x200" %>
+                <% else %>
+                 <%= image_tag 'no_photo_image.jpg', size: "200x200" %>
+               <% end %>
               </td>
               <td><%= link_to post.title, public_post_path(post.id) %></td>
               <td><%= post.body %></td>
              </tr>
-            <%# end %>
          <% end %>
       </tbody>
      </table>
