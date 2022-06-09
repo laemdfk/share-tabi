@@ -9,7 +9,6 @@ Rails.application.routes.draw do
   sessions: "admin/sessions"
 }
 
-
   namespace :admin do
     root to: 'endusers#index'
 
@@ -19,12 +18,12 @@ Rails.application.routes.draw do
   
     root to: 'public/homes#top'
   
+  
   namespace :public do
     
     root to: 'endusers#show'
    
     resources :endusers, only: [:index, :show, :edit, :update, :destroy]
-   
     resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy]
   end
   

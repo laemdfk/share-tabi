@@ -1,2 +1,47 @@
 <h1>Public::Posts#edit</h1>
-<p>Find me in app/views/public/posts/edit.html.erb</p>
+<body>
+ <main>
+  <p id="notice"></p>
+    <% if @post.errors.any? %>
+   <div class="error_box">
+     <h3><%= @post.errors.count %>errors prohibited this book from being saved.</h3>
+   <ul>
+     <% @post.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+   </ul>
+ </div>
+<% end %>
+
+   <div class="container">
+     <div class="row">
+       <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+  	     	<h1>投稿編集</h1>
+
+           <%= form_with model: @post, url: public_post_path(@post), method: :patch do |f| %>
+
+           <div class="form-group">
+         　 <br> <%= f.label :タイトル %><br />
+            <%= f.text_field :title, :size=>"47" %><br/>
+           </div>
+
+           <div class="form-group">
+            <br><%= f.label :本文 %><br/>
+             <%= f.text_area :body, :size=>"47.5pxx62px" %><br/>
+           </div>
+
+
+          <div class="form-group">
+            <br><%= f.submit '投稿する',class:"btn btn-success" %><br />
+           </div>
+
+      <div class="menu">
+       <%= link_to "Show", public_post_path(@post) %>
+        |
+       <%= link_to "Back", public_posts_path %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+ <main>
+</body>

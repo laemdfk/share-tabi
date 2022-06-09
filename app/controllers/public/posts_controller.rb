@@ -17,7 +17,7 @@ class Public::PostsController < ApplicationController
 
 	   if @post_new.save
         flash[:notice] = "You have creatad book successfully."
-		    redirect_to public_posts_path(@new_post)
+		    redirect_to public_post_path(@post_new.id)
      else
         render "new"
      end
