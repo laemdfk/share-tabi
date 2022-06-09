@@ -25,9 +25,9 @@ class Public::EndusersController < ApplicationController
 
   def update
     @enduser = EndUser.find(params[:id])
-    if @enduser.update(enduser_params)
+    if @enduser.update(end_user_params)
       flash[:notice]="You have updated user successfully."
-      redirect_to public_enduser(current_end_user)
+      redirect_to public_enduser_path(current_end_user)
     else
       render :edit
     end
@@ -36,7 +36,7 @@ class Public::EndusersController < ApplicationController
 
   private
 
-  def user_params
-    params.require(:enduser).permit(:name, :introduction, :profile_image)
+  def end_user_params
+    params.require(:end_user).permit(:nickname, :introduction, :profile_image)
   end
 end
