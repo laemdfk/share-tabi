@@ -48,7 +48,7 @@ class Public::PostsController < ApplicationController
    @post = Post.find(params[:id])
     if @post.update(post_params)
 
-      flash[:notice]="You have updated successfully."
+      flash[:notice]="要降雨の編集が完了しました"
       redirect_to public_post_path(@post.id)
 
     else
@@ -60,7 +60,7 @@ end
     def destroy
       @post = Post.find(params[:id])
       @post.destroy
-      flash[:notice]="Book was successfully destroyed."
+      flash[:notice]="投稿の削除に成功しました"
       redirect_to public_enduser_path(current_end_user)
     end
 

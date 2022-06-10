@@ -6,5 +6,13 @@ class EndUser < ApplicationRecord
          
           has_many :posts, dependent: :destroy
           
+          has_many :post_images, dependent: :destroy
+          
           has_one_attached :profile_image
+          
+          
+          # 退会後に、同じアカウントでログインできないようにする処理
+          def active_for_authentication?
+           super && (is_deleted == false)
+          end
 end
