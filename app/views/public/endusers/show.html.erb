@@ -1,6 +1,38 @@
-<h1>Public::Endusers#show</h1>
+<h6>Public::Endusers#show</h6>
+<p id="notice"></p>
+
+<main>
+ <div class="container px-5 px-sm-0">
+   <div class="row">
+    <div class="col-md-3">
+      <h2>利用者情報</h2>
+       <% if @enduser.profile_image.attached? %>
+          <%= image_tag @enduser.profile_image, size: "200x200" %><br />
+       <% else %>
+           <%= image_tag 'no_image.jpg', size: "200x200" %><br />
+       <% end %>
+        <table class="table">
+         <tbody>
+          <tr></tr>
+          <tr>
+	          <th>name</th>
+	           <td><%= @enduser.nickname %></td>
+           </tr>
+           
+          <tr>
+	          <th>introduction</th>
+	           <td><%= @enduser.introduction %></td>
+          </tr>
+         </tbody>
+       </table>
+       
+     </div>
+   
+
  <div class="col-md-8 offset-md-1">
-      <h2>マイページ</h2>
+      <h2><%= %>マイページ</h2>
+         <%= link_to "新しい旅の思い出を作る",new_public_post_path %>
+            <%= link_to "みんなの投稿を見に行く",public_posts_path %>
         <table class="table">
          <thead>
           <tr>
@@ -14,8 +46,8 @@
            <% @posts.each do |post| %>
             <tr>
               <td>
-                <%# if @enduser.post_image.attached? %>
-                 <%#= image_tag @enduser.post_image, size: "200x200" %>
+                <%# if post.post_image.attached? %>
+                 <%#= image_tag post.post_image, size: "200x200" %>
                 <%# else %>
                  <%#= image_tag 'no_photo_image.jpg', size: "200x200" %>
                <%# end %>
@@ -26,9 +58,6 @@
          <% end %>
       </tbody>
      </table>
-     <%= link_to "新しい旅の思い出を作る",new_public_post_path %>
-     
-     <%= link_to "みんなの投稿を見に行く",public_posts_path %>
     </div>
    </div>
   </div>

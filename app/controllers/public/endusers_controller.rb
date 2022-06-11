@@ -11,7 +11,6 @@ class Public::EndusersController < ApplicationController
     @endusers = EndUser.all
     @enduser = current_end_user
     @posts = Post.all
-    # @new_post = Book.new
   end
 
   def edit
@@ -29,6 +28,7 @@ class Public::EndusersController < ApplicationController
       flash[:notice]="ユーザー編集が完了しました."
       redirect_to public_enduser_path(current_end_user)
     else
+      flash[:alate]="ニックネームを入力してください"
       render :edit
     end
   end
@@ -54,4 +54,5 @@ class Public::EndusersController < ApplicationController
   def end_user_params
     params.require(:end_user).permit(:nickname, :introduction, :profile_image)
   end
+
 end

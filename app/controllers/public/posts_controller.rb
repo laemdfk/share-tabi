@@ -4,6 +4,7 @@ class Public::PostsController < ApplicationController
 
   def new
     @post_new = Post.new
+    @post_image_new = PostImage.new
     # ここにparamsをつけてしまうと、createの値と重複してデータが渡る様子?
   end
 
@@ -11,12 +12,11 @@ class Public::PostsController < ApplicationController
   def create
     # @enduser = current_end_user
 	@post_new = Post.new(post_params)
-
     @post_new.end_user_id = current_end_user.id
     #↑ ユーザーと投稿を紐づけるためのコード
 
-	   if @post_new.save
-        flash[:notice] = "You have creatad book successfully."
+	 if @post_new.save
+      flash[:notice] = "You have creatad book successfully."
 		    redirect_to public_post_path(@post_new.id)
      else
         render "new"
@@ -48,7 +48,7 @@ class Public::PostsController < ApplicationController
    @post = Post.find(params[:id])
     if @post.update(post_params)
 
-      flash[:notice]="要降雨の編集が完了しました"
+      flash[:notice]="投稿の編集が完了しました"
       redirect_to public_post_path(@post.id)
 
     else

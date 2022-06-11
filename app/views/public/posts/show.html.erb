@@ -15,11 +15,11 @@
                <% else %>
                 <%= image_tag 'no_image.jpg', size: "60x60" %><br />
                <% end %>
-              <%= link_to @post.end_user.nickname, public_enduser_path(@post.end_user) %>
+              <%= link_to @post.end_user.nickname, public_post_path(@post) %>
             </td>
               <td>
-                <%# if @enduser.post_image.attached? %>
-                 <%#= image_tag @enduser.post_image, size: "200x200" %>
+                <%# if @post.post_image.attached? %>
+                 <%#= image_tag @post.post_image, size: "200x200" %>
                 <%# else %>
                  <%#= image_tag 'no_photo_image.jpg', size: "200x200" %>
                <%# end %>

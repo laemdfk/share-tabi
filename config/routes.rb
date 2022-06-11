@@ -26,10 +26,8 @@ Rails.application.routes.draw do
     resources :endusers, only: [:index, :show, :edit, :update, :destroy]
     resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy]
     # resources :post_image, only: [:new, :create, :index ,:show]
-
-
+    
    get 'endusers/:id/quit' => 'endusers#quit', as: 'quit'
-   
    # 論理削除用のルーティング
    patch 'endusers/:id/withdrawal' => 'endusers#withdrawal', as: 'withdrawal'
   end
