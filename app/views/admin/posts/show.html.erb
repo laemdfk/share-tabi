@@ -16,7 +16,7 @@
               <td><%= @post.body %></td>
 
 
-<!--管理者であれば。削除ボタンを表示させるに書き換える-->
+<!--管理者であれば。削除ボタンを表示させる-->
               <% if admin_signed_in? %>
                 <td><%= link_to 'Destroy',admin_post_path(@post), method: :delete, data: { confirm: '削除しますか?' }, class: "btn btn-sm btn-danger" %></td>
               <% end %>

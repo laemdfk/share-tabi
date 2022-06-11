@@ -1,3 +1,10 @@
+<!--フラッシュメッセージ-->
+<% if flash[:notice] %>
+<!--アラート(帯をつけた状態)で出力させる-->
+ <div class="alert alert-success" role="alert">
+ <p class="notice text-center" style="color:green;"><%= flash[:notice] %></p></div>
+<% end %>
+
 <div class="row">
  <div class="mx-auto col-11 col-sm-10 col-lg-8 col-xl-6">
 

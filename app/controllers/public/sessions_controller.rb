@@ -17,8 +17,7 @@ class Public::SessionsController < Devise::SessionsController
     @enduser = EndUser.find_by(name: params[:enduser][:email])
     if @enduser
       if @enduser.valid_password?(params[:enduser][:password]) && (@enduser.is_deleted == false)
-        flash[:notice] = "退会済みです。再度ご登録をしてご利用ください。"
-        redirect_to new_user_registration
+        redirect_to new_user_registration, notice: "退会済みです。再度ご登録をしてご利用ください。"
       else
         flash[:notice] = "項目を入力してください"
       end

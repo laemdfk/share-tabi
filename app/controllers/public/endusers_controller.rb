@@ -7,29 +7,29 @@ class Public::EndusersController < ApplicationController
      #アソシエーションで定義させている
   end
 
+
   def index
     @endusers = EndUser.all
     @enduser = current_end_user
     @posts = Post.all
   end
 
+
   def edit
     @enduser = EndUser.find(params[:id])
     if @enduser == current_end_user
-          render "edit"
+      render "edit"
     else
-        redirect_to public_enduser_path(current_end_user.id)
+      redirect_to public_enduser_path(current_end_user.id)
     end
   end
 
   def update
     @enduser = EndUser.find(params[:id])
     if @enduser.update(end_user_params)
-      flash[:notice]="ユーザー編集が完了しました."
-      redirect_to public_enduser_path(current_end_user)
+      redirect_to public_enduser_path(current_end_user),notice: "ユーザー編集が完了しました."
     else
-      flash[:alate]="ニックネームを入力してください"
-      render :edit
+      render :edit,alate: "ニックネームを入力してください"
     end
   end
 
@@ -44,8 +44,7 @@ class Public::EndusersController < ApplicationController
     # is_deletedカラムをtrueに変更することにより削除フラグを立てる
     @enduser.update(is_deleted: true)
     reset_session
-    flash[:notice] = "退会処理を実行いたしました。ご利用いただき、誠にありがとうございました"
-    redirect_to root_path
+    redirect_to root_path, notice: "退会処理を実行いたしました。ご利用いただき、誠にありがとうございました"
   end
 
 

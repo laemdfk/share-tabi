@@ -1,4 +1,4 @@
-<h1>Public::Posts#index</h1>
+<h6>Public::Posts#index</h6>
 <body>
  <main>
     <div class="col-md-6 offset-md-3">
@@ -16,11 +16,11 @@
               <% @posts.each do |post| %>
                <tr>
                  <td>
-                    <% if @enduser.profile_image.attached? %>
-                     <%= image_tag @enduser.profile_image, size: "100x100" %>
-                    <% else %>
-                      <%= image_tag 'no_image.jpg', size: "100x100" %>
-                    <% end %>
+                  <%# if post_image.attached? %>
+                   <%#= image_tag post_image, size: "200x200" %>
+                  <%# else %>
+                   <%#= image_tag 'no_photo_image.jpg', size: "200x200" %>
+                  <%# end %>
                 </td>
                 <td><%= post.end_user.nickname %></td>
                 <td><%= link_to post.title, public_post_path(post.id) %></td>

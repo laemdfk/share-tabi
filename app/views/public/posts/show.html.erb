@@ -1,4 +1,12 @@
-<h1>Public::Posts#show</h1>
+<h6>Public::Posts#show</h6>
+
+<!--フラッシュメッセージ-->
+<% if flash[:notice] %>
+<!--アラート(帯をつけた状態)で出力させる-->
+ <div class="alert alert-success" role="alert">
+ <p class="notice text-center" style="color:green;"><%= flash[:notice] %></p></div>
+<% end %>
+
  <main>
     <div class="col-md-8 offset-md-1">
       <h2><%= @enduser.nickname %>さんの投稿詳細</h2>
@@ -17,13 +25,16 @@
                <% end %>
               <%= link_to @post.end_user.nickname, public_post_path(@post) %>
             </td>
+            
               <td>
                 <%# if @post.post_image.attached? %>
                  <%#= image_tag @post.post_image, size: "200x200" %>
                 <%# else %>
                  <%#= image_tag 'no_photo_image.jpg', size: "200x200" %>
-               <%# end %>
+                <%# end %>
               </td>
+              
+              <td><%= @post.created_at.strftime('%Y/%m/%d %H:%M') %></td>
               <td><%= link_to @post.title, public_enduser_path %></td>
               <td><%= @post.body %></td>
 
