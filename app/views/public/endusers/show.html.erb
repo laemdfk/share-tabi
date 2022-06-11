@@ -25,40 +25,40 @@
           </tr>
          </tbody>
        </table>
-       
      </div>
    
-
  <div class="col-md-8 offset-md-1">
-      <h2><%= %>マイページ</h2>
+      <h2><%= @enduser.nickname %>さんのマイページ</h2>
          <%= link_to "新しい旅の思い出を作る",new_public_post_path %>
             <%= link_to "みんなの投稿を見に行く",public_posts_path %>
         <table class="table">
-         <thead>
-          <tr>
-           <th></th>
-           <th>Title</th>
-           <th>Opinion</th>
-           <th colspan="3"></th>
-          </tr>
-         </thead>
-          <tbody>
-           <% @posts.each do |post| %>
-            <tr>
-              <td>
+          <thead>
+           <tr>
+            <th></th>
+            <th>投稿日時</th>
+            <th>タイトル</th>
+            <th>内容</th>
+            <th colspan="3"></th>
+           </tr>
+          </thead>
+           <tbody>
+            <% @posts.each do |post| %>
+             <tr>
+               <td>
                 <%# if post.post_image.attached? %>
                  <%#= image_tag post.post_image, size: "200x200" %>
                 <%# else %>
                  <%#= image_tag 'no_photo_image.jpg', size: "200x200" %>
                <%# end %>
-              </td>
-              <td><%= link_to post.title, public_post_path(post.id) %></td>
-              <td><%= post.body %></td>
+               </td>
+               <td><%= post.created_at.strftime('%Y/%m/%d %H:%M') %></td>
+               <td><%= link_to post.title, public_post_path(post.id) %></td>
+               <td><%= post.body %></td>
              </tr>
-         <% end %>
-      </tbody>
-     </table>
-    </div>
+           <% end %>
+         </tbody>
+       </table>
+     </div>
    </div>
   </div>
 </main>

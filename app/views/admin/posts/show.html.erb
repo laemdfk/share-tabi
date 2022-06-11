@@ -1,4 +1,4 @@
-<h1>Admin::Posts#show</h1>
+<h6>Admin::Posts#show</h6>
 <div class = "container">
   <div class="row">
      <h3 class="px-4 bg-light" ><%= @enduser.nickname %>さんの投稿詳細</h3>
@@ -17,9 +17,9 @@
 
 
 <!--管理者であれば。削除ボタンを表示させるに書き換える-->
-               <%# if @post.end_user_id == end_user_id %>
-                <td><%#= link_to 'Destroy',post_path(@post), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger" %></td>
-               <%# end %>
+              <% if admin_signed_in? %>
+                <td><%= link_to 'Destroy',admin_post_path(@post), method: :delete, data: { confirm: '削除しますか?' }, class: "btn btn-sm btn-danger" %></td>
+              <% end %>
            </tr>
      </div>
   </div>
