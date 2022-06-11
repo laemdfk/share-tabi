@@ -11,7 +11,8 @@ class EndUser < ApplicationRecord
           has_one_attached :profile_image
 
           has_many_attached :post_images
-
+          
+          # バリデーション
           validates :nickname, presence: true
 
           # 退会後に、同じアカウントでログインできないようにする処理

@@ -2,7 +2,7 @@ class Public::EndusersController < ApplicationController
 
   def show
     @enduser = current_end_user
-    @posts = @enduser.posts
+    @posts = @enduser.posts.page(params[:page]).per(5)
      #↑自分が投稿したものだけを表示させるための制御文。
      #アソシエーションで定義させている
   end
@@ -11,7 +11,7 @@ class Public::EndusersController < ApplicationController
   def index
     @endusers = EndUser.all
     @enduser = current_end_user
-    @posts = Post.all
+    @posts = Post.all.page(params[:page]).per(10)
   end
 
 

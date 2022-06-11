@@ -23,7 +23,7 @@ class Public::PostsController < ApplicationController
 
   def index
     @enduser = current_end_user
-    @posts = Post.all
+    @posts = Post.all.page(params[:page]).per(10)
   end
 
   def show

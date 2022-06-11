@@ -67,12 +67,6 @@ ActiveRecord::Schema.define(version: 2022_06_11_114055) do
     t.index ["reset_password_token"], name: "index_end_users_on_reset_password_token", unique: true
   end
 
-  create_table "post_images", force: :cascade do |t|
-    t.string "post_image"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "posts", force: :cascade do |t|
     t.integer "end_user_id"
     t.string "title"
