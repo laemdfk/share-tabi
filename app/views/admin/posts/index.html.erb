@@ -1,4 +1,9 @@
 <h1>Admin::Posts#index</h1>
+<% if flash[:notice] %>
+ <div class="alert alert-success" role="alert">
+ <p class="notice text-center" style="color:green;"><%= flash[:notice] %></p></div>
+<% end %>
+
 <div class = "container">
   <div class ="row">
     <h3 class ="px-5 bg-light">投稿一覧</h3>

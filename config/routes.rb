@@ -1,14 +1,5 @@
 Rails.application.routes.draw do
-
-  namespace :admin do
-    get 'post_comments/index'
-    get 'post_comments/show'
-    get 'post_comments/destroy'
-  end
-  namespace :public do
-    get 'post_comments/create'
-    get 'post_comments/destroy'
-  end
+  
   devise_for :end_users,skip: [:passwords], controllers: {
   registrations: "public/registrations",
   sessions: 'public/sessions'
@@ -23,7 +14,10 @@ Rails.application.routes.draw do
     root to: 'endusers#index'
 
     resources :endusers, only:[:show, :edit, :update, :destroy]
-    resources :posts, only:[:index, :show, :destroy]
+    
+    resources :posts, only:[:index, :show, :destroy] 
+    resources :post_comments, only: [:index, :show, :destroy]
+   
   end
 
     root to: 'public/homes#top'
