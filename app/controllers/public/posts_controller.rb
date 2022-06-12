@@ -4,14 +4,14 @@ class Public::PostsController < ApplicationController
 
   def new
     @post_new = Post.new
-    # ここにparamsをつけてしまうと、createの値と重複してデータが渡る様子?
+    # ここにparamsをつけてしまうと、createの値と重複してデータが渡る模様
   end
 
 
   def create
     # @enduser = current_end_user
-	  @post_new = Post.new(post_params)
-    @post_new.end_user_id = current_end_user.id
+	 @post_new = Post.new(post_params)
+     @post_new.end_user_id = current_end_user.id
     #↑ ユーザーと投稿を紐づけるためのコード
 
 	 if @post_new.save
@@ -29,6 +29,7 @@ class Public::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @enduser = @post.end_user
+    @post_comment = PostComment.new
   end
 
   def edit
@@ -77,8 +78,9 @@ end
       end
     end
 
-    # def enduser_params
-    #   params.require(:enduser).permit(:name, :introduction, :profile_image)
-    # end
+   def post_comment_params
+    params.require(:comment).permit(:comment,:post_id)
+  end
+
 
  end

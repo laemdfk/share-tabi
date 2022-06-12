@@ -9,21 +9,17 @@
  <main>
     <div class="col-md-8 offset-md-1">
       <h2><%= @enduser.nickname %>さんの投稿詳細</h2>
-      
+      <!--利用者情報の下に、投稿した画像一覧を出す(enduserが投稿したpostに紐づく画像を出す)-->
           <% @post.post_images.each do |image| %>
            <%= image_tag(image, width:100) %>
           <% end %>
-      
-      <table class="table">
-        <thead>
-          <tr></tr>
-        </thead>
-         <tbody>
+
           <table class='table'>
   		      <tr>
               <td><%= @post.created_at.strftime('%Y/%m/%d %H:%M') %></td>
               <td><%= link_to @post.title, public_enduser_path %></td>
               <td><%= @post.body %></td>
+              <td>コメント数:<%= @post.post_comments.count %></td>
 
                <% if @post.end_user_id == current_end_user.id %>
                 <td><%= link_to 'Edit', edit_public_post_path(@post), class: "btn btn-sm btn-success" %><td>
@@ -32,6 +28,8 @@
            </tr>
          </tbody>
       </table>
+      <%= render "public/post_comments/comment", post: @post %>
+      <%= render "public/post_comments/comment_form", post: @post, post_comment: @post_comment %>
      </div>
     </div>
    </div>

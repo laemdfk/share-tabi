@@ -4,7 +4,7 @@
      <h3 class="px-4 bg-light" ><%= @enduser.nickname %>さんの投稿詳細</h3>
       <table class="table">
     　  <thead class ="defalut">
-  		<tr>
+  		  <tr>
             <td>
                <% if @enduser.profile_image.attached? %>
                 <%= image_tag @enduser.profile_image, size: "100x100" %><br />
@@ -12,14 +12,17 @@
                 <%= image_tag 'no_image.jpeg', size: "100x100" %><br />
                <% end %>
             </td>
-              <td><%= link_to @post.title, admin_post_path %></td>
-              <td><%= @post.body %></td>
-
-
-<!--管理者であれば。削除ボタンを表示させる-->
-              <% if admin_signed_in? %>
-                <td><%= link_to 'Destroy',admin_post_path(@post), method: :delete, data: { confirm: '削除しますか?' }, class: "btn btn-sm btn-danger" %></td>
-              <% end %>
-           </tr>
+            <td>
+             <% @post.post_images.each do |image| %>
+              <%= image_tag(image, width:100) %>
+             <% end %>
+            </td>
+            <td><%= link_to @post.title, admin_post_path %></td>
+            <td><%= @post.body %></td>
+            <!--管理者であれば。削除ボタンを表示させる-->
+            <% if admin_signed_in? %>
+             <td><%= link_to 'Destroy',admin_post_path(@post), method: :delete, data: { confirm: '削除しますか?' }, class: "btn btn-sm btn-danger" %></td>
+            <% end %>
+       </tr>
      </div>
   </div>

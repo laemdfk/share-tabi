@@ -8,6 +8,13 @@ class Public::SessionsController < Devise::SessionsController
  def after_sign_in_path_for(resource)
    public_root_path(resource)
  end
+ 
+# ゲストログインの定義
+ def guest_sign_in
+    enduser = EndUser.guest
+    sign_in enduser
+    redirect_to piblic_root_path, notice: 'ゲストユーザーとしてログインしました。'
+  end
 
 
   protected

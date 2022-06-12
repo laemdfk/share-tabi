@@ -20,15 +20,16 @@
             <tbody>
               <% @posts.each do |post| %>
                <tr>
-                 <td>
-                  <%# if post_image.attached? %>
-                   <%#= image_tag post_image, size: "200x200" %>
-                  <%# else %>
-                   <%#= image_tag 'no_photo_image.jpg', size: "200x200" %>
-                  <%# end %>
+                <td>
+                  <% @posts.each do |post| %>
+                    <% post.post_images.each do |image| %>
+                     <%= image_tag(image, width:50) %>
+                    <% end %>
+                  <% end %>
                 </td>
                 <td><%= post.end_user.nickname %></td>
                 <td><%= link_to post.title, public_post_path(post.id) %></td>
+                <td>コメント数:<%= post.post_comments.count %></td>
                 </tr>
              <% end %>
            </tbody>

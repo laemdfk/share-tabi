@@ -4,12 +4,7 @@ class Public::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
   
-  before_action :check_guest, only:destroy    # ゲストログインでは、削除を行えなくなる制御
-    def check_guest
-      if resource.email == 'guest@example.com'
-        redirect_to public_root_path,alart: 'ゲストユーザーは削除できません'
-      end
-    end
+ 
 
   # GET /resource/sign_up
   # def new
