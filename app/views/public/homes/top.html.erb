@@ -14,7 +14,7 @@
 
    <div class="btn-wrapper col-10 mx-auto">
         <div class="row">
-         <%= link_to "ゲストログイン",new_end_user_session_path %>
+         <%= link_to "ゲストログイン", public_guests_guest_sign_in_path, method: :post %>
         </div>
         <div class="row">
          <%= link_to "ログイン",new_end_user_session_path %>
@@ -23,10 +23,11 @@
           <%= link_to "サインアップ",new_end_user_registration_path %>
         </div>
    </div>
- </div>
-</div>
 
   <div class="btn-wrapper col-10 mx-auto">
    <div class="row">
      <%= link_to "管理者ログイン",new_admin_session_path %>
-
+   </div>
+  </diV>
+ </div>
+</div>

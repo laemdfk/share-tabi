@@ -7,9 +7,11 @@
  <p class="notice text-center" style="color:green;"><%= flash[:notice] %></p></div>
 <% end %>
 
+
+
 <h2><%= @enduser.nickname %>さんのマイページ</h2>
-<main>
- <div class="container px-5 px-sm-0">
+ <main>
+  <div class="container px-5 px-sm-0">
    <div class="row">
     <div class="col-md-3">
       <h2>利用者情報</h2>
@@ -32,9 +34,15 @@
           </tr>
          </tbody>
        </table>
+       <!--利用者情報の下に、投稿した画像一覧を出したい(enduserが投稿したpostに紐づく画像を出したい)-->
+        <% @posts.each do |post| %>
+          <% post.post_images.each do |image| %>
+           <%= image_tag(image, width:100) %>
+          <% end %>
+        <% end %>
      </div>
 
- <div class="col-md-8 offset-md-1">
+     <div class="col-md-8 offset-md-1">
        <h3>今までの投稿</h3>
          <%= link_to "新しい旅の思い出を作る",new_public_post_path %>
             <%= link_to "みんなの投稿を見に行く",public_posts_path %>
@@ -59,13 +67,8 @@
                  <%#= image_tag 'no_photo_image.jpg' %>
                 <%# end %>
 
-               <!--No method errorが出る-->
 
-                <%# if @enduser.post_image.attached? %>
-                 <%#= image_tag @enduser.post_image, size: "200x200" %>
-                <%# else %>
-                 <%#= image_tag 'no_photo_image.jpg', size: "200x200" %>
-                <%# end %>
+                
 
                </td>
                <td><%= post.created_at.strftime('%Y/%m/%d %H:%M') %></td>
@@ -75,7 +78,7 @@
            <% end %>
          </tbody>
        </table>
-        <%= paginate @posts %>
+       <%= paginate @posts %>
      </div>
    </div>
   </div>

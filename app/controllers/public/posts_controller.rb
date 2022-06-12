@@ -55,7 +55,7 @@ end
     def destroy
       @post = Post.find(params[:id])
       @post.destroy
-      
+
       redirect_to public_enduser_path(current_end_user),notice: "投稿の削除に成功しました"
     end
 
@@ -66,7 +66,7 @@ end
    # require = そのモデルに基づいた値を返すため
 
     def post_params
-        params.require(:post).permit(:title, :body, :post_image)
+        params.require(:post).permit(:title, :body, post_images: [])
     end
 
 

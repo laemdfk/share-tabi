@@ -13,15 +13,15 @@
 
    <%= f.label :タイトル %><br>
    <%= f.text_field :title %><br/>
-  
- 
+
+
    <%= f.label :写真 %><br>
-   <%= f.file_field :post_image, accept: "image/*" %><br />
-  
+   <%= f.file_field :post_images,multiple: true, accept: "image/*" %><br />
+
    <%= f.label :本文 %><br/>
    <%= f.text_area :body %><br/>
-  
+
   <%= f.submit '投稿する' %>
-  
- 
+
+
 <% end %>

@@ -10,8 +10,6 @@ class EndUser < ApplicationRecord
 
           has_one_attached :profile_image
 
-          has_many_attached :post_images
-          
           # バリデーション
           validates :nickname, presence: true
 

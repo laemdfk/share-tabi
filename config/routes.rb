@@ -23,6 +23,9 @@ Rails.application.routes.draw do
   namespace :public do
 
     root to: 'endusers#show'
+    
+    # ゲストログイン用ルーティング
+    post '/guests/guest_sign_in', to: 'guests#new_guest'
 
     resources :endusers, only: [:index, :show, :edit, :update, :destroy]
     resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy]

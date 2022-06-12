@@ -2,7 +2,6 @@
 
 <!--フラッシュメッセージ-->
 <% if flash[:notice] %>
-<!--アラート(帯をつけた状態)で出力させる-->
  <div class="alert alert-success" role="alert">
  <p class="notice text-center" style="color:green;"><%= flash[:notice] %></p></div>
 <% end %>
@@ -10,6 +9,11 @@
  <main>
     <div class="col-md-8 offset-md-1">
       <h2><%= @enduser.nickname %>さんの投稿詳細</h2>
+      
+          <% @post.post_images.each do |image| %>
+           <%= image_tag(image, width:100) %>
+          <% end %>
+      
       <table class="table">
         <thead>
           <tr></tr>
@@ -17,23 +21,6 @@
          <tbody>
           <table class='table'>
   		      <tr>
-            <td>
-               <% if @enduser.profile_image.attached? %>
-                <%= image_tag @enduser.profile_image, size: "60x60" %><br />
-               <% else %>
-                <%= image_tag 'no_image.jpg', size: "60x60" %><br />
-               <% end %>
-              <%= link_to @post.end_user.nickname, public_post_path(@post) %>
-            </td>
-            
-              <td>
-                <%# if @post.post_image.attached? %>
-                 <%#= image_tag @post.post_image, size: "200x200" %>
-                <%# else %>
-                 <%#= image_tag 'no_photo_image.jpg', size: "200x200" %>
-                <%# end %>
-              </td>
-              
               <td><%= @post.created_at.strftime('%Y/%m/%d %H:%M') %></td>
               <td><%= link_to @post.title, public_enduser_path %></td>
               <td><%= @post.body %></td>
@@ -43,9 +30,9 @@
                 <td><%= link_to 'Destroy',public_post_path(@post), method: :delete, data: { confirm: "この操作は取り消せませんが、本当に削除しますか?" }, class: "btn btn-sm btn-danger" %></td>
                <% end %>
            </tr>
-      </tbody>
-    </table>
+         </tbody>
+      </table>
+     </div>
+    </div>
    </div>
-  </div>
- </div>
 </main>
