@@ -17,7 +17,8 @@ class Public::PostsController < ApplicationController
 	 if @post_new.save
 		 redirect_to public_post_path(@post_new.id), notice:  "投稿の保存に成功しました"
    else
-     render "new"
+     flash.now[:alert] = "空欄があります。フォームを埋めてから、投稿してください(写真は任意です)"
+      render "new"
    end
   end
 
@@ -78,9 +79,9 @@ end
       end
     end
 
-   def post_comment_params
-    params.require(:comment).permit(:comment,:post_id)
-  end
+#   def post_comment_params
+#     params.require(:post_comment).permit(:comment,:post_id)
+#   end
 
 
  end

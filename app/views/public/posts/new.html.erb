@@ -1,14 +1,9 @@
-<h1>新規投稿</h1>
-<% if @post_new.errors.any? %>
-  <%= @poat_new.errors.count %>件のエラーが発生しました
-  <ul>
-    <% @post_new.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
+<% if flash[:alert] %>
+ <div class="alert alert-danger" role="alert">
+ <p class="notice text-center" style="color:red;"><%= flash[:alert] %></p></div>
 <% end %>
 
-
+<h1>新規投稿</h1>
 <%= form_with model: @post_new, url: '/public/posts',method: :post do |f|  %>
 
    <%= f.label :タイトル %><br>

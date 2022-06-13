@@ -37,7 +37,7 @@
        <!--利用者情報の下に、投稿した画像一覧を出したい(enduserが投稿したpostに紐づく画像を出したい)-->
         <% @posts.each do |post| %>
           <% post.post_images.each do |image| %>
-           <%= image_tag(image, width:100) %>
+           <%= link_to image_tag(image, width:100), public_post_path(post.id)  %>
           <% end %>
         <% end %>
      </div>
@@ -45,13 +45,12 @@
      <div class="col-md-8 offset-md-1">
        <h3>今までの投稿</h3>
          <%= link_to "新しい旅の思い出を作る",new_public_post_path %>
-            <%= link_to "みんなの投稿を見に行く",public_posts_path %>
+          <%= link_to "みんなの投稿を見に行く",public_posts_path %>
         <table class="table">
           <thead>
            <tr>
-            <th></th>
             <th>投稿日時</th>
-            <th>タイトル</th>
+            <th style="width: 20%;">タイトル</th>
             <th>内容</th>
             <th colspan="3"></th>
            </tr>

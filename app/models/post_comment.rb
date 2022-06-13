@@ -1,7 +1,7 @@
 class PostComment < ApplicationRecord
 
   # アソシエーション
-  belongs_to :enduser
+  belongs_to :end_user
   belongs_to :post
 
   # バリデーション

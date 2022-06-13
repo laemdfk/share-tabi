@@ -1,12 +1,19 @@
 class Public::EndusersController < ApplicationController
 
-  def show
-    # @enduser = current_end_userとしていたため、現在のユーザーのマイページが出力される→下記に修正
-    
+  def mypage
     @enduser = current_end_user
-    # @enduser = EndUser.find(params[:id])
+  end
+
+  def show
+    # if文で条件分岐させる
+    if params[:id] == nil
+     @enduser = current_end_user
+    else
+     @enduser = EndUser.find(params[:id])
+    end
+
     @posts = @enduser.posts.page(params[:page]).per(5)
-    
+
      #↑自分が投稿したものだけを表示させるための制御文。アソシエーションで定義。
   end
 

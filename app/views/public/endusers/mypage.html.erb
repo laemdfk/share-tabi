@@ -1,0 +1,42 @@
+<% if flash[:notice] %>
+ <div class="alert alert-success" role="alert">
+ <p class="notice text-center" style="color:green;"><%= flash[:notice] %></p></div>
+<% end %>
+
+
+<div class="container">
+ <div class="row">
+  <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+    <h1 class ="px-5 bg-light">welcome page</h1>
+     <h2>ようこそ、<%= @enduser.nickname %>さん!</h2>
+     
+     <div class="table">
+     <div class="menu">
+      <%= link_to "自分の投稿を見る",public_enduser_path(current_end_user.id) %>
+     </div>
+     
+     <div class="menu">
+        <%= link_to "新しい旅の思い出を作る",new_public_post_path %>
+     </div>
+       
+      <div class="menu">
+        <%= link_to "アカウント編集",edit_public_enduser_path(current_end_user.id) %>
+      </div>
+      
+      <div class="menu">
+        <%= link_to "みんなの投稿を見に行く",public_posts_path %>
+      </div>
+       <%= link_to "退会する",public_quit_path(current_end_user.id) %>
+       <div class="menu">
+        <%= link_to"トップページへ",root_path,class:"link"  %>
+      </div>
+      </div>
+    </div>
+         
+      
+      
+       
+  
+ 
+
+            
