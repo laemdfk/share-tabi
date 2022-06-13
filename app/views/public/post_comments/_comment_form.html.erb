@@ -1,0 +1,4 @@
+<%= form_with model: post_comment,url: public_post_post_comments_path(post.id) do |f| %>
+  <%= f.text_area :comment, rows: '5', placeholder: "コメント", class: "w-100" %>
+  <%= f.submit "コメントを送信",class: "btn btn-primary btn-base-1 mt-20 pull-right" %>
+<% end %>

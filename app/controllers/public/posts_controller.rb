@@ -4,33 +4,33 @@ class Public::PostsController < ApplicationController
 
   def new
     @post_new = Post.new
-    # ここにparamsをつけてしまうと、createの値と重複してデータが渡る様子?
+    # ここにparamsをつけてしまうと、createの値と重複してデータが渡る模様
   end
 
 
   def create
     # @enduser = current_end_user
-	@post_new = Post.new(post_params)
-
-    @post_new.end_user_id = current_end_user.id
+	 @post_new = Post.new(post_params)
+     @post_new.end_user_id = current_end_user.id
     #↑ ユーザーと投稿を紐づけるためのコード
 
-	   if @post_new.save
-        flash[:notice] = "You have creatad book successfully."
-		    redirect_to public_post_path(@post_new.id)
-     else
-        render "new"
-     end
+	 if @post_new.save
+		 redirect_to public_post_path(@post_new.id), notice:  "投稿の保存に成功しました"
+   else
+     flash.now[:alert] = "空欄があります。フォームを埋めてから、投稿してください(写真は任意です)"
+      render "new"
+   end
   end
 
   def index
     @enduser = current_end_user
-    @posts = Post.all
+    @posts = Post.all.page(params[:page]).per(10)
   end
 
   def show
     @post = Post.find(params[:id])
     @enduser = @post.end_user
+    @post_comment = PostComment.new
   end
 
   def edit
@@ -47,10 +47,7 @@ class Public::PostsController < ApplicationController
  def update
    @post = Post.find(params[:id])
     if @post.update(post_params)
-
-      flash[:notice]="You have updated successfully."
-      redirect_to public_post_path(@post.id)
-
+      redirect_to public_post_path(@post.id),notice: "投稿の編集が完了しました"
     else
         render "edit"
     end
@@ -60,8 +57,8 @@ end
     def destroy
       @post = Post.find(params[:id])
       @post.destroy
-      flash[:notice]="Book was successfully destroyed."
-      redirect_to public_posts_path
+
+      redirect_to public_enduser_path(current_end_user),notice: "投稿の削除に成功しました"
     end
 
 
@@ -71,7 +68,7 @@ end
    # require = そのモデルに基づいた値を返すため
 
     def post_params
-        params.require(:post).permit(:title, :body)
+        params.require(:post).permit(:title, :body, post_images: [])
     end
 
 
@@ -82,8 +79,9 @@ end
       end
     end
 
-    # def enduser_params
-    #   params.require(:enduser).permit(:name, :introduction, :profile_image)
-    # end
+#   def post_comment_params
+#     params.require(:post_comment).permit(:comment,:post_id)
+#   end
+
 
  end

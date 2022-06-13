@@ -1,0 +1,22 @@
+<table>
+  <tbody>
+   <% post.post_comments.each do |post_comment| %>
+    <tr>
+      <td>
+        <%= link_to public_enduser_path(post_comment.end_user) do %>
+         <%= image_tag post_comment.end_user.profile_image,size: "60x60" %><br />
+        
+         <%= post_comment.end_user.nickname %>
+        <% end %>
+      </td>
+      <td><%= post_comment.comment %></td>
+      <td>
+          <%# binding.pry %>
+        <% if post_comment.end_user == current_end_user %>
+         <%= link_to "Destroy",public_post_post_comment_path(post_comment),method: :delete,class: "btn btn-danger pull right" %>
+        <% end %>
+      </td>
+    </tr>
+   <% end %>
+  </tbody>
+</table>

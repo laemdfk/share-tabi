@@ -1,3 +1,10 @@
+<!--フラッシュメッセージ-->
+<% if flash[:notice] %>
+<!--アラート(帯をつけた状態)で出力させる-->
+ <div class="alert alert-success" role="alert">
+ <p class="notice text-center" style="color:green;"><%= flash[:notice] %></p></div>
+<% end %>
+
 <div class="row">
  <div class="mx-auto col-11 col-sm-10 col-lg-8 col-xl-6">
 
@@ -5,9 +12,10 @@
 
   <p>「シェアたび」は、旅の思い出を、スクラップブックにするサイトです</p>
 
+
    <div class="btn-wrapper col-10 mx-auto">
         <div class="row">
-         <%= link_to "ゲストログイン",new_end_user_session_path %>
+         <%#= link_to "ゲストログイン",public_enduser_guest_sign_in_path, method: :post %>
         </div>
         <div class="row">
          <%= link_to "ログイン",new_end_user_session_path %>
@@ -16,10 +24,11 @@
           <%= link_to "サインアップ",new_end_user_registration_path %>
         </div>
    </div>
- </div>
-</div>
 
   <div class="btn-wrapper col-10 mx-auto">
    <div class="row">
      <%= link_to "管理者ログイン",new_admin_session_path %>
-
+   </div>
+  </diV>
+ </div>
+</div>

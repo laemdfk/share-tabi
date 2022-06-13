@@ -1,17 +1,17 @@
 class Admin::PostsController < ApplicationController
   
   def index
-    @posts = Post.all
+    @posts = Post.all.page(params[:page]).per(10)
   end
 
   def show
      @post = Post.find(params[:id])
-     @enduser = @post.enduser
+     @enduser = @post.end_user
   end
 
   def destroy
     @post = Post.find(params[:id])
-    @Post.destroy
-    redirect_to posts_path
+    @post.destroy
+    redirect_to admin_posts_path,notice: "投稿を削除しました"
   end
 end

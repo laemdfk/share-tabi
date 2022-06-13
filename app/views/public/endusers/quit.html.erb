@@ -1,0 +1,18 @@
+<div class="container">
+ <div class="row">
+  <div class="mx-auto">
+   
+   <h2>退会確認</h2>
+     退会されますと、全てのサービスがご利用いただけなくなります。<br>
+   　再度ご利用をいただく場合には、新規登録のお手続きが必要になります。<br>
+   　本当に退会してよろしいですか？<br />
+     退会する場合は、「退会する」をクリックしてください。
+
+     <div class="row py-5 mr-2 form-group justify-content-center">
+      <%= link_to "退会する",public_withdrawal_path, method: :patch,data: { confilm: "この操作は取り消せませんが、よろしいですか？" }, class:"btn btn-danger mr-5 px-4" %>
+      <%= link_to "退会しない",public_enduser_path(current_end_user), class: "btn btn-primary px-4" %>
+    </div>
+    
+   </div>
+  </div>
+ </diV>

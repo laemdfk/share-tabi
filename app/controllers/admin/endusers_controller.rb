@@ -1,7 +1,7 @@
 class Admin::EndusersController < ApplicationController
 
   def index
-    @endusers = EndUser.all
+    @endusers = EndUser.all.page(params[:page]).per(10)
   end
 
   def show

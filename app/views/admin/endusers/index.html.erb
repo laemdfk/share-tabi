@@ -1,32 +1,38 @@
-<h1>Admin::Endusers#index</h1>
+<h6>Admin::Endusers#index</h6>
 
-<!--<div class = "contener">-->
-<!-- <div class = "row">-->
-  <h2>会員一覧</h2>
+<% if flash[:notice] %>
+ <div class="alert alert-success" role="alert">
+ <p class="notice text-center" style="color:green;"><%= flash[:notice] %></p></div>
+<% end %>
+
+<div class = "container">
+  <div class ="row">
+    <h3 class ="px-5 bg-light">会員一覧</h2>
    <table class = "table">
     <thead>
        <tr>
-         <th colspan="4"></th>
-         <th>会員ID</th>
-         <th>氏名</th>
-         <th>メールアドレス</th>
-         <th>ステータス</th>
+         <td>会員ID</td>
+         <td>氏名</td>
+         <td>メールアドレス</td>
+         <td>ステータス</td>
        </tr>
      </thead>
       <tbody>
-        <%# @endusers.each do |enduser| %>
+        <% @endusers.each do |enduser| %>
          <tr>
-          <td><%#= @enduser.id %></td>
-          <td><%#= link_to @enduser.nickname, admin_admin_enduser_path(enduser.id) %></td>
-          <td><%#= @enduser.email %></td>
+          <td><%= enduser.id %></td>
+          <td><%= link_to enduser.nickname, admin_enduser_path(enduser.id) %></td>
+          <td><%= enduser.email %></td>
           <td>
-           <%# if @enduser.is_deleted == false %>
-            <td><%= '有効' %></td>
-           <%# else %>
-            <td><%= '退会' %></td>
-           <%# end %>
+           <% if enduser.is_deleted == false %>
+            <%= '有効' %>
+           <% else %>
+            <%= '退会' %>
+           <% end %>
           </td>
          </tr>
-        <%# end %>
+        <% end %>
       </tbody>
+      <%= paginate @endusers %>
     </div>
+  </div>

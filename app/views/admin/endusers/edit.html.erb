@@ -1,34 +1,34 @@
 <h1>Admin::Endusers#edit</h1>
 
-<%#= form_with model: @enduser, url: admin_enduser_path(@enduser.id), method: :patch do |f| %>
+<%= form_with model: @enduser, url: admin_enduser_path(@enduser.id), method: :patch do |f| %>
  <div class="row">
     <div class="table">
 
       <tr>
        <td>会員ID</td>
-       <td><%#= @enduser.id %></td>
+       <td><%= @enduser.id %></td>
       </tr>
 
       <tr>
        <td>ニックネーム</td>
-       <td><%#= @enduserr.nickname %></td>
+       <td><%= @enduser.nickname %></td>
       </tr>
      
       <tr>
         <td>メールアドレス</td>
-        <td><%#= @enduser.email %></td>
+        <td><%= @enduser.email %></td>
       </tr>
 
      <div class="field form_group row mb-4">
-      <th><%#= f.label "会員ステータス", class: "col-2" %></th>
+      <th><%= f.label "会員ステータス", class: "col-2" %></th>
         <div class="form-check">
-         <%#= f.radio_button :is_deleted, false %>
-         <%#= f.label :is_deleted, "有効"  %>
-         <%#= f.radio_button :is_deleted, true %>
-         <%#= f.label :is_deleted, "無効" %>
+         <%= f.radio_button :is_deleted, false %>
+         <%= f.label :is_deleted, "有効"  %>
+         <%= f.radio_button :is_deleted, true %>
+         <%= f.label :is_deleted, "無効" %>
         </div>
      </div>
    </div>
  </div>
-       <%#= f.submit '変更を保存', class:"btn btn-success" %><br />
-      <%# end %>
+       <%= f.submit '変更を保存', class:"btn btn-success" %><br />
+      <% end %>

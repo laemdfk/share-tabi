@@ -1,15 +1,22 @@
+<% if flash[:alert] %>
+ <div class="alert alert-danger" role="alert">
+ <p class="notice text-center" style="color:red;"><%= flash[:alert] %></p></div>
+<% end %>
+
 <h1>新規投稿</h1>
 <%= form_with model: @post_new, url: '/public/posts',method: :post do |f|  %>
 
    <%= f.label :タイトル %><br>
    <%= f.text_field :title %><br/>
-  
-  <!--写真の投稿フォーム作成する-->
-  
+
+
+   <%= f.label :写真 %><br>
+   <%= f.file_field :post_images,multiple: true, accept: "image/*" %><br />
+
    <%= f.label :本文 %><br/>
    <%= f.text_area :body %><br/>
-  
-  <%= f.submit '投稿' %>
-  
- 
+
+  <%= f.submit '投稿する' %>
+
+
 <% end %>
