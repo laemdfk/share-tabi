@@ -1,4 +1,4 @@
-<h1>Admin::Posts#index</h1>
+<h6>Admin::Posts#index</h6>
 <% if flash[:notice] %>
  <div class="alert alert-success" role="alert">
  <p class="notice text-center" style="color:green;"><%= flash[:notice] %></p></div>
@@ -15,8 +15,9 @@
 
               <th style="width: 20%">投稿日時</th>
               <th>投稿者</th>
-              <th>投稿タイトル</th>
-              <th>投稿内容</th>
+              <th style="width: 20%">投稿タイトル</th>
+              <th style="width: 40%">投稿内容</th>
+              <th style="width: 20%">コメント数</th>
           </tr>
       </thead>
       <tbody>
@@ -26,6 +27,7 @@
                 <td><%= post.end_user.nickname %></td>
                 <td><%= link_to post.title, admin_post_path(post.id) %></td>
                 <td><%= post.body %></td>
+                <td><%= link_to post.post_comments.count,admin_post_comments_path %>コメント</td>
                 </tr>
              <% end %>
       </tbody>

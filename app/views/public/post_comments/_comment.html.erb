@@ -4,8 +4,8 @@
     <tr>
       <td>
         <%= link_to public_enduser_path(post_comment.end_user) do %>
-         <%#= image_tag post_comment.end_user.get_profile_image,size: "60x60" %><br />
-         <%# binding.pry %>
+         <%= image_tag post_comment.end_user.profile_image,size: "60x60" %><br />
+        
          <%= post_comment.end_user.nickname %>
         <% end %>
       </td>

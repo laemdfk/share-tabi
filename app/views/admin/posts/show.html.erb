@@ -19,10 +19,14 @@
             </td>
             <td><%= link_to @post.title, admin_post_path %></td>
             <td><%= @post.body %></td>
+            <td><%= render "public/post_comments/comment", post: @post %></td>
             <!--管理者であれば。削除ボタンを表示させる-->
+          </tr>
+          <div class = "btn">
             <% if admin_signed_in? %>
-             <td><%= link_to 'Destroy',admin_post_path(@post), method: :delete, data: { confirm: '削除しますか?' }, class: "btn btn-sm btn-danger" %></td>
+             <td><%= link_to 'Destroy',admin_post_path(@post), method: :delete, data: { confirm: '投稿を削除しますか?' }, class: "btn btn-sm btn-danger" %></td>
             <% end %>
+          </div>
        </tr>
      </div>
   </div>
