@@ -9,7 +9,7 @@ class Public::SearchesController < ApplicationController
     @range = params[:range]
     
     if @range == "Post"
-       @posts = Post.looks(params[:search], params[:word])
+       @posts = Post.looks(params[:search], params[:word])   # looks=searchesとwordsの引数を受け取る(モデルで)
     else
       @endusers = EndUser.looks(params[:search], params[:word])
     end
