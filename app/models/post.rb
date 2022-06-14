@@ -19,13 +19,13 @@ class Post < ApplicationRecord
  # 検索方法の分岐
   def self.looks(search, word)
    if search == "perfect_match"
-      @post = Post.where("post LIKE?", "#{word}") # 完全一致
+      @post = Post.where("title LIKE?", "#{word}") # 完全一致
    elsif search == "forward_match"
-      @post = Post.where("post LIKE?","#{word}%")  #前方一致
+      @post = Post.where("title LIKE?","#{word}%")  #前方一致
    elsif search == "backward_match"
-      @post = Post.where("post LIKE?","%#{word}") #後方一致
+      @post = Post.where("title LIKE?","%#{word}") #後方一致
    elsif search == "partial_match"
-      @post = Post.where("post LIKE?","%#{word}%") #部分一致
+      @post = Post.where("title LIKE?","%#{word}%") #部分一致
    else
       @post = Post.all
    end
