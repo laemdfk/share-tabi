@@ -4,8 +4,12 @@
       <span class="navbar-brand">
         　<%= link_to "シェアたび",root_path %>
         </span>
+
+        <div class="search">
+          <%= render "public/searches/search_form" %>
+        </div>
       <div>
-        <ul class="navbar-nav pt-3">
+        <ul class="navbar-nav">
           <% if end_user_signed_in? %>
           <li>
             <%= link_to "トップページ",public_root_path, class: "nav-link" %>

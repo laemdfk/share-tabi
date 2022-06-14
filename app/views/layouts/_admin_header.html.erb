@@ -1,11 +1,14 @@
 <header>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-      <span class="navbar-brand p-3">
+      <span class="navbar-brand">
         　<%= link_to "シェアたび",root_path %>
         </span>
-      <div>
-        <ul class="navbar-nav p-3">
+
+         <div class="search">
+          <%= render "admin/searches/search_form" %>
+         </div>
+        <ul class="navbar-nav">
            <% if admin_signed_in? %>
             <li>
              <%= link_to "会員一覧", admin_root_path, class: "nav-link"%>

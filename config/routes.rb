@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 }
 
 
-# 一致するルートがないとエラー。ここではない。devise_scopeを外したが解決せず
+# 一致するルートがないとエラー。devise_scopeを外したが解決せず
   # devise_scope :enduser do
   #   post 'endusers/guest_sign_in', to: 'endusers/sessions#guest_sign_in'
   # end
@@ -24,9 +24,15 @@ Rails.application.routes.draw do
     resources :posts, only:[:index, :show, :destroy]
     resources :post_comments, only: [:index, :show, :destroy]
 
+     # 検索機能ルーティング
+     get "search" => "searches#search"
+
   end
 
+
+  #共通トップ画面のルートパス
     root to: 'public/homes#top'
+
 
 
   namespace :public do
@@ -46,6 +52,8 @@ Rails.application.routes.draw do
 
     # post 'endusers/guest_sign_in', to: 'endusers/sessions#guest_sign_in'
 
+  # 検索機能ルーティング
+  get "search" => "searches#search"
 
   # 退会確認用ルーティング
    get 'endusers/:id/quit' => 'endusers#quit', as: 'quit'

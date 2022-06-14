@@ -1,0 +1,24 @@
+<h2>検索結果</h2>
+
+<table class="table table-hover table-inverse">
+  <!--検索対象モデルがEndUserの時 -->
+  <% if @range == "Post" %>
+    <tbody>
+      <% @posts.each do |post| %>
+        <tr>
+          <td><%= link_to post.title,public_post_path(post.id) %></td>
+          <td><%= post.end_user.nickname %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% else %>
+    <!--検索対象モデルがUserではない時(=検索対象モデルがPostの時) -->
+    <tbody>
+      <% @endusers.each do |enduser| %>
+        <tr>
+          <td><%= link_to enduser.nickname,public_enduser_path(enduser.id) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% end %>
+</table>
