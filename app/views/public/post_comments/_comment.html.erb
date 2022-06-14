@@ -13,7 +13,7 @@
       <td>
           <%# binding.pry %>
         <% if post_comment.end_user == current_end_user %>
-         <%= link_to "Destroy",public_post_post_comment_path(post_comment),method: :delete,class: "btn btn-danger pull right" %>
+         <%= link_to "Destroy",public_post_post_comment_path(post_comment),method: :delete, data: { confirm: "この操作は取り消せませんが、本当に削除しますか?" }, class: "btn btn-danger pull right" %>
         <% end %>
       </td>
     </tr>
