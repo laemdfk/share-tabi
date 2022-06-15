@@ -79,8 +79,8 @@ end
 
       redirect_to public_enduser_path(current_end_user),notice: "投稿の削除に成功しました"
     end
-
-
+    
+    
 	private
 
    # params.require(:モデル名).permit(カラム名)の形で記入しないとエラーになる

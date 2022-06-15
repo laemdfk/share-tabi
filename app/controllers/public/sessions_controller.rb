@@ -13,7 +13,7 @@ class Public::SessionsController < Devise::SessionsController
  def guest_sign_in
     enduser = EndUser.guest
     sign_in enduser
-    redirect_to piblic_root_path, notice: 'ゲストユーザーとしてログインしました'
+    redirect_to public_root_path, notice: 'ゲストユーザーとしてログインしました'
   end
 
 
