@@ -11,10 +11,16 @@ class Public::PostsController < ApplicationController
   def create
     # @enduser = current_end_user
 	 @post_new = Post.new(post_params)
-     @post_new.end_user_id = current_end_user.id
+# 	 byebug
+   @post_new.end_user_id = current_end_user.id
     #↑ ユーザーと投稿を紐づけるためのコード
 
+    # タグの保存用コード。受け取った値を「,」で区切り、配列とする
+    tag_list = params[:post][:name].split(',')
+
 	 if @post_new.save
+	     @post_new.save_tag(tag_list)
+	   #binding.pry
 		 redirect_to public_post_path(@post_new.id), notice:  "投稿の保存に成功しました"
    else
      flash.now[:alert] = "空欄があります。フォームを埋めてから、投稿してください(写真は任意です)"
@@ -22,19 +28,23 @@ class Public::PostsController < ApplicationController
    end
   end
 
+
   def index
     @enduser = current_end_user
     @posts = Post.all.page(params[:page]).per(10)
+    @tag_list =Tag.all
   end
 
   def show
     @post = Post.find(params[:id])
     @enduser = @post.end_user
     @post_comment = PostComment.new
+    @post_tags = @post.tags
   end
 
   def edit
     @post = Post.find(params[:id])
+    @tag_list= @post.tags.pluck(:name).join(',')
 
     if @post.end_user == current_end_user
          render "edit"
@@ -46,7 +56,9 @@ class Public::PostsController < ApplicationController
 
  def update
    @post = Post.find(params[:id])
+   tag_list = params[:post][:name].split(',')
     if @post.update(post_params)
+      @post.save_tag(tag_list)
       redirect_to public_post_path(@post.id),notice: "投稿の編集が完了しました"
     else
         render "edit"

@@ -8,10 +8,11 @@ class Admin::SearchesController < ApplicationController
 
     if @range == "Post"
        @posts = Post.looks(params[:search], params[:word])   # looks=searchesとwordsの引数を受け取る(モデルで)
-    elsif
+    elsif @range == "EndUser"
       @endusers = EndUser.looks(params[:search], params[:word])
     else
-      @comment = PostComment.looks(params[:search], params[:word])
+      @comments = PostComment.looks(params[:search], params[:word])
     end
+    # byebug
   end
 end

@@ -20,6 +20,11 @@
        <td><%= link_to @post.title, public_enduser_path(@post.end_user.id) %></td>
        <td><%= @post.body %></td>
        <td>コメント数:<%= @post.post_comments.count %></td>
+       <td>
+        <% @post_tags.each do |tag| %>
+          <%=tag.name%><%="(#{tag.posts.count})" %>
+        <% end %>
+       </td>
 
        <% if @post.end_user_id == current_end_user.id %>
         <td><%= link_to '編集', edit_public_post_path(@post), class: "btn btn-sm btn-success" %><td>

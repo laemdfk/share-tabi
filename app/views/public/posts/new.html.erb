@@ -4,17 +4,21 @@
 <% end %>
 
 <h1>新規投稿</h1>
+
 <%= form_with model: @post_new, url: '/public/posts',method: :post do |f|  %>
 
-   <%= f.label :タイトル %><br>
+   <%= f.label :title,"タイトル" %><br>
    <%= f.text_field :title %><br/>
 
 
-   <%= f.label :写真 %><br>
+   <%= f.label :post_images,"写真" %><br>
    <%= f.file_field :post_images,multiple: true, accept: "image/*" %><br />
 
-   <%= f.label :本文 %><br/>
+   <%= f.label :body,"本文" %><br/>
    <%= f.text_area :body %><br/>
+
+   <%= f.label :name,"タグ(タグは「,」で区切ることで、複数のタグ付けが可能です)" %><br />
+   <%= f.text_field :name %><br />
 
   <%= f.submit '投稿する' %>
 
