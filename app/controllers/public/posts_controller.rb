@@ -20,7 +20,7 @@ class Public::PostsController < ApplicationController
 
 	 if @post_new.save
 	     @post_new.save_tag(tag_list)
-	   #binding.pry
+
 		 redirect_to public_post_path(@post_new.id), notice:  "投稿の保存に成功しました"
    else
      flash.now[:alert] = "空欄があります。フォームを埋めてから、投稿してください(写真は任意です)"
@@ -58,6 +58,13 @@ class Public::PostsController < ApplicationController
    @post = Post.find(params[:id])
    tag_list = params[:post][:name].split(',')
     if @post.update(post_params)
+        # このpost_idに紐づいていたタグを@oldに入れる
+        @old_relations = PostTag.where(post_id: @post.id)
+        # それらを取り出し、消去する。
+        @old_relations.each do |relation|
+        relation.delete
+        end 
+        # 古いタグの消去後、再度保存を行う。
       @post.save_tag(tag_list)
       redirect_to public_post_path(@post.id),notice: "投稿の編集が完了しました"
     else
