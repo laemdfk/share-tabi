@@ -1,0 +1,8 @@
+<h1>タグ「<%=@tag.name%>」の検索結果</h1>
+
+
+<% @posts.each do |post| %>
+ <%=link_to public_post_path(post.id) do %><%= post.title.truncate(25) %>
+<% end %>
+
+<% end %>

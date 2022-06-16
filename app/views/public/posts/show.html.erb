@@ -22,7 +22,7 @@
        <td>コメント数:<%= @post.post_comments.count %></td>
        <td>
         <% @post_tags.each do |tag| %>
-          <%=tag.name%><%="(#{tag.posts.count})" %>
+          <%=tag.name %><%="(#{tag.posts.count})" %>
         <% end %>
        </td>
 

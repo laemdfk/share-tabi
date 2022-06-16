@@ -43,11 +43,18 @@
            </tbody>
         </table>
         <%= paginate @posts %>
+        
+        <!--タグリスト部分-->
+        <div class = "tag_search">
+         <h4>タグから記事を検索する</h4>
+         <% @tag_list.each do |list| %>
+          <%= link_to list.name,public_search_tag_path(tag_id: list.id) %><%= "(#{list.posts.count})" %>
+         <% end %>
+        </div>
       </div>
   </main>
 
-<!--タグリスト部分-->
- <%# @tag_list.each do |list| %>
-   <%#= list.name %><%#= "(#{list.posts.count})" %>
- <%# end %>
+
+
+ 
 

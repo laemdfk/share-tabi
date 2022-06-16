@@ -41,6 +41,17 @@ class Public::PostsController < ApplicationController
     @post_tags = @post.tags
   end
 
+def search_tag
+#検索結果画面でもタグ一覧表示
+   @tag_list = Tag.all
+#検索されたタグを受け取る
+# pry.byebug
+    @tag = Tag.find(params[:tag_id])
+#検索されたタグに紐づく投稿を表示
+   @posts = @tag.posts.page(params[:page]).per(10)
+  end
+
+
   def edit
     @post = Post.find(params[:id])
     @tag_list= @post.tags.pluck(:name).join(',')
@@ -62,7 +73,7 @@ class Public::PostsController < ApplicationController
         # それらを取り出し、消去する。
         @old_relations.each do |relation|
         relation.delete
-        end 
+        end
         # 古いタグの消去後、再度保存を行う。
       @post.save_tag(tag_list)
       redirect_to public_post_path(@post.id),notice: "投稿の編集が完了しました"
@@ -78,8 +89,8 @@ end
 
       redirect_to public_enduser_path(current_end_user),notice: "投稿の削除に成功しました"
     end
-    
-    
+
+
 	private
 
    # params.require(:モデル名).permit(カラム名)の形で記入しないとエラーになる
