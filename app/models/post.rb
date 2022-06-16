@@ -3,8 +3,11 @@ class Post < ApplicationRecord
 # アソシエーション
 
   belongs_to :end_user
-  
+
   has_many :post_comments,dependent: :destroy
+
+  has_many :post_tags,dependent: :destroy
+  has_many :tags,through: :post_tags
 
 
  # 複数投稿ができるようにしたいので、has_one(一つ)ではなく、has_many(たくさんある)で実装
@@ -14,8 +17,8 @@ class Post < ApplicationRecord
 # バリデーション設定、タイトルと本文にのみ設定(文字だけで投稿したいユーザーも使用できるように)
   validates :title, presence: true
   validates :body, presence: true
-  
-  
+
+
  # 検索方法の分岐
   def self.looks(search, word)
    if search == "perfect_match"
@@ -31,5 +34,24 @@ class Post < ApplicationRecord
    end
   end
 
+
+# タグの保存
+  def save_tag(sent_tags)
+    current_tags = self.tags.pluck(:name) unless self.tags.nil?     # 「タグが存在しているならば、タグの名前を配列として全て取得する」(unlessでタグが存在しているかを検証させる)
+
+    old_tags = current_tags - sent_tags     # 古いタグの定義。「現在取得しているタグー送信されてきたタグ」
+    new_tags = sent_tags - current_tags     # 新しいタグの定義。「送信されてきたタグー『現在存在している』タグ」　定義が少し異なるので要注意
+
+    # 古いタグを消す
+    old_tags.each do |old|
+      self.tags.delete　Tag.find_by(name: old)
+    end
+
+    # 新しいタグを保存
+    new_tags.each do |new|
+      new_post_tag = Tag.find_or_create_by(name: new)
+      self.tags << new_post_tag
+   end
+  end
 
 end

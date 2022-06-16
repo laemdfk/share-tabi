@@ -14,7 +14,12 @@ class Public::PostsController < ApplicationController
      @post_new.end_user_id = current_end_user.id
     #↑ ユーザーと投稿を紐づけるためのコード
 
+    # タグの保存用コード。受け取った値を「,」で区切り、配列とする
+    tag_list = params[:post][:name].split(',')
+
 	 if @post_new.save
+	     @post_new.save_tag(tag_list)
+
 		 redirect_to public_post_path(@post_new.id), notice:  "投稿の保存に成功しました"
    else
      flash.now[:alert] = "空欄があります。フォームを埋めてから、投稿してください(写真は任意です)"
@@ -22,19 +27,23 @@ class Public::PostsController < ApplicationController
    end
   end
 
+
   def index
     @enduser = current_end_user
     @posts = Post.all.page(params[:page]).per(10)
+    @tag_list =Tag.all
   end
 
   def show
     @post = Post.find(params[:id])
     @enduser = @post.end_user
     @post_comment = PostComment.new
+    @post_tags = @post.tags
   end
 
   def edit
     @post = Post.find(params[:id])
+    @tag_list= @post.tags.pluck(:name).join(',')
 
     if @post.end_user == current_end_user
          render "edit"
@@ -46,7 +55,16 @@ class Public::PostsController < ApplicationController
 
  def update
    @post = Post.find(params[:id])
+   tag_list = params[:post][:name].split(',')
     if @post.update(post_params)
+        # このpost_idに紐づいていたタグを@oldに入れる
+        @old_relations = PostTag.where(post_id: @post.id)
+        # それらを取り出し、消去する。
+        @old_relations.each do |relation|
+        relation.delete
+        end 
+        # 古いタグの消去後、再度保存を行う。
+      @post.save_tag(tag_list)
       redirect_to public_post_path(@post.id),notice: "投稿の編集が完了しました"
     else
         render "edit"
@@ -60,8 +78,8 @@ end
 
       redirect_to public_enduser_path(current_end_user),notice: "投稿の削除に成功しました"
     end
-
-
+    
+    
 	private
 
    # params.require(:モデル名).permit(カラム名)の形で記入しないとエラーになる

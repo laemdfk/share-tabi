@@ -20,18 +20,23 @@
            <%= form_with model: @post, url: public_post_path(@post), method: :patch do |f| %>
 
            <div class="form-group">
-         　 <br> <%= f.label :タイトル %><br />
+         　 <br> <%= f.label :title,"タイトル" %><br />
             <%= f.text_field :title, :size=>"47" %><br/>
            </div>
 
            <div class="form-group">
-            <br><%= f.label :本文 %><br/>
+            <br><%= f.label :body,"本文" %><br/>
              <%= f.text_area :body, :size=>"47.5pxx62px" %><br/>
            </div>
 
            <div class="form-group">
-            <%= f.label :画像 %>
+            <%= f.label :post_images,"画像" %>
             <%= f.file_field :post_images, multiple: true, accept: "image/*" %>
+           </div>
+
+           <div class="form-group">
+            <%= f.label :name,"タグ (,で区切ると複数タグ登録できます)" %>
+            <%= f.text_field :name, value: @tag_list, class: "form-control" %>  <!--value: @tag_listを設定しておかないと、フォームに何も送られない状態になるので要注意-->
            </div>
 
           <div class="form-group">

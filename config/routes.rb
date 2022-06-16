@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :end_users,skip: [:passwords], controllers: {
   registrations: "public/registrations",
   sessions: 'public/sessions'
+  # sessions: 'public/guest_sign_in'
 }
 
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
@@ -11,9 +12,9 @@ Rails.application.routes.draw do
 
 
 # 一致するルートがないとエラー。devise_scopeを外したが解決せず
-  # devise_scope :enduser do
-  #   post 'endusers/guest_sign_in', to: 'endusers/sessions#guest_sign_in'
-  # end
+  devise_scope :end_user do
+    post 'endusers/guest_sign_in', to: 'public/sessions#guest_sign_in'
+  end
 
 
   namespace :admin do
@@ -39,10 +40,10 @@ Rails.application.routes.draw do
 
     root to: 'endusers#mypage'
 
-  # 通りはしたが、Routing Error uninitialized constant Public::Endusers Did you mean? EndUser endusersで設定しているはず…。→postだから？post=(新規データを)登録する
-  devise_scope :enduser do
-    post 'enduser/guest_sign_in', to: 'enduser/sessions#guest_sign_in'
-  end
+  # 通りはしたが、Routing Error uninitialized constant Public::Endusers Did you mean? EndUser と弾かれる.  Public::EndUser
+  #devise_scope :end_user do
+  #  post 'enduser/guest_sign_in', to: 'enduser/sessions#guest_sign_in'
+  #end
 
     resources :endusers, only: [:index, :show, :edit, :update, :destroy]
 
@@ -54,6 +55,9 @@ Rails.application.routes.draw do
 
   # 検索機能ルーティング
   get "search" => "searches#search"
+
+  # タグ検索機能用ルーティング
+  # get "search_tag"=>"posts#search_tag"
 
   # 退会確認用ルーティング
    get 'endusers/:id/quit' => 'endusers#quit', as: 'quit'

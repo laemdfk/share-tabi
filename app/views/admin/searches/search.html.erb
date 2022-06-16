@@ -11,12 +11,22 @@
         </tr>
       <% end %>
     </tbody>
-  <% else %>
-    <!--検索対象モデルがUserではない時(=検索対象モデルがの時) -->
+  <% elsif @range == "EndUser" %>
+    <!--検索対象モデルがPostではない時(=検索対象モデルがEndUserの時) -->
     <tbody>
       <% @endusers.each do |enduser| %>
         <tr>
           <td><%= link_to enduser.nickname,admin_enduser_path(enduser.id) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% else %>
+  <!--検索対象モデルがEndUserでもPostない時(=検索対象モデルがPostCommentの時) -->
+  <tbody>
+      <% @comments.each do |comment| %>
+        <tr>
+          <td><%= link_to comment.comment,admin_post_comment_path(comment.id) %></td>
+          <td><%= link_to comment.end_user.nickname %>
         </tr>
       <% end %>
     </tbody>
