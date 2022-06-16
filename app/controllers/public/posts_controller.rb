@@ -42,10 +42,6 @@ class Public::PostsController < ApplicationController
   end
 
 def search_tag
-#検索結果画面でもタグ一覧表示
-   @tag_list = Tag.all
-#検索されたタグを受け取る
-# pry.byebug
     @tag = Tag.find(params[:tag_id])
 #検索されたタグに紐づく投稿を表示
    @posts = @tag.posts.page(params[:page]).per(10)
