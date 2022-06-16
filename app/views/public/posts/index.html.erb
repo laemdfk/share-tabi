@@ -11,7 +11,7 @@
       <!--写真を左側空白に配列し、それぞれ写真もリンクにする-->
        <% @posts.each do |post| %>
           <% post.post_images.each do |image| %>
-           <%= link_to image_tag(image, width:100), public_enduser_path(post.end_user.id)  %>
+           <%= link_to image_tag(image, width:100), public_post_path(post.id)  %>
           <% end %>
         <% end %>
        </div>
@@ -25,6 +25,7 @@
              <th>投稿者</th>
              <th>タイトル</th>
              <th></th>
+             <th style="width: 40%">タグ</th>
              <th colspan="3"></th>
              </tr>
            </thead>
@@ -35,11 +36,8 @@
                 <td><%= link_to post.title, public_post_path(post.id) %></td>
                 <td>コメント数:<%= post.post_comments.count %></td>
                 <td>
-                  <% @tag_list.each do |list| %>
-                   タグ:<%= list.name %><%= "(#{list.posts.count})" %>
-                  <% end %>
+                  <%= post.tags.map(&:name).join(',') %> <%= "(#{post.tags.count})" %>    <!--map(&:name) ＝配列の要素一つ一つを、後ろに指定した要素の型に変換し、 join(', ')指定した文字を区切り、連結させる-->
                  </td>
-                 <td><%= post.tags.map(&:name).join(',') %></td>      <!--map(&:name) ＝配列の要素一つ一つを、後ろに指定した要素の型に変換し、 join(', ')指定した文字を区切り、連結させる-->
                 </tr>
              <% end %>
            </tbody>
@@ -47,3 +45,9 @@
         <%= paginate @posts %>
       </div>
   </main>
+
+<!--タグリスト部分-->
+ <%# @tag_list.each do |list| %>
+   <%#= list.name %><%#= "(#{list.posts.count})" %>
+ <%# end %>
+

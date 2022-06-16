@@ -7,7 +7,7 @@ class EndUser < ApplicationRecord
 
  #ゲストログインの設定
  def new_guest
-  enduser = EndUser.find_or_create_by!(email: 'guest@example.com') do |enduser|   # find_or_create_by =条件を指定して初めの1件を取得し1件もなければ作成する
+  enduser = EndUser.find_or_create_by!(email: 'guest@guest.com') do |enduser|   # find_or_create_by =条件を指定して初めの1件を取得し1件もなければ作成する
 
    enduser.nickname = guest
    enduser.password = SecureRandom.urlsafe_base64     # パスワードをランダム生成させるメソッド
@@ -15,13 +15,15 @@ class EndUser < ApplicationRecord
 end
 
 def self.guest
-    find_or_create_by!(email: 'guest@example.com') do |user|
-      user.nickname = "unkown"
+    find_or_create_by!(email: 'guest@guest.com') do |user|
+      user.nickname = "guest"
       user.password = SecureRandom.urlsafe_base64
       # user.confirmed_at = Time.now  # Confirmable を使用している場合は必要
       # 例えば name を入力必須としているならば， user.name = "ゲスト" なども必要
     end
-  end
+end
+
+
 
 # アソシエーション
   has_many :posts, dependent: :destroy

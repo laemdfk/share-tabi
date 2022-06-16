@@ -3,7 +3,7 @@
 class Public::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
-  before_action :guest_end_user, only: :destroy
+  before_action :ensure_normal_user, only: :destroy
 
 
   # GET /resource/sign_up
@@ -55,11 +55,19 @@ class Public::RegistrationsController < Devise::RegistrationsController
 
 
 # ゲストユーザーならば、削除を行えなくする
-    def check_guest
-      if resource.email == 'guest@example.com'
-        redirect_to public_root_path,alart: 'ゲストユーザーは削除できません'
-      end
+    # def guest_end_user
+    #   if resource.email == 'guest@guest.com'
+    #     redirect_to public_root_path,alart: 'ゲストユーザーは削除できません'
+    #   end
+    # end
+
+
+  def ensure_normal_user
+    if resource.email == 'guest@guest.com'
+      redirect_to root_path, alert: 'ゲストユーザーは削除できません。'
     end
+  end
+
 
 
   # If you have extra params to permit, append them to the sanitizer.

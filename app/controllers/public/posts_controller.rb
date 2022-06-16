@@ -11,8 +11,7 @@ class Public::PostsController < ApplicationController
   def create
     # @enduser = current_end_user
 	 @post_new = Post.new(post_params)
-# 	 byebug
-   @post_new.end_user_id = current_end_user.id
+     @post_new.end_user_id = current_end_user.id
     #↑ ユーザーと投稿を紐づけるためのコード
 
     # タグの保存用コード。受け取った値を「,」で区切り、配列とする
