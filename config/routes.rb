@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 }
 
 
-# 一致するルートがないとエラー。devise_scopeを外したが解決せず
+# 一致するルートがないとエラー。devise_scopeを外したが解決せず→URLの問題
   devise_scope :end_user do
     post 'endusers/guest_sign_in', to: 'public/sessions#guest_sign_in'
   end
@@ -40,24 +40,17 @@ Rails.application.routes.draw do
 
     root to: 'endusers#mypage'
 
-  # 通りはしたが、Routing Error uninitialized constant Public::Endusers Did you mean? EndUser と弾かれる.  Public::EndUser
-  #devise_scope :end_user do
-  #  post 'enduser/guest_sign_in', to: 'enduser/sessions#guest_sign_in'
-  #end
-
     resources :endusers, only: [:index, :show, :edit, :update, :destroy]
 
     resources :posts do
       resources :post_comments, only: [:create, :destroy]
     end
 
-    # post 'endusers/guest_sign_in', to: 'endusers/sessions#guest_sign_in'
-
   # 検索機能ルーティング
   get "search" => "searches#search"
 
   # タグ検索機能用ルーティング
-  # get "search_tag"=>"posts#search_tag"
+   get "search_tag"=>"posts#search_tag"
 
   # 退会確認用ルーティング
    get 'endusers/:id/quit' => 'endusers#quit', as: 'quit'
