@@ -1,0 +1,72 @@
+<h6>Public::Endusers#show</h6>
+
+<!--フラッシュメッセージ-->
+<% if flash[:notice] %>
+<!--アラート(帯をつけた状態)で出力させる-->
+ <div class="alert alert-success" role="alert">
+ <p class="notice text-center" style="color:green;"><%= flash[:notice] %></p></div>
+<% end %>
+
+
+
+<h2><%= @enduser.nickname %>さんのマイページ</h2>
+ <main>
+  <div class="container px-5 px-sm-0">
+   <div class="row">
+    <div class="col-md-3">
+      <h2>利用者情報</h2>
+       <% if @enduser.profile_image.attached? %>
+          <%= image_tag @enduser.profile_image, size: "200x200" %><br />
+       <% else %>
+           <%= image_tag 'no_image.jpg', size: "200x200" %><br />
+       <% end %>
+        <table class="table">
+         <tbody>
+          <tr></tr>
+          <tr>
+	          <th>name</th>
+	           <td><%= @enduser.nickname %></td>
+           </tr>
+
+          <tr>
+	          <th>introduction</th>
+	           <td><%= @enduser.introduction %></td>
+          </tr>
+         </tbody>
+       </table>
+       <!--利用者情報の下に、投稿した画像一覧を出したい(enduserが投稿したpostに紐づく画像を出したい)-->
+        <% @posts.each do |post| %>
+          <% post.post_images.each do |image| %>
+           <%= link_to image_tag(image, width:100), public_post_path(post.id)  %>
+          <% end %>
+        <% end %>
+     </div>
+
+     <div class="col-md-8 offset-md-1">
+       <h3>今までの投稿</h3>
+         <%= link_to "新しい旅の思い出を作る",new_public_post_path %>
+          <%= link_to "みんなの投稿を見に行く",public_posts_path %>
+        <table class="table">
+          <thead>
+           <tr>
+            <th>投稿日時</th>
+            <th style="width: 20%;">タイトル</th>
+            <th>内容</th>
+            <th colspan="3"></th>
+           </tr>
+          </thead>
+           <tbody>
+            <% @posts.each do |post| %>
+             <tr>
+               <td><%= post.created_at.strftime('%Y/%m/%d %H:%M') %></td>
+               <td><%= link_to post.title, public_post_path(post.id) %></td>
+               <td><%= post.body %></td>
+             </tr>
+           <% end %>
+         </tbody>
+       </table>
+       <%= paginate @posts %>
+     </div>
+   </div>
+  </div>
+</main>

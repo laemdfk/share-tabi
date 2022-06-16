@@ -1,0 +1,45 @@
+<h6>Public::Endusers#edit</h6>
+<% if @enduser.errors.any? %>
+  <%= @enduser.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @enduser.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+ <div class="container">
+     <div class="row">
+       <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+  	     	<h1>プロフィール編集</h1>
+
+           <%= form_with model: @enduser, url: public_enduser_path(@enduser), method: :patch do |f| %>
+
+           <div class="form-group">
+         　 <br> <%= f.label :nickname,"ニックネーム" %><br />
+            <%= f.text_field :nickname, :size=>"47" %><br/>
+           </div>
+
+           <div class="form-group">
+            <br><%= f.label :introduction,"自己紹介" %><br/>
+             <%= f.text_area :introduction, :size=>"47.5pxx62px" %><br/>
+           </div>
+
+           <div class="form-group">
+            <%= f.label :profile_image,"ユーザー画像" %>
+            <%= f.file_field :profile_image %><br />
+           </div>
+
+
+          <div class="form-group">
+            <br><%= f.submit '変更を保存する',class:"btn btn-success" %><br />
+           </div>
+
+      <div class="menu">
+       <%= link_to "Back", public_enduser_path(@enduser) %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+ <main>
+</body>

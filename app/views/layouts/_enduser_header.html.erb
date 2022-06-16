@@ -1,0 +1,49 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <span class="navbar-brand">
+        　<%= link_to "シェアたび",root_path %>
+        </span>
+
+        <div class="search">
+          <%= render "public/searches/search_form" %>
+        </div>
+      <div>
+        <ul class="navbar-nav">
+          <% if end_user_signed_in? %>
+          <li>
+            <%= link_to "トップページ",public_root_path, class: "nav-link" %>
+          </li>
+          <li>
+            <%= link_to "マイページ", public_enduser_path(current_end_user.id), class: "nav-link" %>
+          </li>
+          <li>
+            <%= link_to "アカウント編集",edit_public_enduser_path(current_end_user.id), class: "nav-link" %>
+          </li>
+          <li>
+            <%= link_to "みんなの投稿",public_posts_path, class: "nav-link" %>
+          </li>
+          <li>
+            <%= link_to "退会する",public_quit_path(current_end_user.id),class: "nav-link" %>
+          </li>
+          <li>
+            <%= link_to "ログアウト", destroy_end_user_session_path, method: :delete, class: "nav-link" %>
+          </li>
+          <% else %>
+          <li>
+            <%= link_to"トップページへ",root_path, class:"link" %>
+          </li>
+          <li>
+            <%= link_to"サインアップ", "/end_users/sign_up", class:"link" %>
+          </li>
+          <li>
+            <%= link_to"ログイン", "/end_users/sign_in", class:"link" %>
+          </li>
+
+          <% end %>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
