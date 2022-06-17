@@ -33,6 +33,12 @@ end
   has_many :post_comments,dependent: :destroy
 
   has_many :favorites,dependent: :destroy
+  
+  # フォロー・フォロワー機能のアソシエーション
+  has_many :follower, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  has_many :followed, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
+   has_many :following_end_user, through: :follower, source: :followed   # 自分「が」フォローしている人
+  has_many :follower_end_user, through: :followed, source: :follower     # 自分"を"フォローしている人
 
 
 # Active storageの設定
@@ -63,5 +69,22 @@ def self.looks(search, word)
       @enduser = EndUser.all
    end
 end
+
+# フォロー・フォロワー機能のメソッド
+# ユーザーをフォローする
+  def follow(end_user_id)
+    follower.create(followed_id: end_user_id)
+  end
+
+  # ユーザーのフォローを外す
+  def unfollow(end_user_id)
+    follower.find_by(followed_id: end_user_id).destroy
+  end
+
+  # フォローしていればtrueを返す
+  def following?(end_user)
+    following_end_user.include?(end_user)
+  end
+
 
 end

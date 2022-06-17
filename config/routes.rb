@@ -40,7 +40,12 @@ Rails.application.routes.draw do
 
     root to: 'endusers#mypage'
 
-    resources :endusers, only: [:index, :show, :edit, :update, :destroy]
+    resources :endusers, only: [:index, :show, :edit, :update, :destroy] do
+      member do     # memberを使うことで、別のルーティングを追加できる
+       get :follows, :followers
+      end
+     resource :relationships, only: [:create, :destroy]
+    end
 
     resources :posts do
       resources :post_comments, only: [:create, :destroy]

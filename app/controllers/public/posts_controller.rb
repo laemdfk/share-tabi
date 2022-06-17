@@ -39,6 +39,8 @@ class Public::PostsController < ApplicationController
     @enduser = @post.end_user
     @post_comment = PostComment.new
     @post_tags = @post.tags
+    @following_users = @enduser.following_end_user
+  @follower_users = @enduser.follower_end_user
   end
 
 def search_tag
