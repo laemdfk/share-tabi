@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 }
 
 
-# 一致するルートがないとエラー。devise_scopeを外したが解決せず→URLの問題
+# 一致するルートがないとエラー→→URL、ルーティングの問題だった。
   devise_scope :end_user do
     post 'endusers/guest_sign_in', to: 'public/sessions#guest_sign_in'
   end
@@ -44,6 +44,7 @@ Rails.application.routes.draw do
 
     resources :posts do
       resources :post_comments, only: [:create, :destroy]
+      resource :favorites,only:[:create, :destroy]
     end
 
   # 検索機能ルーティング

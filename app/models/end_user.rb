@@ -32,6 +32,8 @@ end
 
   has_many :post_comments,dependent: :destroy
 
+  has_many :favorites,dependent: :destroy
+
 
 # Active storageの設定
   has_one_attached :profile_image
