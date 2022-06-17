@@ -19,23 +19,29 @@
        <td><%= @post.created_at.strftime('%Y/%m/%d %H:%M') %></td>
        <td><%= link_to @post.title, public_enduser_path(@post.end_user.id) %></td>
        <td><%= @post.body %></td>
-       <td>コメント数:<%= @post.post_comments.count %></td>
+        <% if @post.end_user_id == current_end_user.id %>
+        <td><%= link_to '編集', edit_public_post_path(@post), class: "btn btn-sm btn-success" %><td>
+        <td><%= link_to '削除',public_post_path(@post), method: :delete, data: { confirm: "この操作は取り消せませんが、本当に削除しますか?" }, class: "btn btn-sm btn-danger" %></td>
+       <% end %>
+       <tr>
        <td>
+        タグ:
         <% @post_tags.each do |tag| %>
           <%= link_to tag.name,public_search_tag_path(tag_id: tag.id) %><%="(#{tag.posts.count})" %>
         <% end %>
        </td>
-       <td>
-         <%= render "public/favorites/btn", post: @post %>
-       </td>
+       </tr>
+       <tr>
+       <td><%= render "public/favorites/btn", post: @post %></td>
+       </tr>
 
-       <% if @post.end_user_id == current_end_user.id %>
-        <td><%= link_to '編集', edit_public_post_path(@post), class: "btn btn-sm btn-success" %><td>
-        <td><%= link_to '削除',public_post_path(@post), method: :delete, data: { confirm: "この操作は取り消せませんが、本当に削除しますか?" }, class: "btn btn-sm btn-danger" %></td>
-       <% end %>
+      
       </tr>
     </table>
+    <%= @post.post_comments.count %>コメント
       <%= render "public/post_comments/comment", post: @post %>
       <%= render "public/post_comments/comment_form", post: @post, post_comment: @post_comment %>
   </div>
 </main>
+
+
