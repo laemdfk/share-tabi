@@ -38,13 +38,13 @@
                 <td>
                   <%= post.tags.map(&:name).join(',') %> <%= "(#{post.tags.count})" %>    <!--map(&:name) ＝配列の要素一つ一つを、後ろに指定した要素の型に変換し、 join(', ')指定した文字を区切り、連結させる-->
                 </td>
-                <td><%= render "public/favorites/btn", post: post %></td>
+                <td id="favorite_btn_<%= post.id %>"><%= render "public/favorites/favorite", post: post %></td>    <!--namespaceを利用している場合は、public/adminから書かないと、テンプレートを引用できないので注意-->
                 </tr>
              <% end %>
            </tbody>
         </table>
         <%= paginate @posts %>
-        
+
         <!--タグリスト部分-->
         <div class = "tag_search">
          <h4>タグから記事を検索する</h4>
@@ -57,5 +57,5 @@
 
 
 
- 
+
 
