@@ -33,7 +33,7 @@
             <%= f.label :post_images,"画像" %>
             <%= f.file_field :post_images, multiple: true, accept: "image/*" %>
            </div>
-
+           
            <div class="form-group">
             <%= f.label :name,"タグ (,で区切ると複数タグ登録できます)" %>
             <%= f.text_field :name, value: @tag_list, class: "form-control" %>  <!--value: @tag_listを設定しておかないと、フォームに何も送られない状態になるので要注意-->

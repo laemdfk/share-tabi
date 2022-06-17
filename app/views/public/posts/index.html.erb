@@ -37,7 +37,8 @@
                 <td>コメント数:<%= post.post_comments.count %></td>
                 <td>
                   <%= post.tags.map(&:name).join(',') %> <%= "(#{post.tags.count})" %>    <!--map(&:name) ＝配列の要素一つ一つを、後ろに指定した要素の型に変換し、 join(', ')指定した文字を区切り、連結させる-->
-                 </td>
+                </td>
+                <td><%= post.favorites.count %>いいね</td>
                 </tr>
              <% end %>
            </tbody>

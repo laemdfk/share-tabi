@@ -25,6 +25,9 @@
           <%= link_to tag.name,public_search_tag_path(tag_id: tag.id) %><%="(#{tag.posts.count})" %>
         <% end %>
        </td>
+       <td>
+         <%= render "public/favorites/btn", post: @post %>
+       </td>
 
        <% if @post.end_user_id == current_end_user.id %>
         <td><%= link_to '編集', edit_public_post_path(@post), class: "btn btn-sm btn-success" %><td>
