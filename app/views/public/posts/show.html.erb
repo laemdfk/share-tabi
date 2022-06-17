@@ -3,15 +3,17 @@
 <!--フラッシュメッセージ-->
 <% if flash[:notice] %>
  <div class="alert alert-success" role="alert">
- <p class="notice text-center" style="color:green;"><%= flash[:notice] %></p></div>
+  <p class="notice text-center" style="color:green;"><%= flash[:notice] %></p>
+ </div>
 <% end %>
 
  <main>
   <div class="col-md-8 offset-md-1">
    <h2><%= @enduser.nickname %>さんの投稿詳細</h2>
+    <div id="favorite_btn_<%= @post.id %>">
+     <%= render 'public/favorites/favorite', post: @post %>      <!--namespaceを利用している場合は、public/adminから書かないと、テンプレートを引用できないので注意-->
+    </div>
    <table class='table'>
-    <%= render "public/favorites/btn", post: @post %>
-
   		 <tr>
   		   <td>
   		    <% @post.post_images.each do |image| %>
