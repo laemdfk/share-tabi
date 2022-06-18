@@ -4,7 +4,7 @@ class Public::PostsController < ApplicationController
 
   def new
     @post_new = Post.new
-    # ここにparamsをつけてしまうと、createの値と重複してデータが渡る模様
+    # ここにparamsをつけてしまうと、createの値と重複してデータが渡ってしまう
   end
 
 

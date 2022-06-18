@@ -1,2 +1,2 @@
 $('#favorite_btn_<%= @post.id %>').html("<%= j(render partial: 'public/favorites/favorite', locals: {post: @post}) %>");
-<!--namespaceを利用している場合は、public/adminから書かないと、テンプレートを引用できないので-->
+<!--namespaceを利用している場合は、public/adminから書かないと、テンプレートを引用できないので注意-->

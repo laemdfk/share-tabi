@@ -26,6 +26,10 @@
       <div class="menu">
         <%= link_to "みんなの投稿を見に行く",public_posts_path %>
       </div>
+      <div class "menu">
+        <%= link_to "いいねした投稿を見る", favorites_public_enduser_path(@enduser) %>
+      </div>
+      
        <%= link_to "退会する",public_quit_path(current_end_user.id) %>
        <div class="menu">
         <%= link_to"トップページへ",root_path,class:"link"  %>
