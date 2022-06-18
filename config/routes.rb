@@ -40,12 +40,20 @@ Rails.application.routes.draw do
 
     root to: 'endusers#mypage'
 
-    resources :endusers, only: [:index, :show, :edit, :update, :destroy]
+    resources :endusers, only: [:index, :show, :edit, :update, :destroy] do
+      member do
+       get :favorites
+      end
+    end
+
 
     resources :posts do
       resources :post_comments, only: [:create, :destroy]
       resource :favorites,only:[:create, :destroy]
     end
+
+
+
 
   # 検索機能ルーティング
   get "search" => "searches#search"

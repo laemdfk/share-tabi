@@ -13,5 +13,6 @@ class Public::FavoritesController < ApplicationController
   favorite.destroy   # 内容を破棄する必要があるので「destroy」。saveにしていたので発火しなかった
   # redirect_to public_post_path(post)
  end
+
 end
 

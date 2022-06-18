@@ -18,6 +18,12 @@ class Public::EndusersController < ApplicationController
   end
 
 
+  def favorites
+    @enduser = EndUser.find(params[:id])
+    favorites = Favorite.where(end_user_id: @enduser.id).pluck(:post_id)
+    @favorite_posts = Post.find(favorites)
+  end
+
   def index
     @endusers = EndUser.all
     @enduser = current_end_user
