@@ -44,8 +44,8 @@
 
      <div class="col-md-8 offset-md-1">
        <h3>今までの投稿</h3>
-         <%= link_to "新しい旅の思い出を作る",new_public_post_path %>
-          <%= link_to "みんなの投稿を見に行く",public_posts_path %>
+         <%= link_to "新しい旅の思い出を作る", new_public_post_path %>
+          <%= link_to "いいねした投稿を見る", favorites_public_enduser_path(@enduser) %>
         <table class="table">
           <thead>
            <tr>
