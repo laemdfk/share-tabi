@@ -3,12 +3,17 @@ class Public::PostsController < ApplicationController
   before_action :current_end_user, {only: [:edit, :update, :destroy]}
 
   def new
+      if EndUser.guest == current_end_user
+       redirect_to public_root_path, notice: "ゲストユーザは新規投稿できません。"
+      return
+     end
     @post_new = Post.new
     # ここにparamsをつけてしまうと、createの値と重複してデータが渡ってしまう
   end
 
 
   def create
+      
     # @enduser = current_end_user
 	 @post_new = Post.new(post_params)
      @post_new.end_user_id = current_end_user.id
