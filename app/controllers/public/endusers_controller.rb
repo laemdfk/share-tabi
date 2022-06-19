@@ -32,6 +32,10 @@ class Public::EndusersController < ApplicationController
 
 
   def edit
+    if EndUser.guest == current_end_user
+      redirect_to public_root_path, notice: "ゲストユーザは編集できません。"
+      return
+    end
     @enduser = EndUser.find(params[:id])
     if @enduser == current_end_user
       render "edit"
@@ -56,6 +60,10 @@ class Public::EndusersController < ApplicationController
 
 
   def withdrawal
+    if EndUser.guest == current_end_user
+      redirect_to public_root_path, notice: "ゲストユーザは退会できません。"
+      return
+    end
     @enduser = current_end_user
     # is_deletedカラムをtrueに変更することにより削除フラグを立てる
     @enduser.update(is_deleted: true)
