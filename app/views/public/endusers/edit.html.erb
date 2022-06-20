@@ -2,6 +2,14 @@
  <div class="alert alert-danger" role="alert">
  <p class="notice text-center" style="color:red;"><%= flash[:alert] %></p></div>
 <% end %>
+<% if @enduser.errors.any? %>
+  <%= @enduser.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @enduser.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
 
 
  <div class="container">
@@ -18,7 +26,7 @@
 
            <div class="form-group">
             <br><%= f.label :introduction,"自己紹介" %><br/>
-             <%= f.text_area :introduction, :size=>"47.5pxx62px" %><br/>
+             <%= f.text_area :introduction, class: "w-100" %><br/>
            </div>
 
            <div class="form-group">

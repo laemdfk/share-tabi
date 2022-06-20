@@ -12,24 +12,37 @@
   </ul>
 <% end %>
 
-<h1>新規投稿</h1>
 
-<%= form_with model: @post_new, url: '/public/posts',method: :post do |f|  %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+     <h1>新規投稿</h1>
 
-   <%= f.label :title,"タイトル" %><br>
-   <%= f.text_field :title %><br/>
+     <%= form_with model: @post_new, url: '/public/posts',method: :post do |f|  %>
+     
+     <div class="form-group">
+      <%= f.label :title,"タイトル" %><br>
+      <%= f.text_field :title,class: "w-100" %><br/>
+     </div>
 
+     <div class="form-group">
+      <%= f.label :post_images,"写真" %><br>
+      <%= f.file_field :post_images,multiple: true, accept: "image/*" %><br />
+     </div>
 
-   <%= f.label :post_images,"写真" %><br>
-   <%= f.file_field :post_images,multiple: true, accept: "image/*" %><br />
+    <div class="form-group">
+      <%= f.label :body,"本文" %><br/>
+      <%= f.text_area :body,rows: '5',class: "w-100" %><br/>
+    </div>
 
-   <%= f.label :body,"本文" %><br/>
-   <%= f.text_area :body %><br/>
+    <div class="form-group">
+      <%= f.label :name,"タグ(タグは「,」で区切ることで、複数のタグ付けが可能です)" %><br />
+      <%= f.text_field :name,class: "w-100" %><br />
+    </div>
+   
+     <%= f.submit '投稿する' %>
 
-   <%= f.label :name,"タグ(タグは「,」で区切ることで、複数のタグ付けが可能です)" %><br />
-   <%= f.text_field :name %><br />
-
-  <%= f.submit '投稿する' %>
-
-
-<% end %>
+    <% end %>
+    </div>
+  </div>
+</div>
