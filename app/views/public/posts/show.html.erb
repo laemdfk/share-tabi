@@ -42,7 +42,7 @@
       <%= link_to "back",public_enduser_path(@post.end_user.id) %>
   </div>
  
-  <h3>場所</h3>
+<h3>場所</h3>
  <input id="address" type="textbox" value="Sydney, NSW">
 
 <!-- buttonをクリックしたらcodeAddressを実行　-->
@@ -79,7 +79,7 @@ function codeAddress(){
   // 入力を取得
   let inputAddress = document.getElementById('address').value;
 
-  // geocodingしたあとmapを移動
+  // geocodingしたあとに、mapを移動
   geocoder.geocode( { 'address': inputAddress}, function(results, status) {
     if (status == 'OK') {
 　　　　　　　　　　　　// map.setCenterで地図が移動
