@@ -3,6 +3,14 @@
  <p class="notice text-center" style="color:red;"><%= flash[:alert] %></p></div>
 <% end %>
 
+<% if @post.errors.any? %>
+  <%= @post.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @post.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
 
    <div class="container">
      <div class="row">

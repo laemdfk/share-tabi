@@ -3,6 +3,15 @@
  <p class="notice text-center" style="color:red;"><%= flash[:alert] %></p></div>
 <% end %>
 
+<% if @post_new.errors.any? %>
+  <%= @post_new.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @post_new.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <h1>新規投稿</h1>
 
 <%= form_with model: @post_new, url: '/public/posts',method: :post do |f|  %>

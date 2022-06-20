@@ -27,7 +27,7 @@ class Public::PostsController < ApplicationController
 
 		 redirect_to public_post_path(@post_new.id), notice:  "投稿の保存に成功しました"
    else
-     flash.now[:alert] = "空欄があります。フォームを埋めてから、投稿してください(写真は任意です)"
+    flash.now[:alert] = "空欄があるか、入力制限がかかっています。下記のエラー内容を確認してください(写真の投稿は任意です)"
       render "new"
    end
   end

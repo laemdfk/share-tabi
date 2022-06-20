@@ -24,7 +24,7 @@ class Post < ApplicationRecord
 
 # バリデーション設定、タイトルと本文にのみ設定(文字だけで投稿したいユーザーも使用できるように)
   validates :title, presence: true
-  validates :body, presence: true,length: { maximum: 1500 }
+  validates :body, presence: true,length: { maximum: 500 }
 
 
  # 検索方法の分岐
