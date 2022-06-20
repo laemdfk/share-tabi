@@ -61,6 +61,9 @@ gem 'kaminari'
 
 gem 'dotenv-rails'
 
+gem 'gmaps4rails'
+gem 'geocoder'
+
 group :production do
   gem 'mysql2'
 end

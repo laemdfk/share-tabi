@@ -11,6 +11,7 @@
     <div id="favorite_btn_<%= @post.id %>">
      <%= render 'public/favorites/favorite', post: @post %>      <!--namespaceを利用している場合は、public/adminから書かないと、テンプレートを引用できないので注意-->
     </div>
+
    <table class='table'>
   		 <tr>
   		   <td>
@@ -41,6 +42,63 @@
       <%= link_to "back",public_enduser_path(@post.end_user.id) %>
   </div>
  
+  <h3>場所</h3>
+ <input id="address" type="textbox" value="Sydney, NSW">
+
+<!-- buttonをクリックしたらcodeAddressを実行　-->
+<input type="button" value="Encode" onclick="codeAddress()">
+<div id='map'>
+</div>
+
+<style>
+#map{
+  height: 400px;
+}
+</style>
+
+<script>
+/*
+mapを関数の外で定義(codeAddressでも使うため)
+geocoderを用意
+*/
+
+let map
+let geocoder
+
+function initMap(){
+  // geocoderを初期化
+  geocoder = new google.maps.Geocoder()
+
+  map = new google.maps.Map(document.getElementById('map'), {
+  center: {lat: 35.6769883, lng: 139.7588499},
+  zoom: 8
+  });
+}
+
+function codeAddress(){
+  // 入力を取得
+  let inputAddress = document.getElementById('address').value;
+
+  // geocodingしたあとmapを移動
+  geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+    if (status == 'OK') {
+　　　　　　　　　　　　// map.setCenterで地図が移動
+      map.setCenter(results[0].geometry.location);
+
+　　　　　　　　　　　　// google.maps.MarkerでGoogleMap上の指定位置にマーカが立つ
+      var marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location
+      });
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
+    </div>
+
 </main>
 
 

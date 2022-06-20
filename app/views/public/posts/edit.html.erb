@@ -35,6 +35,11 @@
            </div>
            
            <div class="form-group">
+            <%= f.label :address, "場所" %>
+            <%= f.text_field :address, class: "w-100" %>
+           </div>
+           
+           <div class="form-group">
             <%= f.label :name,"タグ (,で区切ると複数タグ登録できます)" %>
             <%= f.text_field :name, value: @tag_list, class: "form-control" %>  <!--value: @tag_listを設定しておかないと、フォームに何も送られない状態になるので要注意-->
            </div>

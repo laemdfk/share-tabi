@@ -82,7 +82,7 @@ def search_tag
         flash.now[:alert] = "空欄があるか、入力制限がかかっています。下記のエラー内容を確認してください(写真の投稿は任意です)"
         render "edit"
     end
-end
+ end
 
 
     def destroy
@@ -99,7 +99,7 @@ end
    # require = そのモデルに基づいた値を返すため
 
     def post_params
-        params.require(:post).permit(:title, :body, post_images: [])
+        params.require(:post).permit(:title, :body,:address, :latitude, :longitude, post_images: [])
     end
 
 
@@ -107,8 +107,8 @@ end
         @post = Post.find(params[:id])
         if @post.user_id != current_end_user
          redirect_to public_posts_path
-      end
-    end
+        end
+     end
 
 #   def post_comment_params
 #     params.require(:post_comment).permit(:comment,:post_id)
