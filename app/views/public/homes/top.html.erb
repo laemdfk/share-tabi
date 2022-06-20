@@ -15,13 +15,13 @@
 
    <div class="btn-wrapper col-10 mx-auto">
         <div class="row">
-         <%= link_to "ゲストログイン", endusers_guest_sign_in_path, method: :post %>
+         <%= link_to "ゲストログイン", endusers_guest_sign_in_path, class: "btn btn-primary", method: :post %>
         </div>
         <div class="row">
-         <%= link_to "ログイン",new_end_user_session_path %>
+         <%= link_to "ログイン",new_end_user_session_path, class: "btn btn-info" %>
         </div>
         <div class="row">
-          <%= link_to "サインアップ",new_end_user_registration_path %>
+          <%= link_to "サインアップ",new_end_user_registration_path, class: "btn btn-success" %>
         </div>
    </div>
 

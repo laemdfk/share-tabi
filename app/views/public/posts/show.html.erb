@@ -1,5 +1,3 @@
-<h6>Public::Posts#show</h6>
-
 <!--フラッシュメッセージ-->
 <% if flash[:notice] %>
  <div class="alert alert-success" role="alert">
@@ -34,13 +32,15 @@
         <% end %>
        </tr>
 
-       <tr></tr>
+       <tr> </tr>
       </tr>
     </table>
     <%= @post.post_comments.count %>コメント
       <%= render "public/post_comments/comment", post: @post %>
       <%= render "public/post_comments/comment_form", post: @post, post_comment: @post_comment %>
+      <%= link_to "back",public_enduser_path(@post.end_user.id) %>
   </div>
+ 
 </main>
 
 

@@ -79,6 +79,7 @@ def search_tag
       @post.save_tag(tag_list)
       redirect_to public_post_path(@post.id),notice: "投稿の編集が完了しました"
     else
+        flash.now[:alert] = "空欄があります。フォームを埋めてから、投稿してください(写真は任意です)"
         render "edit"
     end
 end

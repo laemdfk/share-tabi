@@ -1,12 +1,8 @@
-<h6>Public::Endusers#edit</h6>
-<% if @enduser.errors.any? %>
-  <%= @enduser.errors.count %>件のエラーが発生しました
-  <ul>
-    <% @enduser.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
+<% if flash[:alert] %>
+ <div class="alert alert-danger" role="alert">
+ <p class="notice text-center" style="color:red;"><%= flash[:alert] %></p></div>
 <% end %>
+
 
  <div class="container">
      <div class="row">

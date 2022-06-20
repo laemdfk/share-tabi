@@ -9,9 +9,9 @@ class Post < ApplicationRecord
   has_many :post_tags,dependent: :destroy
 
   has_many :tags,through: :post_tags      # through＝多対多のアソシエーションを行う際の宣言
-  
+
   has_many :favorites,dependent: :destroy
-  
+
   # いいねをend_userが行っているかを確認するメソッド。いいね「される」側に記述する必要がある
   def favorited_by?(end_user)
   favorites.where(end_user_id: end_user.id).exists?
@@ -24,7 +24,7 @@ class Post < ApplicationRecord
 
 # バリデーション設定、タイトルと本文にのみ設定(文字だけで投稿したいユーザーも使用できるように)
   validates :title, presence: true
-  validates :body, presence: true
+  validates :body, presence: true,length: { maximum: 1500 }
 
 
  # 検索方法の分岐

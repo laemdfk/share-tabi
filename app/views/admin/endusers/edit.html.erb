@@ -1,4 +1,7 @@
-<h6>Admin::Endusers#edit</h6>
+<% if flash[:notice] %>
+ <div class="alert alert-success" role="alert">
+ <p class="notice text-center" style="color:red;"><%= flash[:notice] %></p></div>
+<% end %>
 
 <%= form_with model: @enduser, url: admin_enduser_path(@enduser.id), method: :patch do |f| %>
 <div class="container">
