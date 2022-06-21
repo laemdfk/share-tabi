@@ -13,9 +13,9 @@
      <table class="table">
      <div class="menu">
       <h4>見る</h4>
-      <i class="fas fa-book-open"></i><%= link_to "マイページへ",public_enduser_path(current_end_user.id) %>
-      <i class="fas fa-book"></i><%= link_to "みんなの投稿を見に行く",public_posts_path %>
-      <i class="fas fa-bookmark"></i><%= link_to "いいねした投稿を見る", favorites_public_enduser_path(@enduser) %>
+      <i class="fas fa-book-open"></i><%= link_to "マイページへ",public_enduser_path(current_end_user.id) %><br />
+      <i class="fas fa-book"></i><%= link_to "みんなの投稿を見に行く",public_posts_path %><br />
+      <i class="fas fa-bookmark"></i><%= link_to "いいねした投稿を見る", favorites_public_enduser_path(@enduser) %><br />
      </div>
 
      <div class="menu">
@@ -26,22 +26,20 @@
       <div class="menu">
        <h4>編集する</h4>
         <i class="fas fa-user-cog"></i><%= link_to "アカウント編集",edit_public_enduser_path(current_end_user.id) %>
-      </div>
 
 
       <div class "menu">
-        <i class="fas fa-user-slash"></i><%= link_to "退会する",public_quit_path(current_end_user.id) %>
+        <h4>その他</h4>
+       <i class="fas fa-user-slash"></i><%= link_to "退会する",public_quit_path(current_end_user.id) %><br />
       </div>
 
 
        <div class="menu">
-        <%= link_to"トップページへ",root_path %>
+        <br><i class="fas fa-undo"></i><%= link_to"トップページへ",root_path %><br />
       </div>
 
 
   <!--Mapの表示　地図を検索できるようにしたい-->
-  <!--You have included the Google Maps API multiple times on this pageが出てるので、こっちは消した方がいいか?(APIを複数回読み込んでるというエラー)--->
-
  <h4>
    <i class="fas fa-search-location"></i>
    場所を調べる
@@ -105,8 +103,8 @@ function codeAddress(){
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
     </div>
 
-      </div>
-    </div>
+ </div>
+</div>
 
 
 

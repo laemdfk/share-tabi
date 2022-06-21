@@ -1,14 +1,17 @@
 <header>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+ <header class="shadow-sm">
+   <nav class="navbar navbar-expand-lg navbar-">
     <div class="container">
-      <span class="navbar-brand">
-        　<%= link_to "シェアたび",root_path %>
-        </span>
-
-        <div class="search">
+     <a class="navbar-brand" href="/"><%= image_tag('PF_header_logo.png') %></a>
+     
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+       <div class="search">
           <%= render "public/searches/search_form" %>
         </div>
-      <div>
+      
         <ul class="navbar-nav">
           <% if end_user_signed_in? %>
           <li>
