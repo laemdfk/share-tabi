@@ -6,7 +6,7 @@
 
 <div class = "container">
   <div class ="row">
-    <h3 class ="px-5 bg-light">会員一覧</h2>
+    <h3 class ="px-5 bg-light">会員一覧</h3>
    <table class = "table">
     <thead>
        <tr>
@@ -32,6 +32,11 @@
          </tr>
         <% end %>
       </tbody>
-      <%= paginate @endusers %>
+     </table>
+    </div>
+    <div class="row align-bottom mx-auto">
+     <div class="mx-auto">
+     <%= paginate @endusers %>
+     </div>
     </div>
   </div>
