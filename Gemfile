@@ -64,6 +64,8 @@ gem 'dotenv-rails'
 gem 'gmaps4rails'
 gem 'geocoder'
 
+gem 'rails-i18n'
+
 group :production do
   gem 'mysql2'
 end

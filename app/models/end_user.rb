@@ -38,7 +38,7 @@ end
 
 
  # バリデーション
-  validates :nickname, presence: true
+  validates :nickname, presence: true,length: { maximum: 15 }
 
 
  # 退会後に、同じアカウントでログインできないようにする処理

@@ -13,7 +13,7 @@ class Public::PostsController < ApplicationController
 
 
   def create
-      
+
     # @enduser = current_end_user
 	 @post_new = Post.new(post_params)
      @post_new.end_user_id = current_end_user.id
@@ -99,7 +99,7 @@ def search_tag
    # require = そのモデルに基づいた値を返すため
 
     def post_params
-        params.require(:post).permit(:title, :body,:address, :latitude, :longitude, post_images: [])
+        params.require(:post).permit(:title, :body,:address, post_images: [])
     end
 
 

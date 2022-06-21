@@ -7,13 +7,13 @@
 <div class="container">
  <div class="row">
   <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-    <h1 class ="px-5 bg-light">welcome page</h1>
+    <h1 class ="px-5 bg-light">メニューページ</h1>
      <h2>ようこそ、<%= @enduser.nickname %>さん!</h2>
 
      <table class="table">
      <div class="menu">
       <h4>見る</h4>
-      <i class="fas fa-book-open"></i><%= link_to "自分の投稿を見る",public_enduser_path(current_end_user.id) %>
+      <i class="fas fa-book-open"></i><%= link_to "マイページへ",public_enduser_path(current_end_user.id) %>
       <i class="fas fa-book"></i><%= link_to "みんなの投稿を見に行く",public_posts_path %>
       <i class="fas fa-bookmark"></i><%= link_to "いいねした投稿を見る", favorites_public_enduser_path(@enduser) %>
      </div>
@@ -35,26 +35,30 @@
 
 
        <div class="menu">
-        <%= link_to"トップページへ",root_path,class:"btn btn-default"  %>
+        <%= link_to"トップページへ",root_path %>
       </div>
 
 
-  <!--Mapの表示--->
+  <!--Mapの表示　地図を検索できるようにしたい-->
+  <!--You have included the Google Maps API multiple times on this pageが出てるので、こっちは消した方がいいか?(APIを複数回読み込んでるというエラー)--->
+
  <h4>
    <i class="fas fa-search-location"></i>
    場所を調べる
  </h4>
 
- <input id="address" type="textbox" value="Sydney, NSW">
+
+ <input id="search_address" type="textbox" value="Sydney, NSW">
 
 <!-- buttonをクリックしたらcodeAddressを実行　-->
 <input type="button" value="Encode" onclick="codeAddress()">
-<div id='map'>
-</div>
+<div id='search_map' class="search_map"></div>
+
 
 <style>
-#map{
+.search_map{
   height: 400px;
+  width: 400px;
 }
 </style>
 
@@ -71,15 +75,15 @@ function initMap(){
   // geocoderを初期化
   geocoder = new google.maps.Geocoder()
 
-  map = new google.maps.Map(document.getElementById('map'), {
+  map = new google.maps.Map(document.getElementById('search_map'), {
   center: {lat: 35.6769883, lng: 139.7588499},
-  zoom: 8
+  zoom: 13
   });
 }
 
 function codeAddress(){
   // 入力を取得
-  let inputAddress = document.getElementById('address').value;
+  let inputAddress = document.getElementById('search_address').value;
 
   // geocodingしたあとmapを移動
   geocoder.geocode( { 'address': inputAddress}, function(results, status) {
@@ -87,11 +91,11 @@ function codeAddress(){
 　　　　　　　　　　　　// map.setCenterで地図が移動
       map.setCenter(results[0].geometry.location);
 
-　　　　　　　　　　　　// google.maps.MarkerでGoogleMap上の指定位置にマーカが立つ
-      var marker = new google.maps.Marker({
-          map: map,
-          position: results[0].geometry.location
-      });
+　　　　　　// 　　　　　　// google.maps.MarkerでGoogleMap上の指定位置にマーカが立つ(ピンたて)
+      // var marker = new google.maps.Marker({
+      //     map: map,
+      //     position: results[0].geometry.location
+      // });
     } else {
       alert('Geocode was not successful for the following reason: ' + status);
     }

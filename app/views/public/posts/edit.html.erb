@@ -17,7 +17,7 @@
        <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
   	     	<h1>投稿編集</h1>
 
-           <%= form_with model: @post, url: public_post_path(@post), method: :patch do |f| %>
+           <%= form_with model: @post, url: public_post_path(@post), data: {"turbolinks" => false}, method: :patch do |f| %>
 
            <div class="form-group">
          　 <br> <%= f.label :title,"タイトル" %><br />

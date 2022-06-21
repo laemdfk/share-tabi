@@ -62,6 +62,7 @@ class Post < ApplicationRecord
    end
   end
 
-# geocoded_by :address
-#   after_validation :geocode
+  # 地図へのピン設定(Geocoding)
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?   # latitude(緯度),longitude(経度)の自動登録設定
 end

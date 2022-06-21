@@ -6,10 +6,9 @@
 <% end %>
 
 
-
-<h1><%= @enduser.nickname %>さんのマイページ</h1>
- <main>
-  <div class="container px-5 px-sm-0">
+<main>
+ <div class="container px-5 px-sm-0">
+  <h1><%= @enduser.nickname %>さんのマイページ</h1>
    <div class="row">
     <div class="col-md-3">
       <h2>利用者情報</h2>
@@ -49,6 +48,7 @@
          <%= link_to "新しい旅の思い出を作る", new_public_post_path %>
         <% end %>
           <%= link_to "いいねした投稿を見る", favorites_public_enduser_path(@enduser.id) %>
+         
         <table class="table">
           <thead>
            <tr>
