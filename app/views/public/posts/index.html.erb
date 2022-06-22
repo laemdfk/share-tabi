@@ -37,7 +37,7 @@
               <% @posts.each do |post| %>
                <tr>
                 <td><%= post.end_user.nickname %></td>
-                <td><%= link_to post.title, public_post_path(post.id) %></td>
+                <td><%= link_to post.title, public_post_path(post.id),data: {"turbolinks" => false} %></td>
                 <td>コメント数:<%= post.post_comments.count %></td>
                 <td>
                   <%= post.tags.map(&:name).join(',') %> <%= "(#{post.tags.count})" %>    <!--map(&:name) ＝配列の要素一つ一つを、後ろに指定した要素の型に変換し、 join(', ')指定した文字を区切り、連結させる-->

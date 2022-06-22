@@ -32,14 +32,17 @@
           <%= link_to tag.name,public_search_tag_path(tag_id: tag.id) %><%="(#{tag.posts.count})" %>
         <% end %>
        </tr>
-
-       <tr> </tr>
+　　　　　
+       <tr> 
+       
+       </tr>
       </tr>
     </table>
     <%= @post.post_comments.count %>コメント
       <%= render "public/post_comments/comment", post: @post %>
       <%= render "public/post_comments/comment_form", post: @post, post_comment: @post_comment %>
-      <%= link_to "back",public_enduser_path(@post.end_user.id) %>
+      <%= link_to "一覧に戻る",public_posts_path %>
+      <%= link_to "ユーザーの詳細ページへ",public_enduser_path(@post.end_user.id) %>
   </div>
 
 
