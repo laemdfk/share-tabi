@@ -1,5 +1,9 @@
 class Public::PostCommentsController < ApplicationController
   def create
+     if EndUser.guest == current_end_user
+      redirect_to public_root_path, notice: "ゲストユーザはコメントできません。"
+      return
+   　 end
   # postを1つ見つけ、コメントを作成し、コメントを保存したら遷移元のURLにリダイレクトする
     post = Post.find(params[:post_id])
     comment = current_end_user.post_comments.new(comment_params)
