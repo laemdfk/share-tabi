@@ -5,32 +5,36 @@
  <p class="notice text-center" style="color:green;"><%= flash[:notice] %></p></div>
 <% end %>
 
-<div class="row">
- <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 text-center">
+     <%= image_tag ('PF_logo.png') %>
 
- <%= image_tag('PF_logo.png') %>
+      <h1>ようこそ<strong>シェアたび</strong>へ!</h1>
 
-  <h1>ようこそ<strong>シェアたび</strong>へ!</h1>
-
-  <p>「シェアたび」は、旅の思い出を、スクラップブックにするサイトです</p>
-
-
-     <div class="btn-wrapper col-10 mx-auto">
-        <div class="row">
-         <%= link_to "ゲストログイン", endusers_guest_sign_in_path, class: "btn btn-primary", method: :post %>
+  　　 　<p>
+         シェアたび(share-tabi)は、<br>
+         「旅の思い出を振り返りながら、ゆるっと繋がる」をコンセプトにしたサイトです。
+       </p>
+        <div class="row align-bottom mx-auto">
+         <div class="mx-auto">
+          <%= link_to "シェアたびとは?",about_path %>
+         </div>
         </div>
-        <div class="row">
-         <%= link_to "ログイン",new_end_user_session_path, class: "btn btn-info" %>
-        </div>
-        <div class="row">
-          <%= link_to "サインアップ",new_end_user_registration_path, class: "btn btn-success" %>
-        </div>
-       </div>
+        <%= image_tag "Top_img.jpg", size: "600x300" %>
+     </div>
+    </div>
 
-   <div class="btn-wrapper col-10 mx-auto">
-    <div class="row">
-     <%= link_to "管理者ログイン",new_admin_session_path,class: "btn btn-default" %>
+   <div class="row align-bottom mx-auto">
+     <div class="mx-auto">
+       <%= link_to "ゲストログイン", endusers_guest_sign_in_path, class: "btn btn-primary", method: :post %>
+        
+       <%= link_to "ログイン",new_end_user_session_path, class: "btn btn-info" %>
+       
+       <%= link_to "サインアップ",new_end_user_registration_path, class: "btn btn-success" %>
+        
+       <%= link_to "管理者ログイン",new_admin_session_path,class: "btn btn-default" %>
    </div>
   </diV>
-
+  
 </div>
