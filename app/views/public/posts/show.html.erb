@@ -49,15 +49,19 @@
 
  <!-- buttonをクリックしたらcodeAddressを実行　-->
   <input type="button" value="Encode" onclick="codeAddress()">
-   <div id='map'>
-   </div>
+   <div id='map'></div>
 
    <style>
      #map{
-       height: 300px;
-       width: 300px;
+       height: 250px;
+       width: 250px;
      }
    </style>
+   
+       </div>
+
+</main>
+
 
   <script>
   /*
@@ -67,6 +71,16 @@
 
   let map
   let geocoder
+  
+//   function initMap(){
+//   // geocoderを初期化
+//   geocoder = new google.maps.Geocoder()
+
+//   map = new google.maps.Map(document.getElementById('map'), {
+//   center: {lat: 35.6769883, lng: 139.7588499},
+//   zoom: 13
+//   });
+// }
 
   function initMap() {
 // #latitude,longitudeから位置を特定
@@ -97,8 +111,5 @@
 </script>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
-    </div>
-
-</main>
 
 
