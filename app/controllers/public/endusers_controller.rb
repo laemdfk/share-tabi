@@ -49,7 +49,8 @@ class Public::EndusersController < ApplicationController
     if @enduser.update(end_user_params)
       redirect_to public_enduser_path(current_end_user),notice: "ユーザー編集が完了しました."
     else
-      render :edit,alate: "ニックネームを入力してください"
+      flash.now[:alert] = "ニックネームの欄を埋めてください"
+      render "edit"
     end
   end
 

@@ -28,7 +28,6 @@ end
 # アソシエーション
   has_many :posts, dependent: :destroy
 
-
   has_many :post_comments,dependent: :destroy
 
   has_many :favorites,dependent: :destroy
@@ -39,7 +38,7 @@ end
 
 
  # バリデーション
-  validates :nickname, presence: true
+  validates :nickname, presence: true,length: { maximum: 15 }
 
 
  # 退会後に、同じアカウントでログインできないようにする処理

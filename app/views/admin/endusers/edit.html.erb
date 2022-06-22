@@ -1,11 +1,14 @@
-<h6>Admin::Endusers#edit</h6>
+<% if flash[:notice] %>
+ <div class="alert alert-success" role="alert">
+ <p class="notice text-center" style="color:red;"><%= flash[:notice] %></p></div>
+<% end %>
 
 <%= form_with model: @enduser, url: admin_enduser_path(@enduser.id), method: :patch do |f| %>
-<div class="container">
- <div class="row">
-
-    <table class="table table-hover table-inverse">
-      <tr>
+<div class = "container">
+  <div class ="row">
+    <h3 class ="px-5 bg-light">会員編集</h3>
+    <table class = "table">
+    <thead>
        <td>会員ID</td>
        <td><%= @enduser.id %></td>
       </tr>
@@ -31,7 +34,13 @@
        </td>
       </tr>
    </table>
-     <%= f.submit '変更を保存', class:"btn btn-success" %><br />
+   
+   <div class="form-group">
+     <%= f.submit '変更を保存', class:"btn btn-success" %>
+   </div>
       <% end %>
+   <div class="form-group">
+     <%= link_to "詳細へ戻る",admin_enduser_path(@enduser.id), class: "btn btn-default" %>
    </div>
  </div>
+ 

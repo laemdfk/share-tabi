@@ -3,24 +3,51 @@
  <p class="notice text-center" style="color:red;"><%= flash[:alert] %></p></div>
 <% end %>
 
-<h1>新規投稿</h1>
-
-<%= form_with model: @post_new, url: '/public/posts',method: :post do |f|  %>
-
-   <%= f.label :title,"タイトル" %><br>
-   <%= f.text_field :title %><br/>
-
-
-   <%= f.label :post_images,"写真" %><br>
-   <%= f.file_field :post_images,multiple: true, accept: "image/*" %><br />
-
-   <%= f.label :body,"本文" %><br/>
-   <%= f.text_area :body %><br/>
-
-   <%= f.label :name,"タグ(タグは「,」で区切ることで、複数のタグ付けが可能です)" %><br />
-   <%= f.text_field :name %><br />
-
-  <%= f.submit '投稿する' %>
-
-
+<% if @post_new.errors.any? %>
+  <%= @post_new.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @post_new.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
 <% end %>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+     <h1>新規投稿</h1>
+
+     <%= form_with model: @post_new, url: '/public/posts',method: :post do |f|  %>
+     
+     <div class="form-group">
+      <%= f.label :title,"タイトル" %><br>
+      <%= f.text_field :title,class: "w-100" %><br/>
+     </div>
+
+     <div class="form-group">
+      <%= f.label :post_images,"写真" %><br>
+      <%= f.file_field :post_images,multiple: true, accept: "image/*" %><br />
+     </div>
+
+    <div class="form-group">
+      <%= f.label :body,"本文" %><br/>
+      <%= f.text_area :body,rows: '5',class: "w-100" %><br/>
+    </div>
+    
+    <div class="form-group">
+     <%= f.label :address, "場所" %>
+     <%= f.text_field :address, class: "w-100" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :name,"タグ(タグは「,」で区切ることで、複数のタグ付けが可能です)" %><br />
+      <%= f.text_field :name,class: "w-100" %><br />
+    </div>
+   
+     <%= f.submit '投稿する' %>
+
+    <% end %>
+    </div>
+  </div>
+</div>

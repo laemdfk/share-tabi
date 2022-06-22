@@ -1,8 +1,9 @@
-<h1>Public::Posts#edit</h1>
-<body>
- <main>
-  <p id="notice"></p>
-   <% if @post.errors.any? %>
+<% if flash[:alert] %>
+ <div class="alert alert-danger" role="alert">
+ <p class="notice text-center" style="color:red;"><%= flash[:alert] %></p></div>
+<% end %>
+
+<% if @post.errors.any? %>
   <%= @post.errors.count %>件のエラーが発生しました
   <ul>
     <% @post.errors.full_messages.each do |message| %>
@@ -10,7 +11,6 @@
     <% end %>
   </ul>
 <% end %>
-
 
    <div class="container">
      <div class="row">
@@ -21,17 +21,22 @@
 
            <div class="form-group">
          　 <br> <%= f.label :title,"タイトル" %><br />
-            <%= f.text_field :title, :size=>"47" %><br/>
+            <%= f.text_field :title, class: "w-100" %><br/>
            </div>
 
            <div class="form-group">
             <br><%= f.label :body,"本文" %><br/>
-             <%= f.text_area :body, :size=>"47.5pxx62px" %><br/>
+             <%= f.text_area :body, rows: '5',class: "w-100" %><br/>
            </div>
 
            <div class="form-group">
             <%= f.label :post_images,"画像" %>
             <%= f.file_field :post_images, multiple: true, accept: "image/*" %>
+           </div>
+           
+           <div class="form-group">
+            <%= f.label :address, "場所" %>
+            <%= f.text_field :address, class: "w-100" %>
            </div>
            
            <div class="form-group">
@@ -44,9 +49,7 @@
            </div>
 
       <div class="menu">
-       <%= link_to "Show", public_post_path(@post) %>
-        |
-       <%= link_to "Back", public_posts_path %>
+       <%= link_to "Back", public_post_path(@post) %>
       </div>
       <% end %>
     </div>

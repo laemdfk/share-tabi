@@ -7,40 +7,108 @@
 <div class="container">
  <div class="row">
   <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-    <h1 class ="px-5 bg-light">welcome page</h1>
+    <h1 class ="px-5 bg-light">メニューページ</h1>
      <h2>ようこそ、<%= @enduser.nickname %>さん!</h2>
-     
-     <div class="table">
-     <div class="menu">
-      <%= link_to "自分の投稿を見る",public_enduser_path(current_end_user.id) %>
-     </div>
-     
-     <div class="menu">
-        <%= link_to "新しい旅の思い出を作る",new_public_post_path %>
-     </div>
-       
-      <div class="menu">
-        <%= link_to "アカウント編集",edit_public_enduser_path(current_end_user.id) %>
-      </div>
-      
-      <div class="menu">
-        <%= link_to "みんなの投稿を見に行く",public_posts_path %>
-      </div>
-      <div class "menu">
-        <%= link_to "いいねした投稿を見る", favorites_public_enduser_path(@enduser) %>
-      </div>
-      
-       <%= link_to "退会する",public_quit_path(current_end_user.id) %>
-       <div class="menu">
-        <%= link_to"トップページへ",root_path,class:"link"  %>
-      </div>
-      </div>
-    </div>
-         
-      
-      
-       
-  
- 
 
-            
+     <table class="table">
+     <div class="menu">
+      <h4>見る</h4>
+      <i class="fas fa-book-open"></i><%= link_to "マイページへ",public_enduser_path(current_end_user.id) %><br />
+      <i class="fas fa-book"></i><%= link_to "みんなの投稿を見に行く",public_posts_path %><br />
+      <i class="fas fa-bookmark"></i><%= link_to "いいねした投稿を見る", favorites_public_enduser_path(@enduser) %><br />
+     </div>
+
+     <div class="menu">
+      <h4>作る</h4>
+       <i class="fas fa-pen-nib"></i><%= link_to "新しい旅の思い出を作る",new_public_post_path %>
+     </div>
+
+      <div class="menu">
+       <h4>編集する</h4>
+        <i class="fas fa-user-cog"></i><%= link_to "アカウント編集",edit_public_enduser_path(current_end_user.id) %>
+
+
+      <div class "menu">
+        <h4>その他</h4>
+       <i class="fas fa-user-slash"></i><%= link_to "退会する",public_quit_path(current_end_user.id) %><br />
+      </div>
+
+
+       <div class="menu">
+        <br><i class="fas fa-undo"></i><%= link_to"トップページへ",root_path %><br />
+      </div>
+
+
+  <!--Mapの表示　地図を検索できるようにしたい-->
+ <h4>
+   <i class="fas fa-search-location"></i>
+   場所を調べる
+ </h4>
+
+
+ <input id="search_address" type="textbox" value="Sydney, NSW">
+
+<!-- buttonをクリックしたらcodeAddressを実行　-->
+<input type="button" value="Encode" onclick="codeAddress()">
+<div id='search_map' class="search_map"></div>
+
+
+<style>
+.search_map{
+  height: 400px;
+  width: 400px;
+}
+</style>
+
+<script>
+/*
+mapを関数の外で定義(codeAddressでも使うため)
+geocoderを用意
+*/
+
+let map
+let geocoder
+
+function initMap(){
+  // geocoderを初期化
+  geocoder = new google.maps.Geocoder()
+
+  map = new google.maps.Map(document.getElementById('search_map'), {
+  center: {lat: 35.6769883, lng: 139.7588499},
+  zoom: 13
+  });
+}
+
+function codeAddress(){
+  // 入力を取得
+  let inputAddress = document.getElementById('search_address').value;
+
+  // geocodingしたあとmapを移動
+  geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+    if (status == 'OK') {
+　　　　　　　　　　　　// map.setCenterで地図が移動
+      map.setCenter(results[0].geometry.location);
+
+　　　　　　// 　　　　　　// google.maps.MarkerでGoogleMap上の指定位置にマーカが立つ(ピンたて)
+      // var marker = new google.maps.Marker({
+      //     map: map,
+      //     position: results[0].geometry.location
+      // });
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
+    </div>
+
+ </div>
+</div>
+
+
+
+
+
+
+

@@ -1,6 +1,8 @@
-<h1>Admin::Endusers#show</h1>
- <table class="table">
-  <thead class ="defalut">
+ <div class = "container">
+  <div class ="row">
+    <h3 class ="px-5 bg-light">会員詳細</h3>
+    <table class = "table">
+    <thead>
    <tr>
     <td>会員ID</td>
     <td><%= @enduser.id %></td>
@@ -31,7 +33,7 @@
  </div>
 
 <div class="row">
- <div class="mx-auto">
+ <div class="mx-auto py-5 mr-5 justify-content-center">
   <%= link_to "編集する",edit_admin_enduser_path(@enduser.id),class: "btn btn-info" %>
   <%= link_to "会員一覧へ",admin_root_path, class: "btn btn-primary" %>
  </div>
