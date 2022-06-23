@@ -1,10 +1,9 @@
-<h6>Admin::Posts#show</h6>
 <div class = "container">
   <div class="row">
      <h3 class="px-4 bg-light" ><%= @enduser.nickname %>さんの投稿詳細</h3>
       <table class="table">
     　  <thead class ="defalut">
-  		  <tr>
+  		    <tr>
             <td>
                <% if @enduser.profile_image.attached? %>
                 <%= image_tag @enduser.profile_image, size: "100x100" %><br />
@@ -21,12 +20,9 @@
             <td><%= @post.body %></td>
             <td><%= render "public/post_comments/comment", post: @post %></td>
             <!--管理者であれば。削除ボタンを表示させる-->
-          </tr>
-          <div class = "btn">
             <% if admin_signed_in? %>
              <td><%= link_to 'Destroy',admin_post_path(@post), method: :delete, data: { confirm: '投稿を削除しますか?' }, class: "btn btn-sm btn-danger" %></td>
             <% end %>
-          </div>
-       </tr>
+          </tr>
      </div>
   </div>

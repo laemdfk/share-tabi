@@ -33,6 +33,7 @@ Rails.application.routes.draw do
 
   #共通トップ画面のルートパス
     root to: 'public/homes#top'
+    get "about"=>"public/homes#about"
 
 
 

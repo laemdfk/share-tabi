@@ -1,5 +1,3 @@
-<h6>Public::Posts#show</h6>
-
 <!--フラッシュメッセージ-->
 <% if flash[:notice] %>
  <div class="alert alert-success" role="alert">
@@ -8,39 +6,124 @@
 <% end %>
 
  <main>
-  <div class="col-md-8 offset-md-1">
+  <div class="col-md-11 offset-md-1">
    <h2><%= @enduser.nickname %>さんの投稿詳細</h2>
     <div id="favorite_btn_<%= @post.id %>">
      <%= render 'public/favorites/favorite', post: @post %>      <!--namespaceを利用している場合は、public/adminから書かないと、テンプレートを引用できないので注意-->
     </div>
+
    <table class='table'>
   		 <tr>
   		   <td>
   		    <% @post.post_images.each do |image| %>
-         <%= image_tag(image, width:100) %>
+         <%= image_tag(image, width:135) %>
         <% end %>
        </td>
-       <td><%= @post.created_at.strftime('%Y/%m/%d %H:%M') %></td>
        <td style="width: 15%"><%= link_to @post.title, public_enduser_path(@post.end_user.id) %></td>
        <td><%= @post.body %></td>
-        <% if @post.end_user_id == current_end_user.id %>
-        <td><%= link_to '編集', edit_public_post_path(@post), class: "btn btn-sm btn-success" %><td>
-        <td><%= link_to '削除',public_post_path(@post), method: :delete, data: { confirm: "この操作は取り消せませんが、本当に削除しますか?" }, class: "btn btn-sm btn-danger" %></td>
-       <% end %>
+      </tr>
+       <tr><%= @post.created_at.strftime('%Y/%m/%d %H:%M') %></tr>
+       <br>
        <tr>
         タグ:
         <% @post_tags.each do |tag| %>
           <%= link_to tag.name,public_search_tag_path(tag_id: tag.id) %><%="(#{tag.posts.count})" %>
         <% end %>
        </tr>
+        </table>
 
-       <tr></tr>
-      </tr>
-    </table>
+        <% if @post.end_user_id == current_end_user.id %>
+        
+         <%= link_to '編集', edit_public_post_path(@post), class: "btn btn-sm btn-success" %>
+         <%= link_to '削除',public_post_path(@post), method: :delete, data: { confirm: "この操作は取り消せませんが、本当に削除しますか?" }, class: "btn btn-sm btn-danger" %>
+      
+       <% end %>
+      
+  
+   
+    </div>
+
+   <div class="col-md-8 offset-md-1">
+    <table class='table'>
     <%= @post.post_comments.count %>コメント
       <%= render "public/post_comments/comment", post: @post %>
       <%= render "public/post_comments/comment_form", post: @post, post_comment: @post_comment %>
+      <%= link_to "一覧に戻る",public_posts_path %>
+      <%= link_to "ユーザーの詳細ページへ",public_enduser_path(@post.end_user.id) %>
+    </table>
   </div>
+
+
+ <!--mapの設定-->
+ <div class="col-md-8 offset-md-1">
+<h3>場所</h3>
+ <input id="address" type="textbox" value="Sydney, NSW">
+
+ <!-- buttonをクリックしたらcodeAddressを実行　-->
+  <input type="button" value="Encode" onclick="codeAddress()">
+   <div id='map'></div>
+
+   <style>
+     #map{
+       height: 250px;
+       width: 250px;
+     }
+   </style>
+
+       </div>
+
 </main>
+
+
+  <script>
+  /*
+  mapを関数の外で定義(codeAddressでも使うため)
+  geocoderを用意
+  */
+
+  let map
+  let geocoder
+
+//   function initMap(){
+//   // geocoderを初期化
+//   geocoder = new google.maps.Geocoder()
+
+//   map = new google.maps.Map(document.getElementById('map'), {
+//   center: {lat: 35.6769883, lng: 139.7588499},
+//   zoom: 13
+//   });
+// }
+
+  function initMap() {
+// #latitude,longitudeから位置を特定
+    var test ={lat: <%= @post.latitude %>, lng: <%= @post.longitude %>};
+    var map = new google.maps.Map(document.getElementById('map'), {
+              zoom: 15,
+              center: test
+              });
+    var transitLayer = new google.maps.TransitLayer();
+    transitLayer.setMap(map);
+
+    var contentString = '住所：<%= @post.address %>';
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+
+// Map上の指定した位置にピンを挿して表示する
+    var marker = new google.maps.Marker({
+                  position:test,
+                  map: map,
+                  title: contentString
+                 });
+
+     marker.addListener('click', function() {
+       infowindow.open(map, marker);
+     });
+  }
+</script>
+
+<%#byebug%>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
+</div>
 
 

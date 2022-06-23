@@ -13,7 +13,7 @@ class Public::PostsController < ApplicationController
 
 
   def create
-      
+
     # @enduser = current_end_user
 	 @post_new = Post.new(post_params)
      @post_new.end_user_id = current_end_user.id
@@ -27,7 +27,7 @@ class Public::PostsController < ApplicationController
 
 		 redirect_to public_post_path(@post_new.id), notice:  "投稿の保存に成功しました"
    else
-     flash.now[:alert] = "空欄があります。フォームを埋めてから、投稿してください(写真は任意です)"
+    flash.now[:alert] = "空欄があるか、入力制限がかかっています。下記のエラー内容を確認してください(写真の投稿は任意です)"
       render "new"
    end
   end
@@ -79,9 +79,10 @@ def search_tag
       @post.save_tag(tag_list)
       redirect_to public_post_path(@post.id),notice: "投稿の編集が完了しました"
     else
+        flash.now[:alert] = "空欄があるか、入力制限がかかっています。下記のエラー内容を確認してください(写真の投稿は任意です)"
         render "edit"
     end
-end
+ end
 
 
     def destroy
@@ -98,7 +99,7 @@ end
    # require = そのモデルに基づいた値を返すため
 
     def post_params
-        params.require(:post).permit(:title, :body, post_images: [])
+        params.require(:post).permit(:title, :body,:address, post_images: [])
     end
 
 
@@ -106,8 +107,8 @@ end
         @post = Post.find(params[:id])
         if @post.user_id != current_end_user
          redirect_to public_posts_path
-      end
-    end
+        end
+     end
 
 #   def post_comment_params
 #     params.require(:post_comment).permit(:comment,:post_id)
