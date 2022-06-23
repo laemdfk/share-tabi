@@ -6,7 +6,7 @@
 <% end %>
 
  <main>
-  <div class="col-md-8 offset-md-1">
+  <div class="col-md-11 offset-md-1">
    <h2><%= @enduser.nickname %>さんの投稿詳細</h2>
     <div id="favorite_btn_<%= @post.id %>">
      <%= render 'public/favorites/favorite', post: @post %>      <!--namespaceを利用している場合は、public/adminから書かないと、テンプレートを引用できないので注意-->
@@ -16,34 +16,46 @@
   		 <tr>
   		   <td>
   		    <% @post.post_images.each do |image| %>
-         <%= image_tag(image, width:100) %>
+         <%= image_tag(image, width:135) %>
         <% end %>
        </td>
-       <td><%= @post.created_at.strftime('%Y/%m/%d %H:%M') %></td>
        <td style="width: 15%"><%= link_to @post.title, public_enduser_path(@post.end_user.id) %></td>
        <td><%= @post.body %></td>
-        <% if @post.end_user_id == current_end_user.id %>
-        <td><%= link_to '編集', edit_public_post_path(@post), class: "btn btn-sm btn-success" %><td>
-        <td><%= link_to '削除',public_post_path(@post), method: :delete, data: { confirm: "この操作は取り消せませんが、本当に削除しますか?" }, class: "btn btn-sm btn-danger" %></td>
-       <% end %>
+      </tr>
+       <tr><%= @post.created_at.strftime('%Y/%m/%d %H:%M') %></tr>
+       <br>
        <tr>
         タグ:
         <% @post_tags.each do |tag| %>
           <%= link_to tag.name,public_search_tag_path(tag_id: tag.id) %><%="(#{tag.posts.count})" %>
         <% end %>
        </tr>
+        </table>
 
-       <tr> </tr>
-      </tr>
-    </table>
+        <% if @post.end_user_id == current_end_user.id %>
+
+         <%= link_to '編集', edit_public_post_path(@post), class: "btn btn-sm btn-success" %>
+         <%= link_to '削除',public_post_path(@post), method: :delete, data: { confirm: "この操作は取り消せませんが、本当に削除しますか?" }, class: "btn btn-sm btn-danger" %>
+
+       <% end %>
+
+
+
+    </div>
+
+   <div class="col-md-8 offset-md-1">
+    <table class='table'>
     <%= @post.post_comments.count %>コメント
       <%= render "public/post_comments/comment", post: @post %>
       <%= render "public/post_comments/comment_form", post: @post, post_comment: @post_comment %>
-      <%= link_to "back",public_enduser_path(@post.end_user.id) %>
+      <%= link_to "一覧に戻る",public_posts_path %>
+      <%= link_to "ユーザーの詳細ページへ",public_enduser_path(@post.end_user.id) %>
+    </table>
   </div>
 
 
  <!--mapの設定-->
+ <div class="col-md-8 offset-md-1">
 <h3>場所</h3>
  <input id="address" type="textbox" value="Sydney, NSW">
 
@@ -57,7 +69,7 @@
        width: 250px;
      }
    </style>
-   
+
        </div>
 
 </main>
@@ -71,7 +83,7 @@
 
   let map
   let geocoder
-  
+
 //   function initMap(){
 //   // geocoderを初期化
 //   geocoder = new google.maps.Geocoder()
@@ -112,5 +124,6 @@
 
 <%#byebug%>
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
+</div>
 
 
