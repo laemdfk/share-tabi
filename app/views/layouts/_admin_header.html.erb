@@ -1,14 +1,17 @@
-<header>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-      <span class="navbar-brand">
-        　<%= link_to "シェアたび",root_path %>
-        </span>
 
-         <div class="search">
-          <%= render "admin/searches/search_form" %>
-         </div>
-        <ul class="navbar-nav">
+ <header class="shadow-sm">
+  <nav class="navbar navbar-expand-md navbar-light">
+    <div class="container">
+     <a class="navbar-brand" href="/"><%= image_tag asset_path('PF_header_logo.png') %></a>
+       <div class="search">
+         <%= render "admin/searches/search_form" %>
+       </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+        </button>
+         
+       <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav md-auto">
            <% if admin_signed_in? %>
             <li>
              <%= link_to "会員一覧", admin_root_path, class: "nav-link"%>
@@ -35,10 +38,8 @@
             </li>
           
           <% end %>
-      
         </ul>
       </div>
-     </span>
     </div>
   </nav>
 </header>
