@@ -38,9 +38,6 @@
          <%= link_to '削除',public_post_path(@post), method: :delete, data: { confirm: "この操作は取り消せませんが、本当に削除しますか?" }, class: "btn btn-sm btn-danger" %>
       
        <% end %>
-      
-  
-   
     </div>
 
    <div class="col-md-8 offset-md-1">
@@ -122,7 +119,6 @@
   }
 </script>
 
-<%#byebug%>
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
 </div>
 
