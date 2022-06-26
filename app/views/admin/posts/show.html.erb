@@ -2,7 +2,6 @@
   <div class="row">
      <h3 class="px-4 bg-light" ><%= @enduser.nickname %>さんの投稿詳細</h3>
       <table class="table">
-    　  <thead class ="defalut">
   		    <tr>
             <td>
                <% if @enduser.profile_image.attached? %>
@@ -24,5 +23,6 @@
              <td><%= link_to 'Destroy',admin_post_path(@post), method: :delete, data: { confirm: '投稿を削除しますか?' }, class: "btn btn-sm btn-danger" %></td>
             <% end %>
           </tr>
+         </table>
      </div>
   </div>
