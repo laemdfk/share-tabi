@@ -52,14 +52,14 @@ class Post < ApplicationRecord
 
     # 古いタグを消す
     old_tags.each do |old|
-      self.tags.delete　Tag.find_by(name: old)
+      self.tags.find_by(name: old).delete
     end
 
     # 新しいタグを保存
     new_tags.each do |new|
       new_post_tag = Tag.find_or_create_by(name: new)
       self.tags << new_post_tag
-   end
+    end
   end
 
   # 地図へのピン設定(Geocoding)
