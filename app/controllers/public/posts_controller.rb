@@ -39,12 +39,14 @@ class Public::PostsController < ApplicationController
     @tag_list =Tag.all
   end
 
+
   def show
     @post = Post.find(params[:id])
     @enduser = @post.end_user
     @post_comment = PostComment.new
     @post_tags = @post.tags
   end
+
 
 def search_tag
     @tag = Tag.find(params[:tag_id])
@@ -66,7 +68,7 @@ def search_tag
 
 
  def update
-   @post = Post.find(params[:id])
+     @post = Post.find(params[:id])
    
     # 入力されたタグを受け取る
     tag_list = params[:post][:name].split(',')

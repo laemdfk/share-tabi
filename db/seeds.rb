@@ -9,17 +9,17 @@
 
 # active strageを用いている場合、blobを使うと、active strageとpostのidが一致しなくなるため、attachを使用する
 
-end_user1 = EndUser.new(email: 'test1@example.com', nickname: 'Blanca', password: 'password')
-end_user1.profile_image.attach(io: File.open("#{Rails.root}/db/fixtures/sample-end_user1.jpg"), filename:"sample-end_user1.jpg")
-end_user1.save
+# end_user1 = EndUser.new(email: 'test1@example.com', nickname: 'Blanca', password: 'password')
+# end_user1.profile_image.attach(io: File.open("#{Rails.root}/db/fixtures/sample-end_user1.jpg"), filename:"sample-end_user1.jpg")
+# end_user1.save
 
-end_user2 = EndUser.new(email: 'test2@example.com', nickname: 'Lobo', password: 'password')
-end_user2.profile_image.attach(io: File.open("#{Rails.root}/db/fixtures/sample-end_user2.jpg"), filename:"sample-end_user2.jpg")
-end_user2.save
+# end_user2 = EndUser.new(email: 'test2@example.com', nickname: 'Lobo', password: 'password')
+# end_user2.profile_image.attach(io: File.open("#{Rails.root}/db/fixtures/sample-end_user2.jpg"), filename:"sample-end_user2.jpg")
+# end_user2.save
 
-end_user3 = EndUser.new(email: 'test3@example.com', nickname: 'Ernest', password: 'password')
-end_user3.profile_image.attach(io: File.open("#{Rails.root}/db/fixtures/sample-end_user3.jpg"), filename:"sample-end_user3.jpg")
-end_user3.save
+# end_user3 = EndUser.new(email: 'test3@example.com', nickname: 'Ernest', password: 'password')
+# end_user3.profile_image.attach(io: File.open("#{Rails.root}/db/fixtures/sample-end_user3.jpg"), filename:"sample-end_user3.jpg")
+# end_user3.save
 
 
 #end_user1 = EndUser.find_by(email: 'test1@example.com')
@@ -32,14 +32,14 @@ Admin.create!(
     password: 'aaaaaa',
 )
 
-post_1 = Post.new(title: '大沢池の景色', body: '季節や時間によって、見える景色が違いそう。次は紅葉の頃に行ってみようか', end_user_id: end_user1.id)
-post_1.post_images.attach(io: File.open("#{Rails.root}/db/fixtures/sample-post1.jpg"), filename:"sample-post1.jpg")
-post_1.save!
+# post_1 = Post.new(title: '大沢池の景色', body: '季節や時間によって、見える景色が違いそう。次は紅葉の頃に行ってみようか', end_user_id: end_user1.id)
+# post_1.post_images.attach(io: File.open("#{Rails.root}/db/fixtures/sample-post1.jpg"), filename:"sample-post1.jpg")
+# post_1.save!
 
-post_2 = Post.new(title: '旅先の朝ごはん', body: 'ホテルで食べた洋風朝ごはん。スープが美味しい!', end_user_id: end_user2.id)
-post_2.post_images.attach(io: File.open("#{Rails.root}/db/fixtures/sample-post2.jpg"), filename:"sample-post2.jpg")
-post_2.save!
+# post_2 = Post.new(title: '旅先の朝ごはん', body: 'ホテルで食べた洋風朝ごはん。スープが美味しい!', end_user_id: end_user2.id)
+# post_2.post_images.attach(io: File.open("#{Rails.root}/db/fixtures/sample-post2.jpg"), filename:"sample-post2.jpg")
+# post_2.save!
 
-post_3 = Post.new(title: '桜並木', body: '旅行先で、運よく満開の桜並木を発見。隠れスポットなのか、あまり人は見当たらなかった。', end_user_id: end_user3.id)
-post_3.post_images.attach(io: File.open("#{Rails.root}/db/fixtures/sample-post3.jpg"), filename:"sample-post3.jpg")
-post_3.save!
+# post_3 = Post.new(title: '桜並木', body: '旅行先で、運よく満開の桜並木を発見。隠れスポットなのか、あまり人は見当たらなかった。', end_user_id: end_user3.id)
+# post_3.post_images.attach(io: File.open("#{Rails.root}/db/fixtures/sample-post3.jpg"), filename:"sample-post3.jpg")
+# post_3.save!
