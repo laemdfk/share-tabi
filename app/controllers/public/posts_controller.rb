@@ -27,7 +27,7 @@ class Public::PostsController < ApplicationController
 
 		 redirect_to public_post_path(@post_new.id), notice:  "投稿の保存に成功しました"
    else
-    flash.now[:alert] = "タイトルまたは本文に空欄があるか、入力制限がかかっています。下記のエラー内容を確認してください(写真、場所、の投稿は任意です)"
+    flash.now[:alert] = "タイトルまたは本文に空欄があるか、入力制限がかかっています。下記のエラー内容を確認してください(写真、場所、タグの投稿は任意です)"
       render "new"
    end
   end
@@ -79,13 +79,14 @@ def search_tag
     # 代入したデータを取り出し、(中間テーブルから)削除。消し終わったらタグリストに再度保存する
        @old_relations.each do |relation|
         relation.delete
+
        end
       
       if @post.save    # @post.save_tagはあったのに、こちらはなかったので追加。pose_newでは設定しているのになぜ。
         @post.save_tag(tag_list)
         redirect_to public_post_path(@post.id),notice: "投稿の編集が完了しました"
       else
-        flash.now[:alert] = "空欄があるか、入力制限がかかっています。下記のエラー内容を確認してください(写真の投稿は任意です)"
+        flash.now[:alert] = "空欄があるか、入力制限がかかっています。下記のエラー内容を確認してください(写真,タグ,場所の投稿は任意です)"
         render "edit"
       end
     end

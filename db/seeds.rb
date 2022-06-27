@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
+
 # active strageを用いている場合、blobを使うと、active strageとpostのidが一致しなくなるため、attachを使用する
 
 # end_user1 = EndUser.new(email: 'test1@example.com', nickname: 'Blanca', password: 'password')
@@ -30,7 +31,7 @@
 Admin.create!(
     email: 'admin@example.com',
     password: 'aaaaaa',
-)
+
 
 # post_1 = Post.new(title: '大沢池の景色', body: '季節や時間によって、見える景色が違いそう。次は紅葉の頃に行ってみようか', end_user_id: end_user1.id)
 # post_1.post_images.attach(io: File.open("#{Rails.root}/db/fixtures/sample-post1.jpg"), filename:"sample-post1.jpg")
