@@ -36,9 +36,6 @@
          <%= link_to '編集', edit_public_post_path(@post), class: "btn btn-sm btn-success" %>
          <%= link_to '削除',public_post_path(@post), method: :delete, data: { confirm: "この操作は取り消せませんが、本当に削除しますか?" }, class: "btn btn-sm btn-danger" %>
        <% end %>
-
-
-
     </div>
 
    <div class="col-md-8 offset-md-1">
@@ -55,10 +52,10 @@
  <!--mapの設定-->
  <div class="col-md-8 offset-md-1">
 <h3>場所</h3>
- <input id="address" type="textbox" value="Sydney, NSW">
+ <!--<input id="address" type="textbox" value="Sydney, NSW">-->
 
  <!-- buttonをクリックしたらcodeAddressを実行　-->
-  <input type="button" value="Encode" onclick="codeAddress()">
+  <!--<input type="button" value="Encode" onclick="codeAddress()">-->
    <div id='map'></div>
 
    <style>
@@ -120,7 +117,6 @@
   }
 </script>
 
-<%#byebug%>
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
 </div>
 

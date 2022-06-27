@@ -6,8 +6,8 @@
 
 <div class="container">
  <div class="row">
-  <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-    <h1 class ="px-5 bg-light">メニューページ</h1>
+  <div class="col-sm-4 col-md-8 col-lg-5 px-sm-0 mx-auto pb-5">
+    <h1 class ="bg-light">メニューページ</h1>
      <h2>ようこそ、<%= @enduser.nickname %>さん!</h2>
 
      <table class="table">
@@ -26,17 +26,16 @@
       <div class="menu">
        <h4>編集する</h4>
         <i class="fas fa-user-cog"></i><%= link_to "アカウント編集",edit_public_enduser_path(current_end_user.id) %>
+      </div>
 
 
       <div class "menu">
         <h4>その他</h4>
        <i class="fas fa-user-slash"></i><%= link_to "退会する",public_quit_path(current_end_user.id) %><br />
-      </div>
-
-
-       <div class="menu">
         <br><i class="fas fa-undo"></i><%= link_to"トップページへ",root_path %><br />
       </div>
+    </div>
+    
 
 
   <!--Mapの表示　地図を検索できるようにしたい-->
@@ -55,8 +54,8 @@
 
 <style>
 .search_map{
-  height: 400px;
-  width: 400px;
+  height: 300px;
+  width: 300px;
 }
 </style>
 
@@ -89,11 +88,11 @@ function codeAddress(){
 　　　　　　　　　　　　// map.setCenterで地図が移動
       map.setCenter(results[0].geometry.location);
 
-　　　　　　// 　　　　　　// google.maps.MarkerでGoogleMap上の指定位置にマーカが立つ(ピンたて)
-      // var marker = new google.maps.Marker({
-      //     map: map,
-      //     position: results[0].geometry.location
-      // });
+　　　// google.maps.MarkerでGoogleMap上の指定位置にマーカが立つ(ピン立て)
+      var marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location
+      });
     } else {
       alert('Geocode was not successful for the following reason: ' + status);
     }
@@ -101,7 +100,6 @@ function codeAddress(){
 }
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
-    </div>
 
  </div>
 </div>
