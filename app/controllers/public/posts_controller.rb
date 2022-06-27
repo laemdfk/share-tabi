@@ -16,7 +16,7 @@ class Public::PostsController < ApplicationController
 
     # @enduser = current_end_user
 	 @post_new = Post.new(post_params)
-     @post_new.end_user_id = current_end_user.id
+   @post_new.end_user_id = current_end_user.id
     #↑ ユーザーと投稿を紐づけるためのコード
 
     # タグの保存用コード。受け取った値を「,」で区切り、配列とする
@@ -27,7 +27,7 @@ class Public::PostsController < ApplicationController
 
 		 redirect_to public_post_path(@post_new.id), notice:  "投稿の保存に成功しました"
    else
-    flash.now[:alert] = "空欄があるか、入力制限がかかっています。下記のエラー内容を確認してください(写真の投稿は任意です)"
+    flash.now[:alert] = "タイトルまたは本文に空欄があるか、入力制限がかかっています。下記のエラー内容を確認してください(写真、場所、タグの投稿は任意です)"
       render "new"
    end
   end
@@ -39,12 +39,14 @@ class Public::PostsController < ApplicationController
     @tag_list =Tag.all
   end
 
+
   def show
     @post = Post.find(params[:id])
     @enduser = @post.end_user
     @post_comment = PostComment.new
     @post_tags = @post.tags
   end
+
 
 def search_tag
     @tag = Tag.find(params[:tag_id])
@@ -66,21 +68,27 @@ def search_tag
 
 
  def update
-   @post = Post.find(params[:id])
-   tag_list = params[:post][:name].split(',')
+     @post = Post.find(params[:id])
+   
+    # 入力されたタグを受け取る
+    tag_list = params[:post][:name].split(',')
+    # もしpostの情報が更新されたら
     if @post.update(post_params)
-        # このpost_idに紐づいていたタグを@oldに入れる
-        @old_relations = PostTag.where(post_id: @post.id)
-        # それらを取り出し、消去する。
-        @old_relations.each do |relation|
+    # このpost_idに紐づいていたタグを@old_relationsに代入する
+        @old_relations= PostTag.where(post_id: @post.id)
+    # 代入したデータを取り出し、(中間テーブルから)削除。消し終わったらタグリストに再度保存する
+       @old_relations.each do |relation|
         relation.delete
-        end
-        # 古いタグの消去後、再度保存を行う。
-      @post.save_tag(tag_list)
-      redirect_to public_post_path(@post.id),notice: "投稿の編集が完了しました"
-    else
-        flash.now[:alert] = "空欄があるか、入力制限がかかっています。下記のエラー内容を確認してください(写真の投稿は任意です)"
+
+       end
+      
+      if @post.save    # @post.save_tagはあったのに、こちらはなかったので追加。pose_newでは設定しているのになぜ。
+        @post.save_tag(tag_list)
+        redirect_to public_post_path(@post.id),notice: "投稿の編集が完了しました"
+      else
+        flash.now[:alert] = "空欄があるか、入力制限がかかっています。下記のエラー内容を確認してください(写真,タグ,場所の投稿は任意です)"
         render "edit"
+      end
     end
  end
 

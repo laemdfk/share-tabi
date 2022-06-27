@@ -8,7 +8,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12 text-center">
-     <%= image_tag ('PF_logo.png') %>
+     <%= image_tag asset_path('PF_logo.png') %>
 
       <h1>ようこそ<strong>シェアたび</strong>へ!</h1>
 
@@ -33,8 +33,7 @@
 
        <%= link_to "サインアップ",new_end_user_registration_path, class: "btn btn-success" %>
 
-       <%= link_to "管理者ログイン",new_admin_session_path,class: "btn btn-default" %>
+        <%= link_to "管理者ログイン",new_admin_session_path,class: "btn btn-default" %>
    </div>
-  </diV>
-
+  </div>
 </div>
