@@ -30,10 +30,10 @@
 旅行後の振り返り、次の旅行先の候補決め
 
 ## 設計書
-テーブル定義書
+- テーブル定義書
 https://docs.google.com/spreadsheets/d/1oXasaPKf6V2ZSbWWek9HjLOqaEfuv__fg5atGKEx52Q/edit#gid=2014768842
 
-ER図
+- ER図
 https://app.diagrams.net/#G1AcnRzKpursEo66Fk5zK8VdZqJBqNKfHv
 
 ## 開発環境
