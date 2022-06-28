@@ -7,7 +7,7 @@
                <% if @enduser.profile_image.attached? %>
                 <%= image_tag @enduser.profile_image, size: "100x100" %><br />
                <% else %>
-                <%= image_tag 'no_image.jpeg', size: "100x100" %><br />
+                <%= image_tag asset_path ("no_image.jpeg"), size: "100x100" %><br />
                <% end %>
             </td>
             <td>
