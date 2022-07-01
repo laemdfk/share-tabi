@@ -42,15 +42,10 @@ https://app.diagrams.net/#G1AcnRzKpursEo66Fk5zK8VdZqJBqNKfHv
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - IDE：Cloud9
+- 外部API：Google_Maps_API
 
 ## 使用素材
-<<<<<<< HEAD
-https://www.photo-ac.com/(フリー画像)
-
-https://fontawesome.com/(Fontawesome)
-=======
 - https://www.photo-ac.com/
 (フリー画像)
 - https://fontawesome.com/
 (Fontawesome)
->>>>>>> c24fe4788b179fb14b952ae9b7b75161af78c155
