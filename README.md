@@ -42,6 +42,7 @@ https://app.diagrams.net/#G1AcnRzKpursEo66Fk5zK8VdZqJBqNKfHv
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - IDE：Cloud9
+- 外部API：Google_Maps_API
 
 ## 使用素材
 - https://www.photo-ac.com/
