@@ -44,13 +44,7 @@ https://app.diagrams.net/#G1AcnRzKpursEo66Fk5zK8VdZqJBqNKfHv
 - IDE：Cloud9
 
 ## 使用素材
-<<<<<<< HEAD
-https://www.photo-ac.com/(フリー画像)
-
-https://fontawesome.com/(Fontawesome)
-=======
 - https://www.photo-ac.com/
 (フリー画像)
 - https://fontawesome.com/
 (Fontawesome)
->>>>>>> c24fe4788b179fb14b952ae9b7b75161af78c155
