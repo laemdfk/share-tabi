@@ -21,6 +21,9 @@ class Public::PostsController < ApplicationController
 
     # タグの保存用コード。受け取った値を「,」で区切り、配列とする
     tag_list = params[:post][:name].split(',')
+    
+    post.score = Language.get_data(post_params[:body])
+
 
 	 if @post_new.save
 	     @post_new.save_tag(tag_list)
