@@ -31,7 +31,7 @@
         <% end %>
        </tr>
        <tr>
-        <td class="sentiment-score">感情分析スコア<%= @post.score %></td>
+        <td class="sentiment-score">感情スコア<%= @post.score %></td>
         </tr>
         </table>
 
@@ -43,7 +43,7 @@
 
    <div class="col-md-8 offset-md-1">
     <table class='table'>
-    <%= @post.post_comments.count %>コメント
+     <th><%= @post.post_comments.count %>コメント</th>
       <%= render "public/post_comments/comment", post: @post %>
       <%= render "public/post_comments/comment_form", post: @post, post_comment: @post_comment %>
       <%= link_to "一覧に戻る",public_posts_path %>

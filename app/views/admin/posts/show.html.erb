@@ -2,7 +2,12 @@
   <div class="row">
      <h3 class="px-4 bg-light" ><%= @enduser.nickname %>さんの投稿詳細</h3>
       <table class="table">
-  		    <tr>
+        <th>プロフィール画像</th>
+        <th>投稿画像</th>
+        <th>タイトル</th>
+        <th>本文</th>
+        <th>感情分析スコア</th>
+  		     <tr>
             <td>
                <% if @enduser.profile_image.attached? %>
                 <%= image_tag @enduser.profile_image, size: "100x100" %><br />
@@ -17,10 +22,10 @@
             </td>
             <td><%= link_to @post.title, admin_post_path %></td>
             <td><%= safe_join(@post.body.split("\n"),tag(:br)) %></td>   <!--safe_joinを用いることで、text_areaの改行情報をそのまま出力させる-->
-            <td class="sentiment-score">感情分析スコア<%= @post.score %></td>
+            <td><%= @post.score %></td>
            </tr>
           </table>
-          コメント
+          コメント一覧
             <%= render "public/post_comments/comment", post: @post %>
             <!--管理者であれば。削除ボタンを表示させる-->
             <% if admin_signed_in? %>

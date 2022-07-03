@@ -13,16 +13,6 @@
            <%= link_to image_tag(image, width:100), public_post_path(post.id)  %>
           <% end %>
         <% end %>
-         <!--タグ検索(タグリスト)部分-->
-        <div class = "tag_search">
-         <h3>
-          <i class="fas fa-search-location"></i>
-          タグ一覧(記事を一覧で検索できます)
-         </h3>
-         <% @tag_list.each do |list| %>
-          <%= link_to list.name,public_search_tag_path(tag_id: list.id) %><%= "(#{list.posts.count})" %>
-         <% end %>
-        </div>
        </div>
 
 
