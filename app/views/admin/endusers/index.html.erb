@@ -6,16 +6,17 @@
 
 <div class = "container">
   <div class ="row">
+   <div class="col-md-8 offset-md-1">
     <h3 class ="px-5 bg-light">会員一覧</h3>
-   <table class = "table">
-    <thead>
+     <table class = "table">
+      <thead>
        <tr>
          <td>会員ID</td>
          <td>氏名</td>
          <td>メールアドレス</td>
          <td>ステータス</td>
        </tr>
-     </thead>
+      </thead>
       <tbody>
         <% @endusers.each do |enduser| %>
          <tr>
