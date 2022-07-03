@@ -17,6 +17,7 @@
             </td>
             <td><%= link_to @post.title, admin_post_path %></td>
             <td><%= @post.body %></td>
+            <td class="sentiment-score">感情分析スコア<%= @post.score %></td>
             <td><%= render "public/post_comments/comment", post: @post %></td>
             <!--管理者であれば。削除ボタンを表示させる-->
             <% if admin_signed_in? %>

@@ -21,7 +21,7 @@
        </td>
        <td style="width: 15%"><%= link_to @post.title, public_enduser_path(@post.end_user.id) %></td>
        <td><%= @post.body %></td>
-       <td class="sentiment-score">本文の感情分析スコア<%= @post.score %></span></td>
+       
       </tr>
        <tr><%= @post.created_at.strftime('%Y/%m/%d %H:%M') %></tr>
        <br>
@@ -31,6 +31,9 @@
           <%= link_to tag.name,public_search_tag_path(tag_id: tag.id) %><%="(#{tag.posts.count})" %>
         <% end %>
        </tr>
+       <tr>
+        <td class="sentiment-score">感情分析スコア<%= @post.score %></td>
+        </tr>
         </table>
 
         <% if @post.end_user_id == current_end_user.id %>
