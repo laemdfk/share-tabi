@@ -16,14 +16,15 @@
              <% end %>
             </td>
             <td><%= link_to @post.title, admin_post_path %></td>
-            <td><%= @post.body %></td>
+            <td><%= safe_join(@post.body.split("\n"),tag(:br)) %></td>   <!--safe_joinを用いることで、text_areaの改行情報をそのまま出力させる-->
             <td class="sentiment-score">感情分析スコア<%= @post.score %></td>
-            <td><%= render "public/post_comments/comment", post: @post %></td>
+           </tr>
+          </table>
+          コメント
+            <%= render "public/post_comments/comment", post: @post %>
             <!--管理者であれば。削除ボタンを表示させる-->
             <% if admin_signed_in? %>
-             <td><%= link_to 'Destroy',admin_post_path(@post), method: :delete, data: { confirm: '投稿を削除しますか?' }, class: "btn btn-sm btn-danger" %></td>
+             <%= link_to '投稿を削除する',admin_post_path(@post), method: :delete, data: { confirm: '投稿を削除しますか?' }, class: "btn btn-sm btn-danger" %>
             <% end %>
-          </tr>
-         </table>
      </div>
   </div>

@@ -20,8 +20,7 @@
         <% end %>
        </td>
        <td style="width: 15%"><%= link_to @post.title, public_enduser_path(@post.end_user.id) %></td>
-       <td><%= @post.body %></td>
-       
+       <td><%= safe_join(@post.body.split("\n"),tag(:br)) %></td>   <!--safe_joinを用いることで、text_areaの改行情報をそのまま出力させる-->
       </tr>
        <tr><%= @post.created_at.strftime('%Y/%m/%d %H:%M') %></tr>
        <br>
@@ -37,8 +36,8 @@
         </table>
 
         <% if @post.end_user_id == current_end_user.id %>
-         <%= link_to '編集', edit_public_post_path(@post), class: "btn btn-sm btn-success" %>
-         <%= link_to '削除',public_post_path(@post), method: :delete, data: { confirm: "この操作は取り消せませんが、本当に削除しますか?" }, class: "btn btn-sm btn-danger" %>
+         <%= link_to '投稿を編集する', edit_public_post_path(@post), class: "btn btn-sm btn-success" %>
+         <%= link_to '投稿を削除する',public_post_path(@post), method: :delete, data: { confirm: "この操作は取り消せませんが、本当に削除しますか?" }, class: "btn btn-sm btn-danger" %>
        <% end %>
     </div>
 

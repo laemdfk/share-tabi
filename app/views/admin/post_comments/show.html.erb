@@ -19,7 +19,7 @@
               <td><%= @comment.comment %></td>
               <td><%= @comment.score %></td>
               <% if admin_signed_in? %>
-               <td><%= link_to 'Destroy',admin_post_comment_path(@comment), method: :delete, data: { confirm: 'コメントを削除しますか?' }, class: "btn btn-sm btn-danger" %></td>
+               <td><%= link_to 'コメントを削除する',admin_post_comment_path(@comment), method: :delete, data: { confirm: 'コメントを削除しますか?' }, class: "btn btn-sm btn-danger" %></td>
               <% end %>
             </tr>
        </tbody>
