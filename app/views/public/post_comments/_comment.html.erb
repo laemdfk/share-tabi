@@ -1,14 +1,17 @@
-<table>
+<table class ="table">
   <tbody>
    <% post.post_comments.each do |post_comment| %>
     <tr>
       <td>
         <%= link_to public_enduser_path(post_comment.end_user) do %>
-
          <%= post_comment.end_user.nickname %>
         <% end %>
       </td>
       <td><%= post_comment.comment %></td>
+      <td>
+        感情スコア<%= post_comment.score %>
+      </td>
+
       <td>
         <% if post_comment.end_user == current_end_user %>
          <%= link_to "Destroy",public_post_post_comment_path(post_comment),method: :delete, data: { confirm: "この操作は取り消せませんが、本当に削除しますか?" }, class: "btn btn-danger pull right" %>
