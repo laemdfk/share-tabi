@@ -1,4 +1,4 @@
-<table>
+<table class ="table">
   <tbody>
    <% post.post_comments.each do |post_comment| %>
     <tr>
@@ -7,8 +7,8 @@
          <%= post_comment.end_user.nickname %>
         <% end %>
       </td>
+      <td><%= post_comment.comment %></td>
       <td>
-        <%= post_comment.comment %><br>
         感情スコア<%= post_comment.score %>
       </td>
 

@@ -4,12 +4,12 @@ class Public::PostCommentsController < ApplicationController
       redirect_to public_root_path, notice: "ゲストユーザはコメントできません。"
       return    # returnとは定義したメソッドの中の戻り値を返す。この場合は、メソッドから強制的に離脱させる(ゲストユーザーでは下記end以下の処理を強制停止させたいため)
      end
-   　 
+
   # postを1つ見つけ、コメントを作成し、コメントを保存したら遷移元のURLにリダイレクトする→コメントしたページに遷移させる
     post = Post.find(params[:post_id])
     comment = current_end_user.post_comments.new(comment_params)
     comment.post_id = post.id
-    post.score = Language.get_data(comment_params[:comment])
+    comment.score = Language.get_data(comment_params[:comment])   # post.scoreとなっていたことが原因。comment.scoreにしなければデータを正しい場所に保管できない
     comment.save
     redirect_to public_post_path(post.id),notice: "コメントを投稿しました."
   end
