@@ -1,12 +1,14 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 
+// フォント用コード
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
 
 body {
   font-family: "Noto Serif JP", serif !important;
 }
 
+// 写真プレビュー用コード
 .preview {
   height: 250px;
   width: 250px;
