@@ -43,8 +43,9 @@
            </thead>
             <tbody>
               <% @posts.each do |post| %>
+               <% @endusers.each do |enduser| %>
                <tr>
-                <td><%= post.end_user.nickname %></td>
+                <td><%= link_to post.end_user.nickname,public_enduser_path(enduser.id) %></td>
                 <td><%= link_to post.title, public_post_path(post.id),data: {"turbolinks" => false} %></td>   <!--ターボリンクスの設定、ページ遷移をAjax(非同期通信)に置き換え、JavaScriptやCSSのパースを省略することで高速化するgemの一種-->
                 <td>コメント数:<%= post.post_comments.count %></td>
                 <td>
@@ -53,6 +54,7 @@
                 <td id="favorite_btn_<%= post.id %>"><%= render "public/favorites/favorite", post: post %></td>    <!--namespaceを利用している場合は、public/adminから書かないと、テンプレートを引用できないので注意-->
                 </tr>
              <% end %>
+            <% end %>
            </tbody>
         </table>
         <div class="row align-bottom mx-auto">
