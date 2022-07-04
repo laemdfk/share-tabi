@@ -26,9 +26,20 @@
      </div>
 
      <div class="form-group">
-      <%= f.label :post_images,"写真" %><br>
-      <%= f.file_field :post_images,multiple: true, accept: "image/*" %><br />
+       <%= f.label :post_images,"写真" %><br>
+         <div class="img-upload">
+          <div class="left-img-upload">
+           <div class="weight-bold-text">
+           </div>
+           <div class="click-upload">
+            <%= f.file_field :post_images,multiple: true, id:"idea-image",accept: "image/*" %><br />
+           </div>
+          </div>
+        <div class="right-img-upload">
+        <div id="image"></div>
+      </div>
      </div>
+   </div>
 
     <div class="form-group">
       <%= f.label :body,"本文" %><br/>

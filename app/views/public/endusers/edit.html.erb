@@ -34,7 +34,18 @@
 
            <div class="form-group">
             <%= f.label :profile_image,"ユーザー画像" %>
-            <%= f.file_field :profile_image %><br />
+            <div class="img-upload">
+          <div class="left-img-upload">
+           <div class="weight-bold-text">
+           </div>
+           <div class="click-upload">
+            <%= f.file_field :profile_image,multiple: true, id:"idea-image",accept: "image/*" %><br />
+           </div>
+          </div>
+        <div class="right-img-upload">
+        <div id="image"></div>
+      </div>
+     </div>
            </div>
 
 

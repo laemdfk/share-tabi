@@ -6,3 +6,9 @@
 body {
   font-family: "Noto Serif JP", serif !important;
 }
+
+.preview {
+  height: 250px;
+  width: 250px;
+  object-fit: contain;
+}

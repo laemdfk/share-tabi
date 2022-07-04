@@ -20,7 +20,7 @@
 
      <div class="menu">
       <h4>作る</h4>
-       <i class="fas fa-pen-nib"></i><%= link_to "新しい旅の思い出を作る",new_public_post_path %>
+       <i class="fas fa-pen-nib"></i><%= link_to "新しい旅の思い出を作る",new_public_post_path,data: {"turbolinks" => false} %>
      </div>
 
       <div class="menu">
@@ -35,7 +35,7 @@
         <br><i class="fas fa-undo"></i><%= link_to"トップページへ",root_path %><br />
       </div>
     </div>
-    
+
 
 
   <!--Mapの表示　地図を検索できるようにしたい-->
