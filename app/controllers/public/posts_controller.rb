@@ -13,7 +13,7 @@ class Public::PostsController < ApplicationController
 
    def create
     # @enduser = current_end_user
-	@post_new = Post.new(post_params)
+   	@post_new = Post.new(post_params)
     @post_new.end_user_id = current_end_user.id
     #↑ ユーザーと投稿を紐づけるためのコード
 
@@ -35,7 +35,8 @@ class Public::PostsController < ApplicationController
 
 
   def index
-    @enduser = current_end_user
+    @endusers = EndUser.all
+    # @enduser = current_end_user
     @posts = Post.all.page(params[:page]).per(10)
     @tag_list =Tag.all
   end
@@ -113,6 +114,9 @@ class Public::PostsController < ApplicationController
         params.require(:post).permit(:title, :body,:address, post_images: [])
     end
 
+    def end_user_params
+     params.require(:end_user).permit(:nickname, :introduction, :profile_image)
+    end
 
      def authenticate_current_end_user
         @post = Post.find(params[:id])
