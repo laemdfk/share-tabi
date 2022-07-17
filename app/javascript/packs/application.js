@@ -17,4 +17,4 @@ import '@fortawesome/fontawesome-free/js/all'
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
-require('./preview')
+require('./preview')    // preview.jsを読み込むためのコード
