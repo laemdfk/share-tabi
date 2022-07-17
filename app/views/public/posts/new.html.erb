@@ -19,7 +19,7 @@
      <h1>新規投稿</h1>
 
      <%= form_with model: @post_new, url: '/public/posts',method: :post do |f|  %>
-     
+
      <div class="form-group">
       <%= f.label :title,"タイトル" %><br>
       <%= f.text_field :title,class: "w-100" %><br/>
@@ -45,7 +45,7 @@
       <%= f.label :body,"本文" %><br/>
       <%= f.text_area :body,rows: '5',class: "w-100" %><br/>
     </div>
-    
+
     <div class="form-group">
      <%= f.label :address, "場所" %>
      <%= f.text_field :address, class: "w-100" %>
@@ -55,7 +55,7 @@
       <%= f.label :name,"タグ(タグは「,」で区切ることで、複数のタグ付けが可能です)" %><br />
       <%= f.text_field :name,class: "w-100" %><br />
     </div>
-   
+
      <%= f.submit '投稿する' %>
 
     <% end %>
