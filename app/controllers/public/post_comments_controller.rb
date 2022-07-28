@@ -13,7 +13,7 @@ class Public::PostCommentsController < ApplicationController
      if comment.save
       redirect_to public_post_path(post.id),notice: "コメントを投稿しました."
      else
-      redirect_to public_post_path(post.id),flash: { alart: "コメントを入力してください"}
+      redirect_to public_post_path(post.id),flash: {alert: "コメントを入力してください"}
     end
   end
 
