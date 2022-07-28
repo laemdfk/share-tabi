@@ -26,7 +26,7 @@ class Public::PostsController < ApplicationController
 
 	 if @post_new.save
 	     @post_new.save_tag(tag_list)
- 		 redirect_to public_post_path(@post_new.id), notice:  "投稿の保存に成功しました"
+ 		   redirect_to public_post_path(@post_new.id), notice:  "投稿の保存に成功しました"
       else
        flash.now[:alert] = "タイトルまたは本文に空欄があるか、入力制限がかかっています。下記のエラー内容を確認してください(写真、場所、タグの投稿は任意です)"
         render "new"
