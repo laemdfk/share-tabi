@@ -24,21 +24,18 @@
       <%= f.text_field :title,class: "w-100" %><br/>
      </div>
 
-    <div class="form-group">
-       <%= f.label :post_images,"写真" %><br>
-         <div class="img-upload">
-          <div class="left-img-upload">
-           <div class="weight-bold-text">
+     <div class="form-group">
+           <div class="field">
+            <%= f.label :post_images, "写真" %>
            </div>
-           <div class="click-upload">
-            <%= f.file_field :post_images,multiple: true, id:"idea-image",accept: "image/*" %><br />
+            <%= f.file_field :post_images, class: "push", multiple: true, onchange: "loadImage(this);" %>
            </div>
+
+         <div id="post_images" style="display: none;">
+          <p id="preview"></p>
           </div>
-        <div class="right-img-upload">
-        <div id="image"></div>
-      </div>
-     </div>
-   </div>
+            <%= render "public/posts/loadimage" %>
+     
 
     <div class="form-group">
       <%= f.label :body,"本文" %><br/>

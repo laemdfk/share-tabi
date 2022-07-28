@@ -33,23 +33,17 @@
            </div>
 
             <div class="form-group">
-             <%= f.label :profile_image,"ユーザー画像" %>
-             <!--以下、画像表示用のclass設定。JavaScriptによる管理-->
-              <div class="img-upload">
-              <div class="left-img-upload">
-                <div class="weight-bold-text">
-                </div>
-                <div class="click-upload">
-                 <%#= f.file_field :profile_image,multiple: true, id:"idea-image",accept: "image/*" %><br />　　<!--誤コード。これではプロフィール画像の反映がされない→→修正コードと比較して。multiple: true部分が必要ない模様-->
-                 <!--multiple: true = 「付属のJavaScriptライブラリを用いて、クライアントからクラウドへのダイレクトアップロードをサポート」する、Active Strageのメソッド(Railsガイド 11「ダイレクトアップロード」より-->
-                 <%= f.file_field :profile_image, id:"idea-image",accept: "image/*" %><br />
-                </div>
-               </div>
-               <div class="right-img-upload">
-             <div id="image"></div>
-            </div>
+           <div class="field">
+            <%= f.label :profile_image, "ユーザー画像" %>
            </div>
+            <%= f.file_field :profile_image, class: "push", multiple: true, onchange: "loadImage(this);" %>
+           </div>
+
+         <div id="post_images" style="display: none;">
+          <p id="preview"></p>
           </div>
+            <%= render "public/posts/loadimage" %>
+
 
 
           <div class="form-group">
