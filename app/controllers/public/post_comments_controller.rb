@@ -10,8 +10,11 @@ class Public::PostCommentsController < ApplicationController
     comment = current_end_user.post_comments.new(comment_params)
     comment.post_id = post.id
     comment.score = Language.get_data(comment_params[:comment])   # post.scoreとなっていたことが原因。comment.scoreにしなければデータを正しい場所に保管できない
-    comment.save
-    redirect_to public_post_path(post.id),notice: "コメントを投稿しました."
+     if comment.save
+      redirect_to public_post_path(post.id),notice: "コメントを投稿しました."
+     else
+      redirect_to public_post_path(post.id),flash: {alert: "コメントを入力してください"}
+    end
   end
 
   def destroy
@@ -25,5 +28,4 @@ class Public::PostCommentsController < ApplicationController
   def comment_params
     params.require(:post_comment).permit(:comment, :post_id)
   end
-
 end

@@ -37,7 +37,8 @@ Rails.application.routes.draw do
 
 
 
-  namespace :public do
+   namespace :public do
+  # scope module: :public do
 
     root to: 'endusers#mypage'
 
