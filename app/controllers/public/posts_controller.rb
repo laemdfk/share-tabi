@@ -1,6 +1,6 @@
 class Public::PostsController < ApplicationController
 
-  before_action :current_end_user, {only: [:edit, :update, :destroy]}
+ before_action :current_end_user, {only: [:edit, :update, :destroy]}
 
   def new
       if EndUser.guest == current_end_user
@@ -64,7 +64,8 @@ class Public::PostsController < ApplicationController
     if @post.end_user == current_end_user
          render "edit"
     else
-        redirect_to posts_path
+        # redirect_to posts_path   # このコードだとエラーになる。(pathが正確なものに設定されていない!)下記に修正
+         redirect_to public_posts_path
     end
   end
 

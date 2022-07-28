@@ -1,0 +1,2 @@
+$('#favorite_btn_<%= @post.id %>').html("<%= j(render partial: 'public/post_comment/comment', locals: {post: @post,post_comment: @post_comment}) %>");
+<!--namespaceを利用している場合は、public/adminから書かないと、テンプレートを引用できない->
