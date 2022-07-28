@@ -3,7 +3,7 @@ if (document.URL.match( /new/ ) || document.URL.match( /edit/ )) {
     const ImageList = document.getElementById('image');
 
     const createImageHTML = (blob) => {
-       // 画像を表示するためのdiv要素を生成する→下記のコードにより、edit/create.html.erbのdivで設定した部分に出力させる。
+        // 画像を表示するためのdiv要素を生成する→下記のコードにより、edit/create.html.erbのdivで設定した部分に出力させる。
       const imageElement = document.createElement('div');
       // 表示する画像を生成する
       const blobImage = document.createElement('img');
