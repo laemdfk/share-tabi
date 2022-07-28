@@ -100,8 +100,8 @@ class Public::PostsController < ApplicationController
 
 
     def destroy
-      @post = Post.find(params[:id])
-      @post.destroy
+      post = Post.find(params[:id])
+      post.destroy
       redirect_to public_enduser_path(current_end_user),notice: "投稿の削除に成功しました"
     end
 
