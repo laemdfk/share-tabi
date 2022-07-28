@@ -40,7 +40,9 @@
                 <div class="weight-bold-text">
                 </div>
                 <div class="click-upload">
-                 <%= f.file_field :profile_image,multiple: true, id:"idea-image",accept: "image/*" %><br />
+                 <%#= f.file_field :profile_image,multiple: true, id:"idea-image",accept: "image/*" %><br />　　<!--誤コード。これではプロフィール画像の反映がされない→→修正コードと比較して。multiple: true部分が必要ない模様-->
+                 <!--multiple: true = 「付属のJavaScriptライブラリを用いて、クライアントからクラウドへのダイレクトアップロードをサポート」する、Active Strageのメソッド(Railsガイド 11「ダイレクトアップロード」より-->
+                 <%= f.file_field :profile_image, id:"idea-image",accept: "image/*" %><br />
                 </div>
                </div>
                <div class="right-img-upload">
