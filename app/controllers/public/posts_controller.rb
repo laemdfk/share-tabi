@@ -64,7 +64,7 @@ class Public::PostsController < ApplicationController
     if @post.end_user == current_end_user
          render "edit"
     else
-        # redirect_to posts_path
+        # redirect_to posts_path   # このコードだとエラーになる。(pathが正確なものに設定されていない!)下記に修正
          redirect_to public_posts_path
     end
   end
