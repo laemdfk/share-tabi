@@ -1,0 +1,20 @@
+<script>
+  function loadImage(obj)
+  {
+    var allPreview = document.getElementById('post_images');      // <div id="post_image">を読み込む
+    var newPreview = document.createElement("div");    // <p>を生成
+    allPreview.querySelector("p").remove();
+    newPreview.setAttribute("id","preview");
+    allPreview.insertBefore(newPreview, allPreview.firstChild);
+    document.getElementById("post_images").style.display = "";
+    for (i = 0; i < obj.files.length; i++) {
+        var fileReader = new FileReader();
+        fileReader.onload = (function (e) {
+            var img = new Image();
+            img.src = e.target.result;
+            document.getElementById('preview').appendChild(img);
+        });
+      fileReader.readAsDataURL(obj.files[i]);
+    }
+  }
+</script>

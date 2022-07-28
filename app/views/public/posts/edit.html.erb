@@ -30,23 +30,18 @@
            </div>
 
           <div class="form-group">
-             <%= f.label :post_images,"画像" %>
-             <!--以下、画像表示用のclass設定。JavaScriptによる管理-->
-              <div class="img-upload">
-              <div class="left-img-upload">
-                <div class="weight-bold-text">
-                </div>
-                <div class="click-upload">
-                 <!--multiple: true = 「付属のJavaScriptライブラリを用いて、クライアントからクラウドへのダイレクトアップロードをサポート」する、Active Strageのメソッド(Railsガイド 11「ダイレクトアップロード」より-->
-                 <%= f.file_field :post_images,multiple: true, id:"idea-image",accept: "image/*" %><br />
-                </div>
-               </div>
-               <div class="right-img-upload">
-             <div id="image"></div>
-            </div>
+           <div class="field">
+            <%= f.label :post_images, "写真" %>
            </div>
-          </div>
+            <%= f.file_field :post_images, class: "push", multiple: true, onchange: "loadImage(this);" %>
+           </div>
 
+         <div id="post_images" style="display: none;">
+          <p id="preview"></p>
+          </div>
+            <%= render "loadimage" %>
+     
+     
            <div class="form-group">
             <%= f.label :address, "場所" %>
             <%= f.text_field :address, class: "w-100" %>

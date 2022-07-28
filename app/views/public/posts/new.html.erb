@@ -2,7 +2,6 @@
  <div class="alert alert-danger" role="alert">
  <p class="notice text-center" style="color:red;"><%= flash[:alert] %></p></div>
 <% end %>
-
 <% if @post_new.errors.any? %>
   <%= @post_new.errors.count %>件のエラーが発生しました
   <ul>
@@ -24,7 +23,7 @@
       <%= f.label :title,"タイトル" %><br>
       <%= f.text_field :title,class: "w-100" %><br/>
      </div>
-     
+
     <div class="form-group">
        <%= f.label :post_images,"写真" %><br>
          <div class="img-upload">
@@ -57,7 +56,6 @@
     </div>
 
      <%= f.submit '投稿する' %>
-
     <% end %>
     </div>
   </div>

@@ -8,9 +8,9 @@ body {
   font-family: "Noto Serif JP", serif !important;
 }
 
-// 写真プレビュー用コード
+// 新規投稿/ユーザー編集、写真プレビュー用コード
 .preview {
-  height: 150px;
-  width: 150px;
+  height: 500px;
+  width: 500px;
   object-fit: contain;
 }
