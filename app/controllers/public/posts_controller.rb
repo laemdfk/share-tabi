@@ -122,7 +122,7 @@ class Public::PostsController < ApplicationController
      def authenticate_current_end_user
         @post = Post.find(params[:id])
         if @post.user_id != current_end_user
-         redirect_to public_posts_path
+         redirect_to posts_path
         end
      end
 

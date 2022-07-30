@@ -10,8 +10,8 @@
      退会する場合は、「退会する」をクリックしてください。
 
      <div class="row py-5 mr-2 form-group justify-content-center">
-      <%= link_to "退会する",public_withdrawal_path, method: :patch,data: { confilm: "この操作は取り消せませんが、よろしいですか？" }, class:"btn btn-danger mr-5 px-4" %>
-      <%= link_to "退会しない",public_enduser_path(current_end_user), class: "btn btn-primary px-4" %>
+      <%= link_to "退会する",withdrawal_path, method: :patch,data: { confilm: "この操作は取り消せませんが、よろしいですか？" }, class:"btn btn-danger mr-5 px-4" %>
+      <%= link_to "退会しない",enduser_path(current_end_user), class: "btn btn-primary px-4" %>
     </div>
     
    </div>

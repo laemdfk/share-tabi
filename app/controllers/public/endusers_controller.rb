@@ -33,21 +33,21 @@ class Public::EndusersController < ApplicationController
 
   def edit
     if EndUser.guest == current_end_user
-      redirect_to public_root_path, notice: "ゲストユーザは編集できません。"
+      redirect_to mypage_path, notice: "ゲストユーザは編集できません。"
       return
     end
     @enduser = EndUser.find(params[:id])
     if @enduser == current_end_user
       render "edit"
     else
-      redirect_to public_enduser_path(current_end_user.id)
+      redirect_to enduser_path(current_end_user.id)
     end
   end
 
   def update
     @enduser = EndUser.find(params[:id])
     if @enduser.update(end_user_params)
-      redirect_to public_enduser_path(current_end_user),notice: "ユーザー編集が完了しました."
+      redirect_to enduser_path(current_end_user),notice: "ユーザー編集が完了しました."
     else
       flash.now[:alert] = "ニックネームの欄を埋めてください"
       render "edit"
@@ -62,7 +62,7 @@ class Public::EndusersController < ApplicationController
 
   def withdrawal
     if EndUser.guest == current_end_user
-      redirect_to public_root_path, notice: "ゲストユーザは退会できません。"
+      redirect_to mypage_path, notice: "ゲストユーザは退会できません。"
       return
     end
     @enduser = current_end_user
