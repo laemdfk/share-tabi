@@ -4,7 +4,7 @@ class Public::PostsController < ApplicationController
 
   def new
       if EndUser.guest == current_end_user
-       redirect_to public_root_path, notice: "ゲストユーザは新規投稿できません。"
+       redirect_to mypage_path, notice: "ゲストユーザは新規投稿できません。"
        return
       end
     @post_new = Post.new    # ここにparamsをつけてしまうと、createの値と重複してデータが渡ってしまう
@@ -26,7 +26,7 @@ class Public::PostsController < ApplicationController
 
 	 if @post_new.save
 	     @post_new.save_tag(tag_list)
- 		   redirect_to public_post_path(@post_new.id), notice:  "投稿の保存に成功しました"
+ 		   redirect_to post_path(@post_new.id), notice:  "投稿の保存に成功しました"
       else
        flash.now[:alert] = "タイトルまたは本文に空欄があるか、入力制限がかかっています。下記のエラー内容を確認してください(写真、場所、タグの投稿は任意です)"
         render "new"
@@ -65,7 +65,7 @@ class Public::PostsController < ApplicationController
          render "edit"
     else
         # redirect_to posts_path   # このコードだとエラーになる。(pathが正確なものに設定されていない!)下記に修正
-         redirect_to public_posts_path
+         redirect_to posts_path
     end
   end
 
@@ -90,7 +90,7 @@ class Public::PostsController < ApplicationController
 
       if @post.save    # @post.save_tagはあったのに、こちらはなかったので追加。pose_newでは設定しているのになぜ。
         @post.save_tag(tag_list)
-        redirect_to public_post_path(@post.id),notice: "投稿の編集が完了しました"
+        redirect_to post_path(@post.id),notice: "投稿の編集が完了しました"
       else
         flash.now[:alert] = "空欄があるか、入力制限がかかっています。下記のエラー内容を確認してください(写真,タグ,場所の投稿は任意です)"
         render "edit"
@@ -102,7 +102,7 @@ class Public::PostsController < ApplicationController
     def destroy
       post = Post.find(params[:id])
       post.destroy
-      redirect_to public_enduser_path(current_end_user),notice: "投稿の削除に成功しました"
+      redirect_to enduser_path(current_end_user),notice: "投稿の削除に成功しました"
     end
 
 

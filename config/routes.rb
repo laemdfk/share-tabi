@@ -37,10 +37,10 @@ Rails.application.routes.draw do
 
 
 
-   namespace :public do
-  # scope module: :public do
+  # namespace :public do
+   scope module: :public do
 
-    root to: 'endusers#mypage'
+    get "mypage"=>"endusers#mypage" 
 
     resources :endusers, only: [:index, :show, :edit, :update, :destroy] do
       member do

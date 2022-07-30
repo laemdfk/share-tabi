@@ -1,7 +1,7 @@
 class Public::PostCommentsController < ApplicationController
   def create
      if EndUser.guest == current_end_user
-      redirect_to public_root_path, notice: "ゲストユーザはコメントできません。"
+      redirect_to mypage_path, notice: "ゲストユーザはコメントできません。"
       return    # returnとは定義したメソッドの中の戻り値を返す。この場合は、メソッドから強制的に離脱させる(ゲストユーザーでは下記end以下の処理を強制停止させたいため)
      end
 
@@ -11,16 +11,16 @@ class Public::PostCommentsController < ApplicationController
     comment.post_id = post.id
     comment.score = Language.get_data(comment_params[:comment])   # post.scoreとなっていたことが原因。comment.scoreにしなければデータを正しい場所に保管できない
      if comment.save
-      redirect_to public_post_path(post.id),notice: "コメントを投稿しました."
+      redirect_to post_path(post.id),notice: "コメントを投稿しました."
      else
-      redirect_to public_post_path(post.id),flash: {alert: "コメントを入力してください"}
+      redirect_to post_path(post.id),flash: {alert: "コメントを入力してください"}
     end
   end
 
   def destroy
     comment = PostComment.find(params[:post_id])
     comment.destroy
-    redirect_to public_posts_path,notice: "コメントを削除しました"
+    redirect_to posts_path,notice: "コメントを削除しました"
   end
 
   private
