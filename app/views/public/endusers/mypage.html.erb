@@ -1,6 +1,11 @@
 <% if flash[:notice] %>
  <div class="alert alert-success" role="alert">
- <p class="notice text-center" style="color:green;"><%= flash[:notice] %></p></div>
+  <p class="notice text-center" style="color:green;"><%= flash[:notice] %></p>
+ </div>
+ <% elsif flash[:alert] %>
+ <div class="alert alert-danger" role="alert">
+ <p class="notice text-center" style="color:red;"><%= flash[:alert] %></p>
+</div>
 <% end %>
 
 
@@ -13,25 +18,25 @@
      <table class="table">
      <div class="menu">
       <h4>見る</h4>
-      <i class="fas fa-book-open"></i><%= link_to "マイページへ",public_enduser_path(current_end_user.id) %><br />
-      <i class="fas fa-book"></i><%= link_to "みんなの投稿を見に行く",public_posts_path %><br />
-      <i class="fas fa-bookmark"></i><%= link_to "いいねした投稿を見る", favorites_public_enduser_path(@enduser) %><br />
+      <i class="fas fa-book-open"></i><%= link_to "マイページへ",enduser_path(current_end_user.id) %><br />
+      <i class="fas fa-book"></i><%= link_to "みんなの投稿を見に行く",posts_path %><br />
+      <i class="fas fa-bookmark"></i><%= link_to "いいねした投稿を見る", favorites_enduser_path(@enduser) %><br />
      </div>
 
      <div class="menu">
       <h4>作る</h4>
-       <i class="fas fa-pen-nib"></i><%= link_to "新しい旅の思い出を作る",new_public_post_path,data: {"turbolinks" => false} %>
+       <i class="fas fa-pen-nib"></i><%= link_to "新しい旅の思い出を作る",new_post_path,data: {"turbolinks" => false} %>
      </div>
 
       <div class="menu">
        <h4>編集する</h4>
-        <i class="fas fa-user-cog"></i><%= link_to "アカウント編集",edit_public_enduser_path(current_end_user.id) %>
+        <i class="fas fa-user-cog"></i><%= link_to "アカウント編集",edit_enduser_path(current_end_user.id) %>
       </div>
 
 
       <div class "menu">
         <h4>その他</h4>
-       <i class="fas fa-user-slash"></i><%= link_to "退会する",public_quit_path(current_end_user.id) %><br />
+       <i class="fas fa-user-slash"></i><%= link_to "退会する",quit_path(current_end_user.id) %><br />
         <br><i class="fas fa-undo"></i><%= link_to"トップページへ",root_path %><br />
       </div>
     </div>

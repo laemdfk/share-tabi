@@ -20,7 +20,7 @@
   	       プロフィール編集
   	      </h2>
 
-           <%= form_with model: @enduser, url: public_enduser_path(@enduser), method: :patch do |f| %>
+           <%= form_with model: @enduser, url: enduser_path(@enduser), method: :patch do |f| %>
 
            <div class="form-group">
          　 <br> <%= f.label :nickname,"ニックネーム" %><br />
@@ -57,7 +57,7 @@
            </div>
 
       <div class="menu">
-       <%= link_to "Back", public_enduser_path(@enduser) %>
+       <%= link_to "Back", enduser_path(@enduser) %>
       </div>
       <% end %>
     </div>

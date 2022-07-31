@@ -6,14 +6,14 @@ class Public::SessionsController < Devise::SessionsController
 
   # deviseのデフォルトコードでないと、読み込むことができない=遷移を制御できない
  def after_sign_in_path_for(resource)
-   public_root_path(resource)
+   mypage_path(resource)
  end
 
 # ゲストログインの定義
  def guest_sign_in
     enduser = EndUser.guest
     sign_in enduser
-    redirect_to public_root_path, notice: 'ゲストユーザーとしてログインしました'
+    redirect_to mypage_path, notice: 'ゲストユーザーとしてログインしました'
   end
 
 

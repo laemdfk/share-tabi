@@ -1,10 +1,10 @@
 class Public::FavoritesController < ApplicationController
   def create
   if EndUser.guest == current_end_user
-    redirect_to public_root_path, notice: "ゲストユーザはいいねできません。"
+    redirect_to mypage_path, flash: {alert: "ゲストユーザーはいいねできません"}
     return
    end
-   
+
   @post = Post.find(params[:post_id])
   favorite = current_end_user.favorites.new(post_id: @post.id)
   favorite.save

@@ -9,7 +9,7 @@ before_action :configure_permitted_parameters, if: :devise_controller?
 def check_guest
    email = resource&.email || params[:end_user][:email].downcase
    if email == EndUser.guest.email
-     redirect_to root_path, alert: 'ゲストユーザーの変更・削除はできません。'
+     redirect_to mypage_path, alert: 'ゲストユーザーの変更・削除はできません。'
    end
  end
 

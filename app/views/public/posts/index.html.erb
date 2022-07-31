@@ -1,16 +1,17 @@
 <% if flash[:notice] %>
  <div class="alert alert-success" role="alert">
- <p class="notice text-center" style="color:green;"><%= flash[:notice] %></p></div>
+  <p class="notice text-center" style="color:green;"><%= flash[:notice] %></p>
+ </div>
 <% end %>
+
+
 <main>
-
-
     <div class="col-md-8 offset-md-1">
      <h2>みんなの写真</h2>
       <!--写真を左側空白に配列し、それぞれ写真もリンクにする-->
        <% @posts.each do |post| %>
           <% post.post_images.each do |image| %>
-           <%= link_to image_tag(image, width:100), public_post_path(post.id)  %>
+           <%= link_to image_tag(image, width:100), post_path(post.id)  %>
           <% end %>
         <% end %>
         <!--タグ検索(タグリスト)部分-->
@@ -20,7 +21,7 @@
           タグ一覧(記事を一覧で検索できます)
          </h3>
          <% @tag_list.each do |list| %>
-          <%= link_to list.name,public_search_tag_path(tag_id: list.id) %><%= "(#{list.posts.count})" %>
+          <%= link_to list.name,search_tag_path(tag_id: list.id) %><%= "(#{list.posts.count})" %>
          <% end %>
         </div>
       </div>
@@ -45,7 +46,7 @@
               <% @posts.each do |post| %>
                <tr>
                 <td><%= post.end_user.nickname %></td>
-                <td><%= link_to post.title, public_post_path(post.id),data: {"turbolinks" => false} %></td>   <!--ターボリンクスの設定、ページ遷移をAjax(非同期通信)に置き換え、JavaScriptやCSSのパースを省略することで高速化するgemの一種-->
+                <td><%= link_to post.title, post_path(post.id),data: {"turbolinks" => false} %></td>   <!--ターボリンクスの設定、ページ遷移をAjax(非同期通信)に置き換え、JavaScriptやCSSのパースを省略することで高速化するgemの一種-->
                 <td>コメント数:<%= post.post_comments.count %></td>
                 <td>
                   <%= post.tags.map(&:name).join(',') %> <%= "(#{post.tags.count})" %>    <!--map(&:name) ＝配列の要素一つ一つを、後ろに指定した要素の型に変換し、 join(', ')指定した文字を区切り、連結させる-->

@@ -15,23 +15,23 @@
         <ul class="navbar-nav">
           <% if end_user_signed_in? %>
           <li>
-            <%= link_to "メニュー",public_root_path, data: {"turbolinks" => false},class: "nav-link" %>
+            <%= link_to "メニュー",mypage_path, data: {"turbolinks" => false},class: "nav-link" %>
             <!--ターボリンクスの設定、ページ遷移をAjax(非同期通信)に置き換え、JavaScriptやCSSのパースを省略することで高速化するgemの一種。Rails4以降でデフォルトで設定されている-->
           </li>
           <li>
-            <%= link_to "新規投稿",new_public_post_path,data: {"turbolinks" => false},class: "nav-link" %>
+            <%= link_to "新規投稿",new_post_path,data: {"turbolinks" => false},class: "nav-link" %>
           </li>
           <li>
-            <%= link_to "マイページ", public_enduser_path(current_end_user.id), class: "nav-link" %>
+            <%= link_to "マイページ", enduser_path(current_end_user.id), class: "nav-link" %>
           </li>
           <li>
-            <%= link_to "アカウント編集",edit_public_enduser_path(current_end_user.id),data: {"turbolinks" => false},class: "nav-link" %>
+            <%= link_to "アカウント編集",edit_enduser_path(current_end_user.id),data: {"turbolinks" => false},class: "nav-link" %>
           </li>
           <li>
-            <%= link_to "投稿一覧",public_posts_path, class: "nav-link" %>
+            <%= link_to "投稿一覧",posts_path, class: "nav-link" %>
           </li>
           <li>
-            <%= link_to "退会する",public_quit_path(current_end_user.id),class: "nav-link" %>
+            <%= link_to "退会する",quit_path(current_end_user.id),class: "nav-link" %>
           </li>
           <li>
             <%= link_to "ログアウト", destroy_end_user_session_path, method: :delete, class: "nav-link" %>
