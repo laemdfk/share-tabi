@@ -4,7 +4,7 @@ class Public::PostsController < ApplicationController
 
   def new
       if EndUser.guest == current_end_user
-       redirect_to mypage_path, notice: "ゲストユーザは新規投稿できません。"
+       redirect_to mypage_path, flash: {alert: "ゲストユーザーは新規投稿できません"}
        return
       end
     @post_new = Post.new    # ここにparamsをつけてしまうと、createの値と重複してデータが渡ってしまう
@@ -64,7 +64,7 @@ class Public::PostsController < ApplicationController
     if @post.end_user == current_end_user
          render "edit"
     else
-        # redirect_to posts_path   # このコードだとエラーになる。(pathが正確なものに設定されていない!)下記に修正
+        # redirect_to public_posts_path   # このコードだとエラーになる。(pathが正確なものに設定されていない!)下記に修正
          redirect_to posts_path
     end
   end

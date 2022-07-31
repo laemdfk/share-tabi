@@ -1,7 +1,7 @@
 class Public::FavoritesController < ApplicationController
   def create
   if EndUser.guest == current_end_user
-    redirect_to mypage_path, notice: "ゲストユーザはいいねできません。"
+    redirect_to mypage_path, flash: {alert: "ゲストユーザーはいいねできません"}
     return
    end
 

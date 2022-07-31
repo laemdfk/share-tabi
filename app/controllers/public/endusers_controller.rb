@@ -33,7 +33,7 @@ class Public::EndusersController < ApplicationController
 
   def edit
     if EndUser.guest == current_end_user
-      redirect_to mypage_path, notice: "ゲストユーザは編集できません。"
+      redirect_to mypage_path, flash: {alert: "ゲストユーザーは編集できません"}
       return
     end
     @enduser = EndUser.find(params[:id])
@@ -62,7 +62,7 @@ class Public::EndusersController < ApplicationController
 
   def withdrawal
     if EndUser.guest == current_end_user
-      redirect_to mypage_path, notice: "ゲストユーザは退会できません。"
+      redirect_to mypage_path, flash: {alert: "ゲストユーザーは退会できません"}
       return
     end
     @enduser = current_end_user

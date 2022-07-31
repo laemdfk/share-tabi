@@ -1,7 +1,7 @@
 class Public::PostCommentsController < ApplicationController
   def create
      if EndUser.guest == current_end_user
-      redirect_to mypage_path, notice: "ゲストユーザはコメントできません。"
+      redirect_to mypage_path,flash: {alert: "ゲストユーザーはコメントできません"}
       return    # returnとは定義したメソッドの中の戻り値を返す。この場合は、メソッドから強制的に離脱させる(ゲストユーザーでは下記end以下の処理を強制停止させたいため)
      end
 

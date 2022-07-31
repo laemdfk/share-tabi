@@ -18,13 +18,13 @@
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
      <h1>新規投稿</h1>
 
-     <%= form_with model: @post_new, url: '/public/posts',method: :post do |f|  %>
+     <%= form_with model: @post_new, url: '/posts',method: :post do |f|  %>
 
      <div class="form-group">
       <%= f.label :title,"タイトル" %><br>
       <%= f.text_field :title,class: "w-100" %><br/>
      </div>
-     
+
     <div class="form-group">
        <%= f.label :post_images,"写真" %><br>
          <div class="img-upload">
