@@ -66,6 +66,8 @@ gem 'geocoder'
 
 gem 'rails-i18n'
 
+gem "net-smtp"
+
 group :production do
   gem 'mysql2'
 end
